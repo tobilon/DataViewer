@@ -1,0 +1,4 @@
+[main] DEBUG com.log.Log - this is debug info
+[main] INFO com.log.Log - this is info message
+[main] ERROR com.log.Log - this is error info
+[main] INFO com.log.Log - start now
