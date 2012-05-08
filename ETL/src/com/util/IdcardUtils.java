@@ -171,6 +171,11 @@ public class IdcardUtils extends StringUtils {
      */
     public static boolean validateCard(String idCard) {
         String card = idCard.trim();
+        if(
+    		idCard.length() != 15 &&
+       		idCard.length() != 18 ){
+        	return false;
+        }
         if (validateIdCard18(card)) {
             return true;
         }
