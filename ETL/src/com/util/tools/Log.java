@@ -1,4 +1,4 @@
-package com.util;
+package com.util.tools;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;

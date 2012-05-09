@@ -1,4 +1,4 @@
-package com.util;
+package com.util.tools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -152,16 +152,24 @@ public class StringUtil {
 	 {
 		 
 		// phonelist.clear();
+		 int i = 0;
 		 
-		 for(int i = 0; i< str.length(); i++)
+		 while(i< str.length())
 		 {
 			 if(str.charAt(i) == '1' && str.length() - i >= 11)
 			 { 
 				 if(true == isMobileNO(str.substring(i, i+11)))
 				 {
 					 list.add(str.substring(i, i+11));
+					 i = i+11;
 					// ImportPanel.num++;
 				 }
+				 else{
+					 i++;
+				 }
+			 }
+			 else{
+				 i++;
 			 }
 		 }
 	 }

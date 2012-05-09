@@ -2,9 +2,9 @@ package com.util.export;
 
 import java.util.ArrayList;
 
-import com.util.IdcardUtils;
-import com.util.Log;
-import com.util.StringUtil;
+import com.util.tools.IdcardUtils;
+import com.util.tools.Log;
+import com.util.tools.StringUtil;
 
 public class UsersExport {
 
@@ -31,14 +31,18 @@ public class UsersExport {
 			if(StringUtil.isNum(info.charAt(0))){
 				if(info.length() == 1){
 					if(info.equals("M")){
-						data.sex = "女";
+						data.sex = "男";
 					}
 					else if(info.equals("F")){
-						data.sex = "男";
+						data.sex = "女";
 					}
 					continue;
 				}
 				if(StringUtil.isFixPhone(info)){
+					data.fixPhone = info;
+					continue;
+				}
+				else if(StringUtil.isPost(info)){
 					data.post = info;
 					continue;
 				}
@@ -55,10 +59,10 @@ public class UsersExport {
 					data.age = IdcardUtils.getAgeByIdCard(info);
 					data.born = IdcardUtils.getBirthByIdCard(info);
 					if(IdcardUtils.getGenderByIdCard(info).equals("M")){
-						data.sex = "女";
+						data.sex = "男";
 					}
 					else{
-						data.sex = "男";
+						data.sex = "女";
 					}
 					continue;
 				}

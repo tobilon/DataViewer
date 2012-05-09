@@ -6,7 +6,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.util.IdcardUtils;
+import com.util.tools.IdcardUtils;
 
 public class IdcardUtilsTest {
 
