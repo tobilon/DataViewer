@@ -30,7 +30,7 @@ public class HxlsImp extends HxlsAbstract{
 			tableHeadList.clear();
 		    for (int i = 0 ;i< rowlist.size();i++){
 		    	
-			    System.out.print("'"+rowlist.get(i)+"',");
+			  //  System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
 		}
@@ -45,7 +45,7 @@ public class HxlsImp extends HxlsAbstract{
 		    
 		}
 		UsersExport.anasys(fileName, (ArrayList<String>)rowlist);
-		System.out.println();
+		//System.out.println();
 	}
 	
 	public static void main(String[] args){

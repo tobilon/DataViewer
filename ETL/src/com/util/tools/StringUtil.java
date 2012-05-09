@@ -201,11 +201,12 @@ public class StringUtil {
 	 }
 	 
 	 public static boolean isFixPhone(String str){
-		 String phoneRegexp = "([0-9]{2})+-([0-9]{4})+-([0-9]{4})+";//固话的匹配模式 
+		 
+		 String phoneRegexp = "^\\d{3,4}-?\\d{7,8}$";//固话的匹配模式 
 		 if(str == null){
 			 Log.error("fixphone is null");
 			 return false;
-		 }
+		 } 
 		 
 		 return str.matches(phoneRegexp);
 	 }
@@ -289,7 +290,7 @@ public class StringUtil {
 				break;
 			}
 		}
-		System.out.println("cc --->" +count);
+		//System.out.println("cc --->" +count);
 		return count;
 		
 	}

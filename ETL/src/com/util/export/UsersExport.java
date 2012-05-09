@@ -121,12 +121,16 @@ static void printlog(Users data){
 		phone+=data.mobilePhonelist.get(loop);
 	}
 	count++;
-	String content = "--- num: "+count+"src: "+data.dataSource+"name: "+data.name+"addr: "+data.address+" "+data.age+" "+
-	data.born+"com: "+data.company+"fix: "+data.fixPhone+"id: "+data.idCard+"mail: "
-	+data.mail+"post: "+data.post+"phone: "+phone+"sex: "+data.sex+"  -------";
+	String content = "--- num: "+count+" src: "+data.dataSource+" name: "+data.name+"addr: "+data.address+" age: "+data.age+" born: "+
+	data.born+" com: "+data.company+" fix: "+data.fixPhone+" id: "+data.idCard+" mail: "
+	+data.mail+" post: "+data.post+" phone: "+phone+" sex: "+data.sex+"  -------";
+	
+	if(data.post.length() == 6){
+		System.out.println(data.post);
+	}
 	
 	//Log.error(content);
-	System.out.println(content);
+	//System.out.println(content);
 	content = null;
 	
 }

@@ -20,7 +20,7 @@ public class XxlsImp extends XxlsAbstract {
 			tableHeadList.clear();
 		    for (int i = 0 ;i< rowlist.size();i++){
 		    	
-			    System.out.print("'"+rowlist.get(i)+"',");
+			   // System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
 		}
@@ -28,11 +28,11 @@ public class XxlsImp extends XxlsAbstract {
 			dataList.clear();
 		    for (int i = 0 ;i< rowlist.size();i++){
 		    	
-			    System.out.print("'"+rowlist.get(i)+"',");
+			   // System.out.print("'"+rowlist.get(i)+"',");
 			    dataList.add(rowlist.get(i));
 		    }
 		}
-		System.out.println();
+		//System.out.println();
 		UsersExport.anasys(filename, (ArrayList<String>)rowlist);
 	}
 

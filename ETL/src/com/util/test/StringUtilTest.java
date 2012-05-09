@@ -19,5 +19,11 @@ public class StringUtilTest {
 	public void testIsPost(){
 		assertEquals(true,StringUtil.isPost("417712"));
 	}
+	
+	@Test
+	public void testisFixPhone(){
+		assertEquals(true,StringUtil.isFixPhone("0738-60114431"));
+		assertEquals(true,StringUtil.isFixPhone("073860114431"));
+	}
 
 }

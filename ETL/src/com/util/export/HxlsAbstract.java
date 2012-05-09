@@ -268,7 +268,7 @@ public abstract class HxlsAbstract implements HSSFListener {
 		// 如果遇到能打印的东西，在这里打印
 		if (thisStr != null) {
 			if (thisColumn > 0) {
-			output.print(',');
+			//output.print(',');
 			}
 			output.print(thisStr);
 		}
