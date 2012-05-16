@@ -11,10 +11,27 @@ public class Users {
 	String company="";
 	String idCard="";
 	ArrayList<String> mobilePhonelist = new ArrayList<String>();
-	String fixPhone="";
+	ArrayList<String> fixPhoneList = new ArrayList<String>();
+	//String fixPhone="";
 	String mail="";
 	String born="";
 	String sex="";
+	
+	String post="";
+	String mobile1="";
+	String mobile2="";
+	String mobile3="";
+	String mobile4="";
+	
+	String fixPhone1 ="";
+	String fixPhone2="";
+	String province="";
+	String city="";
+	String usertype="";
+	String remarks ="";
+	
+	String dataSource;
+	
 	public String getPost() {
 		return post;
 	}
@@ -23,7 +40,7 @@ public class Users {
 	}
 	public String getMobile1() {
 		if(mobilePhonelist.size() >= 1){
-		       this.mobile5 = mobilePhonelist.get(0);
+		       this.mobile1 = mobilePhonelist.get(0);
 			}
 		return mobile1;
 	}
@@ -32,7 +49,7 @@ public class Users {
 	}
 	public String getMobile2() {
 		if(mobilePhonelist.size() >= 2){
-		       this.mobile5 = mobilePhonelist.get(1);
+		       this.mobile2 = mobilePhonelist.get(1);
 			}
 		return mobile2;
 	}
@@ -41,7 +58,7 @@ public class Users {
 	}
 	public String getMobile3() {
 		if(mobilePhonelist.size() >= 3){
-		       this.mobile5 = mobilePhonelist.get(2);
+		       this.mobile3 = mobilePhonelist.get(2);
 			}
 		return mobile3;
 	}
@@ -50,30 +67,15 @@ public class Users {
 	}
 	public String getMobile4() {
 		if(mobilePhonelist.size() >= 4){
-		       this.mobile5 = mobilePhonelist.get(3);
+		       this.mobile4 = mobilePhonelist.get(3);
 			}
 		return mobile4;
 	}
 	public void setMobile4(String mobile4) {
 		this.mobile4 = mobile4;
 	}
-	public String getMobile5() {
-		if(mobilePhonelist.size() >= 5){
-		       this.mobile5 = mobilePhonelist.get(4);
-			}
-		return mobile5;
-	}
-	public void setMobile5(String mobile5) {
-		this.mobile5 = mobile5;
-	}
-	int age;
-	String post="";
-	String mobile1="";
-	String mobile2="";
-	String mobile3="";
-	String mobile4="";
-	String mobile5="";
-	String dataSource;
+	
+
 	
 	public Users(){
 		mobilePhonelist.clear();
@@ -108,12 +110,7 @@ public class Users {
 	public void setMobilePhonelist(ArrayList<String> mobilePhonelist) {
 		this.mobilePhonelist = mobilePhonelist;
 	}
-	public String getFixPhone() {
-		return fixPhone;
-	}
-	public void setFixPhone(String fixPhone) {
-		this.fixPhone = fixPhone;
-	}
+	
 	public String getMail() {
 		return mail;
 	}
@@ -138,18 +135,63 @@ public class Users {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
+	
 	public String getDataSource() {
 		return dataSource;
 	}
 	public void setDataSource(String dataSource) {
 		this.dataSource = dataSource;
 	}
+	public ArrayList<String> getFixPhoneList() {
+		return fixPhoneList;
+	}
+	public void setFixPhoneList(ArrayList<String> fixPhoneList) {
+		this.fixPhoneList = fixPhoneList;
+	}
+	public String getFixPhone1() {
+		if(fixPhoneList.size() >=1 ){
+			fixPhone1 = fixPhoneList.get(0);
+		}
+		return fixPhone1;
+	}
+	public void setFixPhone1(String fixPhone1) {
+		this.fixPhone1 = fixPhone1;
+	}
+	public String getFixPhone2() {
+		if(fixPhoneList.size() >=2 ){
+			fixPhone2 = fixPhoneList.get(1);
+		}
+		return fixPhone2;
+	}
+	public void setFixPhone2(String fixPhone2) {
+		this.fixPhone2 = fixPhone2;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getUsertype() {
+		return usertype;
+	}
+	public void setUsertype(String usertype) {
+		this.usertype = usertype;
+	}
+	public String getRemarks() {
+		return remarks;
+	}
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+	
+	
 	
 	
 	

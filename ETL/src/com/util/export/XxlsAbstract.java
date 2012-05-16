@@ -25,6 +25,7 @@ public abstract class XxlsAbstract extends DefaultHandler {
 	private String lastContents;
 	private boolean nextIsString;
 	protected String filename=null;
+	protected String dirname;
 
 	private int sheetIndex = -1;
 	private List<String> rowlist = new ArrayList<String>();
@@ -58,8 +59,9 @@ public abstract class XxlsAbstract extends DefaultHandler {
 	/**
 	 * ±éÀú excel ÎÄ¼þ
 	 */
-	public void process(String filename) throws Exception {
+	public void process(String filename,String dirname) throws Exception {
 		this.filename = filename;
+		this.dirname = dirname;
 		OPCPackage pkg = OPCPackage.open(filename);
 		XSSFReader r = new XSSFReader(pkg);
 		SharedStringsTable sst = r.getSharedStringsTable();

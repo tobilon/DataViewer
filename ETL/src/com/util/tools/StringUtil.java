@@ -294,4 +294,30 @@ public class StringUtil {
 		return count;
 		
 	}
+	
+	public static String getProvince(String str){
+		if(str.contentEquals("上海")||
+				str.contentEquals("北京")||
+				str.contentEquals("天津")||
+				str.contentEquals("重庆")){
+			return str;
+		}
+		
+		int index = str.indexOf("省");
+		return str.substring(0, index);
+
+	}
+	
+	public static String getCity(String str){
+		if(str.contentEquals("上海")||
+				str.contentEquals("北京")||
+				str.contentEquals("天津")||
+				str.contentEquals("重庆")){
+			return str;
+		}
+		
+		int index = str.indexOf("省");
+		return str.substring(index+1, str.length()-1);
+
+	}
 }

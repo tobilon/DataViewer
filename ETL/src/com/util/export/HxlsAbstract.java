@@ -66,7 +66,9 @@ public abstract class HxlsAbstract implements HSSFListener {
 	private List<String> rowlist;
 	@SuppressWarnings( "unused")
 	private String sheetName;
-
+    protected String dirname;
+    protected String filename;
+	
 	public HxlsAbstract(POIFSFileSystem fs)
 			throws SQLException {
 		this.fs = fs;
@@ -93,7 +95,10 @@ public abstract class HxlsAbstract implements HSSFListener {
 	/**
 	 * ±éÀú excel ÎÄ¼þ
 	 */
-	public void process() throws IOException {
+	public void process(String filename,String dirname) throws IOException {
+		this.filename = filename;
+		this.dirname = dirname;
+		
 		MissingRecordAwareHSSFListener listener = new MissingRecordAwareHSSFListener(
 				this);
 		formatListener = new FormatTrackingHSSFListener(listener);

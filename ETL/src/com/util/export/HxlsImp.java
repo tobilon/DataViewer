@@ -13,14 +13,14 @@ public class HxlsImp extends HxlsAbstract{
 	
 	private ArrayList<String> dataList = new ArrayList<String>();
 	private ArrayList<String> tableHeadList = new ArrayList<String>();
-	private String fileName;
+	//private String fileName;
 	
 
 	public HxlsImp(String filename) throws IOException,
 			FileNotFoundException, SQLException {
 		
 		super(filename);
-		this.fileName=filename;
+		//this.fileName=filename;
 	}
 
 	@Override
@@ -33,6 +33,7 @@ public class HxlsImp extends HxlsAbstract{
 			  //  System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
+		    UsersExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,true);
 		}
 		else {
 			dataList.clear();
@@ -42,9 +43,10 @@ public class HxlsImp extends HxlsAbstract{
 			    dataList.add(rowlist.get(i));
 			    
 		    }
+		    UsersExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,false);
 		    
 		}
-		UsersExport.anasys(fileName, (ArrayList<String>)rowlist);
+		
 		//System.out.println();
 	}
 	
@@ -52,7 +54,7 @@ public class HxlsImp extends HxlsAbstract{
 		HxlsImp xls2csv;
 		try {
 			xls2csv = new HxlsImp("dd.xls");
-			xls2csv.process();
+			xls2csv.process("dd.xls","dd");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

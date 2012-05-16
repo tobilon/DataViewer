@@ -8,16 +8,26 @@ import com.util.tools.StringUtil;
 
 public class UsersExport {
 
-	public static int count = 0;
-
-   public static void anasys(String filename,ArrayList<String> infoList){
+  public static int count = 0;
+  /*
+   * dirname: 类型名
+   * filename：文件 名
+   * headList: 表头
+   * infoList：行记录
+   * isFirstRow：是否 是第一行 ，TRUE 为真 ，ACCESS情况下总为假，ACCESS 第一行为真，其他为假
+   */
+  public static void anasys(String dirname,String filename,ArrayList<String> headList,ArrayList<String> infoList
+		                     ,boolean isFirstRow){
 		
 		//去掉空格
 		StringUtil.deleteBlankList(infoList);
+		StringUtil.deleteBlankList(headList);
 		
 		//分类
 		String info = null;
 		Users data = new Users();
+		
+		data.usertype = dirname;
 		data.dataSource = filename;
 		
 		for(int loop = 0; loop < infoList.size(); loop++){
@@ -27,80 +37,13 @@ public class UsersExport {
 			if(info.length() <1){
 				continue;
 			}
-			
+			//精确查询
 			if(StringUtil.isNum(info.charAt(0))){
-				if(info.length() == 1){
-					if(info.equals("M")){
-						data.sex = "男";
-					}
-					else if(info.equals("F")){
-						data.sex = "女";
-					}
-					continue;
-				}
-				if(StringUtil.isFixPhone(info)){
-					data.fixPhone = info;
-					continue;
-				}
-				else if(StringUtil.isPost(info)){
-					data.post = info;
-					continue;
-				}
-				else if(StringUtil.isFixPhone(info)){
-					data.fixPhone = info;
-					continue;
-				}
-				else if(StringUtil.isMail(info)){
-					data.mail = info;
-					continue;
-				}
-				else if(IdcardUtils.validateCard(info)){
-					data.idCard = info;
-					data.age = IdcardUtils.getAgeByIdCard(info);
-					data.born = IdcardUtils.getBirthByIdCard(info);
-					if(IdcardUtils.getGenderByIdCard(info).equals("M")){
-						data.sex = "男";
-					}
-					else{
-						data.sex = "女";
-					}
-					continue;
-				}
-				else{
-					StringUtil.getMobilePhonelList(info,data.mobilePhonelist);
-				}
-				
+				AccurateAnasys.accurate(data, info);
 			}
+			//模糊查询
 			else if(StringUtil.isChinese(info)){
-			    if(info.length() == 1){
-			    	if(info.equals("男")){
-			    		data.sex ="男";
-			    	}
-			    	else if(info.equals("女 ")){
-			    		data.sex = "女";
-			    	}
-			    	continue;
-			    }
-			    else if(StringUtil.countChina(info)>= 2 && StringUtil.countChina(info) <= 4 && data.name.length() < 2){
-				  // System.out.println("name "+info);
-					if(StringUtil.isName(info)){
-					 data.name = info;
-					 continue;
-					}
-				}
-				else if(StringUtil.countChina(info) >= 4){
-					//System.out.println(info);
-					if(StringUtil.isAddress(info) && info.length() > data.address.length()){
-						data.address = info;
-						continue;
-					}
-				}
-				else{
-					if(StringUtil.isMail(info)){
-						data.mail = info;
-						continue;
-					}	
-				}				
+				FuzzyAnasys.fuzzy(data,info,headList.get(loop),isFirstRow);
 			}
 			//只需要判邮政编码
 			else{
@@ -121,8 +64,8 @@ static void printlog(Users data){
 		phone+=data.mobilePhonelist.get(loop);
 	}
 	count++;
-	String content = "--- num: "+count+" src: "+data.dataSource+" name: "+data.name+"addr: "+data.address+" age: "+data.age+" born: "+
-	data.born+" com: "+data.company+" fix: "+data.fixPhone+" id: "+data.idCard+" mail: "
+	String content = "--- num: "+count+" src: "+data.dataSource+" name: "+data.name+"addr: "+data.address+" born: "+
+	data.born+" com: "+data.company+" fix: "+data.getFixPhone1()+" id: "+data.idCard+" mail: "
 	+data.mail+" post: "+data.post+" phone: "+phone+" sex: "+data.sex+"  -------";
 	
 	if(data.post.length() == 6){

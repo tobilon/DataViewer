@@ -21,6 +21,7 @@ public class AccessImp implements AccessRead {
 	private Connection conn = null;
 	private Statement  stmt = null;
 	private String filename = null;
+	private String dirname = null;
 	
 	//表名
 	private List<String> listName = new ArrayList<String>();
@@ -29,9 +30,15 @@ public class AccessImp implements AccessRead {
 	//表数据
 	ArrayList<String>  dataList = new ArrayList<String>();
 	
-	public void read(String dbName){
+    public static void main(String[] args){
+    	AccessImp access = new AccessImp();
+    	access.read("mobile.mdb","dd");
+    	
+    }
+	
+	public void read(String dbName,String dirname){
 		
-		init(dbName);
+		init(dbName,dirname);
 		try {
 			getAllTableName();
 		} catch (SQLException e) {
@@ -51,9 +58,10 @@ public class AccessImp implements AccessRead {
 	}
 	
 	//初始化 
-    private void init(String dbName){
+    private void init(String dbName,String dirname){
     	File file = new File(".");
     	String database = file.getAbsolutePath().replace(".", dbName);
+    	this.dirname = dirname;
     	dbUrl = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};";
     	dbUrl = dbUrl +"DBQ="+database;
     	filename = dbName;
@@ -69,13 +77,7 @@ public class AccessImp implements AccessRead {
     	
     }
     
-    public static void main(String args[]){
-    	AccessImp access = new AccessImp();
-    	access.read("mobile.mdb");
-    	
-    }
-    
-    //获取所有表名
+   //获取所有表名
 	private void getAllTableName() throws SQLException{
 		try {
 			conn = DriverManager.getConnection(dbUrl);
@@ -86,7 +88,8 @@ public class AccessImp implements AccessRead {
 			while(rs.next()){  
 				tablename = rs.getString(3);
 				System.out.println(tablename);
-				if(!tablename.startsWith("MSys"))
+				if(!tablename.startsWith("MSys") ||
+					!tablename.contentEquals("~"))
 			     listName.add(tablename);
 			}
 		} catch (SQLException e) {
@@ -133,7 +136,7 @@ public class AccessImp implements AccessRead {
 			    		System.out.print(" "+data);
 			    		dataList.add(data);
 			    	}
-			    	UsersExport.anasys(filename, dataList);
+			    	UsersExport.anasys(dirname,filename, tableHeadList,dataList,false);
 			    }
 			    //打印表头记录
 			 //   FileUtil.headInfoWrite(filename, listName.get(tableLoop), tableHeadList);
