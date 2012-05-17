@@ -1,0 +1,115 @@
+create table customer_profile(
+    id            number(10) not null,
+	name          varchar2(20),
+	address       varchar2(200),
+	company       varchar2(50),
+	province      varchar2(10),
+	city          varchar2(10),
+	born          char(10),
+	idcard        varchar2(20),
+	MobilePhone1  varchar2(12),
+	MobilePhone2  varchar2(12),
+	MobilePhone3  varchar2(12),
+	MobilePhone4  varchar2(12),
+	HomePhone1    varchar2(16),
+	HomePhone2    varchar2(16),
+	post          char(6),
+	mail          varchar2(50),
+	sex           char(2),
+	UserType      number(22),
+	source        number(10),
+	extra         varchar2(200),
+	constraint pk_customer_profile primary key (id)
+        using index
+        initrans 4
+        tablespace PH_INDEX_TABLESPACE
+)
+
+create table customer_type(
+    id             number(2) not null,
+	disc           varchar2(20),
+	tag            number(22),
+	constraint pk_customer_type primary key (id)
+        using index
+        initrans 4
+        tablespace PH_INDEX_TABLESPACE
+)
+
+create table customer_phone(
+    userid         number(10) not null,
+    MobilePhone	   varchar2(12),
+	constraint pk_customer_phone primary key (MobilePhone)
+        using index
+        initrans 4
+        tablespace PH_INDEX_TABLESPACE
+)
+
+create table customer_mail(
+    userid         number(10) not null,
+	mail           varchar2(50),
+	constraint pk_customer_mail primary key (mail)
+        using index
+        initrans 4
+        tablespace PH_INDEX_TABLESPACE
+)
+
+create table customer_report(
+    id             number(10) not null,
+	filename       varchar2(100),
+	filestate      number(1),
+	usertype       number(22),
+	usernum        number(10),
+	intime         date,
+	constraint pk_customer_report primary key (id)
+        using index
+        initrans 4
+        tablespace &&PH_INDEX_TABLESPACE
+)
+
+CREATE SEQUENCE customer_profile_seq
+    START WITH     1
+    INCREMENT BY   1
+    MAXVALUE 999999999999
+    CYCLE
+    ORDER
+    CACHE 20;
+	
+CREATE SEQUENCE customer_type_seq
+    START WITH     1
+    INCREMENT BY   1
+    MAXVALUE 999
+    CYCLE
+    ORDER
+    CACHE 20;
+	
+CREATE SEQUENCE customer_report_seq
+    START WITH     1
+    INCREMENT BY   1
+    MAXVALUE 999999999999
+    CYCLE
+    ORDER
+    CACHE 20;
+	
+create or replace trigger customer_seq_trigger 
+    before insert on customer_profile
+	for each row
+    begin
+        select customer_profile_seq.nextval into:new.id from dual;  
+    end;
+	/
+	
+create or replace trigger type_seq_trigger 
+    before insert on customer_type 
+	for each row  
+    begin  
+        select customer_type_seq.nextval into:new.id from dual;  
+    end;
+	/
+	
+create or replace trigger report_seq_trigger
+    before insert on customer_report 
+	for each row 
+    begin  
+        select customer_report_seq.nextval into:new.id from dual;  
+    end;
+	/

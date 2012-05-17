@@ -83,6 +83,12 @@ public class Users {
 	public String getName() {
 		return name;
 	}
+	
+	public String getAge(){
+		return name;
+	}
+	
+	
 	public void setName(String name) {
 		this.name = name;
 	}
