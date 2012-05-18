@@ -10,7 +10,7 @@ public class DbCreateStateFactory {
 	private static PreparedStatement  type_insert_state = null;
 	
 	public static PreparedStatement createStateInstance(String sqlType){
-		if(sqlType.equals("typequery")){
+		if(sqlType.equals("typeQuery")){
 			return createTypeQuery();
 		}
 		else if(sqlType.equals("typeInsert")){
