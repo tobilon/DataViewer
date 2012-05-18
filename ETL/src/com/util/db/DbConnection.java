@@ -29,8 +29,11 @@ public class DbConnection {
 
 	public static Connection getConn(){
 		try {
-			conn = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
-			conn.setAutoCommit(false);
+			if(conn == null || conn.isClosed())
+			{
+				conn = DriverManager.getConnection(props.getProperty("url"), props.getProperty("username"), props.getProperty("password"));
+			}
+			//conn.setAutoCommit(false);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

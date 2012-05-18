@@ -2,13 +2,14 @@ package com.util.export;
 
 import java.util.HashMap;
 
+import com.util.db.CustomerProfile;
 import com.util.tools.IdcardUtils;
 import com.util.tools.MobileUtil;
 import com.util.tools.StringUtil;
 
 public class AccurateAnasys {
 	
-	public static void accurate(Users data,String info){
+	public static void accurate(CustomerProfile data,String info){
 		
 			if(info.length() == 1){
 				if(info.equals("M")){

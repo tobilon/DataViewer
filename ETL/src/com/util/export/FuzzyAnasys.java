@@ -2,6 +2,7 @@ package com.util.export;
 
 import java.util.ArrayList;
 
+import com.util.db.CustomerProfile;
 import com.util.tools.StringUtil;
 
 public class FuzzyAnasys {
@@ -10,7 +11,7 @@ public class FuzzyAnasys {
 	public static String address[] = {"µØÖ·"};
 	public static String company[] = {"¹«Ë¾"};
 	
-	public static void fuzzy(Users data,String info,String headName,boolean isFirstRow)
+	public static void fuzzy(CustomerProfile data,String info,String headName,boolean isFirstRow)
 	{
 		if(true != isFirstRow){
 			

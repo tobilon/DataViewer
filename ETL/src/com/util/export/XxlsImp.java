@@ -23,7 +23,7 @@ public class XxlsImp extends XxlsAbstract {
 			   // System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
-		    UsersExport.anasys(dirname,filename,tableHeadList, dataList,true);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,true);
 		}
 		else {
 			dataList.clear();
@@ -32,7 +32,7 @@ public class XxlsImp extends XxlsAbstract {
 			   // System.out.print("'"+rowlist.get(i)+"',");
 			    dataList.add(rowlist.get(i));
 		    }
-		    UsersExport.anasys(dirname,filename,tableHeadList, dataList,false);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,false);
 		}
 		//System.out.println();
 		

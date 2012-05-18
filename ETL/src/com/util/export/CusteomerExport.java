@@ -2,11 +2,12 @@ package com.util.export;
 
 import java.util.ArrayList;
 
+import com.util.db.CustomerProfile;
 import com.util.tools.IdcardUtils;
 import com.util.tools.Log;
 import com.util.tools.StringUtil;
 
-public class UsersExport {
+public class CusteomerExport {
 
   public static int count = 0;
   /*
@@ -25,7 +26,7 @@ public class UsersExport {
 		
 		//·ÖÀà
 		String info = null;
-		Users data = new Users();
+		CustomerProfile data = new CustomerProfile();
 		
 		data.usertype = dirname;
 		data.dataSource = filename;
@@ -58,7 +59,7 @@ public class UsersExport {
    }
 
 
-static void printlog(Users data){
+static void printlog(CustomerProfile data){
 	String phone="";
 	for(int loop = 0; loop < data.mobilePhonelist.size(); loop++){
 		phone+=data.mobilePhonelist.get(loop);

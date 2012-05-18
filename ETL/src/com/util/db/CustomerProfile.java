@@ -1,8 +1,8 @@
-package com.util.export;
+package com.util.db;
 
 import java.util.ArrayList;
 
-public class Users {
+public class CustomerProfile {
 	
 	
 	int id = 0;
@@ -77,18 +77,12 @@ public class Users {
 	
 
 	
-	public Users(){
+	public CustomerProfile(){
 		mobilePhonelist.clear();
 	}
 	public String getName() {
 		return name;
 	}
-	
-	public String getAge(){
-		return name;
-	}
-	
-	
 	public void setName(String name) {
 		this.name = name;
 	}

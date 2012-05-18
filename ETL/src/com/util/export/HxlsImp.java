@@ -33,7 +33,7 @@ public class HxlsImp extends HxlsAbstract{
 			  //  System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
-		    UsersExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,true);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,true);
 		}
 		else {
 			dataList.clear();
@@ -43,7 +43,7 @@ public class HxlsImp extends HxlsAbstract{
 			    dataList.add(rowlist.get(i));
 			    
 		    }
-		    UsersExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,false);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,false);
 		    
 		}
 		

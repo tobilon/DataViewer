@@ -136,7 +136,7 @@ public class AccessImp implements AccessRead {
 			    		System.out.print(" "+data);
 			    		dataList.add(data);
 			    	}
-			    	UsersExport.anasys(dirname,filename, tableHeadList,dataList,false);
+			    	CusteomerExport.anasys(dirname,filename, tableHeadList,dataList,false);
 			    }
 			    //打印表头记录
 			 //   FileUtil.headInfoWrite(filename, listName.get(tableLoop), tableHeadList);
