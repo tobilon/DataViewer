@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class CustomerProfile {
 	
 	
-	int id = 0;
+	Long id = 0L;
 	String name="";
 	String address="";
 	String company="";
@@ -27,10 +27,10 @@ public class CustomerProfile {
 	String fixPhone2="";
 	String province="";
 	String city="";
-	String usertype="";
+	Long usertype=0L;
 	String remarks ="";
 	
-	String dataSource;
+	Long dataSource;
 	
 	public String getPost() {
 		return post;
@@ -129,17 +129,17 @@ public class CustomerProfile {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	
-	public String getDataSource() {
+	public Long getDataSource() {
 		return dataSource;
 	}
-	public void setDataSource(String dataSource) {
+	public void setDataSource(Long dataSource) {
 		this.dataSource = dataSource;
 	}
 	public ArrayList<String> getFixPhoneList() {
@@ -178,10 +178,10 @@ public class CustomerProfile {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getUsertype() {
+	public Long getUsertype() {
 		return usertype;
 	}
-	public void setUsertype(String usertype) {
+	public void setUsertype(Long usertype) {
 		this.usertype = usertype;
 	}
 	public String getRemarks() {
@@ -190,11 +190,4 @@ public class CustomerProfile {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	
-	
-	
-	
-	
-	
-
 }
