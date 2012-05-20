@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 public class TablePanel extends JPanel {
 	
 	static JTable table = null;
+	 public static int fileNum = 0;
 	
 	public TablePanel(){
 		String[] headers = { "文件类型", "文件名", "导入状态" };
@@ -47,7 +48,7 @@ public class TablePanel extends JPanel {
 				System.out.println("--->" + dirname);
 				// 返回与此项对应的值
 				ArrayList<String> list = (ArrayList<String>) en.getValue();
-				
+				fileNum += list.size();
 				for(int loop = 0; loop < list.size(); loop++){
 					String[] templist = list.get(loop).split("\\\\");
 					String filename = templist[templist.length - 1];
@@ -60,6 +61,7 @@ public class TablePanel extends JPanel {
 	 }
           // 更新表格
 	 table.invalidate();
+	 ProPanel.progress.setMaximum(fileNum);
 	}
 	
 	

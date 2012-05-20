@@ -21,7 +21,7 @@ public class FileBrower {
 	public static ArrayList<String> list = new ArrayList<String>();
 	public static ArrayList<String> dirList = new ArrayList<String>();
 	public static HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
-
+   
 	/**
 	 * @param args
 	 * @throws IOException
@@ -42,6 +42,7 @@ public class FileBrower {
 	}
 	
 	public static void fileBrower(String startDir){
+	
 		// 遍历一级目录，获取类型
 		dbDirBrower(startDir);
 		// 遍历文件
@@ -117,6 +118,7 @@ public class FileBrower {
 		Iterator it = list.iterator();
 
 		String name = null;
+		int count = 0;
 		while (it.hasNext()) {
 			name = (String) it.next();
 		    System.out.println("name -->"+StringUtil.getFileName(name));
@@ -158,6 +160,10 @@ public class FileBrower {
 			}
 			
 			TablePanel.setStatue(dirname,StringUtil.getFileName(name),"完成");
+			count++;
+			ProPanel.progress.setValue(count);
+			String pro = "执行进度 "+(count/TablePanel.fileNum)* 100 +"%";
+			ProPanel.progress.setString(pro);
 
 		}
 	}

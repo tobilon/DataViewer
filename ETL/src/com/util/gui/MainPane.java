@@ -2,8 +2,10 @@ package com.util.gui;
 
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.border.EtchedBorder;
 
 public class MainPane extends JPanel {
 	
@@ -12,7 +14,7 @@ public class MainPane extends JPanel {
 	 JSplitPane split = new JSplitPane();
 	
 	public MainPane(){
-		//textPane.setPreferredSize(new Dimension(400,500));
+		//this.setPreferredSize(new Dimension(500,600));
           //		split.add(textPane,JSplitPane.LEFT);
 		/*
 		split.add(tablePane, JSplitPane.RIGHT);
@@ -23,6 +25,9 @@ public class MainPane extends JPanel {
 		split.setOneTouchExpandable(true);
 		this.add(split);*/
 		this.add(tablePane);
+		this.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.RAISED));
 	}
+	
+	
 
 }
