@@ -11,10 +11,10 @@ public class MainFrame extends JFrame {
 	public static int width = 800;
 	public static int height = 600;
 	
-	private MenuBar menuBar = new MenuBar();
-	private MainPane mainPane = new MainPane();
-	private ToolBar  toolBar = new ToolBar();
-	private ProPanel progress = new ProPanel();
+	public MenuBar menuBar = new MenuBar();
+	public MainPane mainPane = new MainPane();
+	public ToolBar  toolBar = new ToolBar(this);
+	public ProPanel progress = new ProPanel();
 	
 	public MainFrame(){
 		
