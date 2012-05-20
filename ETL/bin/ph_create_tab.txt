@@ -56,10 +56,10 @@ create table customer_mail(
 create table customer_report(
     id             number(10) not null,
 	filename       varchar2(100),
+	filestate      number(1),
 	usertype       number(22),
 	usernum        number(10),
-        importnum      number(10),
-	timestamp      date,
+	intime         date,
 	constraint pk_customer_report primary key (id)
         using index
         initrans 4
