@@ -10,7 +10,7 @@ public class ResultPane extends JPanel {
 	private JLabel logLabel = new JLabel("result");
 	
 	public ResultPane(){
-		this.setPreferredSize(new Dimension(380,400));
+		this.setPreferredSize(new Dimension(350,300));
 		this.add(logLabel);
 	}
 	
