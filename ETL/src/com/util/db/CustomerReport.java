@@ -7,6 +7,15 @@ public class CustomerReport {
 	private String usertype  ="";
 	private Long usernum;
 	private Long  userImport;
+	private Long  userMerge;
+	
+	
+	public Long getUserMerge() {
+		return userMerge;
+	}
+	public void setUserMerge(Long userMerge) {
+		this.userMerge = userMerge;
+	}
 	public Long getId() {
 		return id;
 	}

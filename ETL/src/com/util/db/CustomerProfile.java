@@ -5,32 +5,32 @@ import java.util.ArrayList;
 public class CustomerProfile {
 	
 	
-	Long id = 0L;
-	String name="";
-	String address="";
-	String company="";
-	String idCard="";
-	ArrayList<String> mobilePhonelist = new ArrayList<String>();
-	ArrayList<String> fixPhoneList = new ArrayList<String>();
+	public Long id = 0L;
+	public String name="";
+	public String address="";
+	public String company="";
+	public String idCard="";
+	public ArrayList<String> mobilePhonelist = new ArrayList<String>();
+	public ArrayList<String> fixPhoneList = new ArrayList<String>();
 	//String fixPhone="";
-	String mail="";
-	String born="";
-	String sex="";
+	public String mail="";
+	public String born="";
+	public String sex="";
 	
-	String post="";
-	String mobile1="";
-	String mobile2="";
-	String mobile3="";
-	String mobile4="";
+	public String post="";
+	public String mobile1="";
+	public String mobile2="";
+	public String mobile3="";
+	public String mobile4="";
 	
-	String fixPhone1 ="";
-	String fixPhone2="";
-	String province="";
-	String city="";
-	Long usertype=0L;
-	String remarks ="";
+	public String fixPhone1 ="";
+	public String fixPhone2="";
+	public String province="";
+	public String city="";
+	public Long usertype=0L;
+	public String remarks ="";
 	
-	Long dataSource;
+	public Long dataSource;
 	
 	public String getPost() {
 		return post;

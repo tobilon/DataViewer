@@ -320,4 +320,14 @@ public class StringUtil {
 		return str.substring(index+1, str.length()-1);
 
 	}
+	
+	public static String getFileName(String name){
+		if(name == null){
+			return null;
+		}
+		
+		String[] temp = name.split("\\\\");
+		return temp[temp.length - 1];
+		
+	}
 }

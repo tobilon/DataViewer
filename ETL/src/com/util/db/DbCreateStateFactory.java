@@ -352,8 +352,8 @@ public class DbCreateStateFactory {
 	private static PreparedStatement createReportInsert()
 	{
 		String typeQuerySql = "insert into customer_report(filename, " +
-				"usertype, usernum, importnum, timestamp) values " +
-				"(?, ?, ?, ?, sysdate)";
+				"usertype, usernum, importnum, mergenum,timestamp) values " +
+				"(?, ?, ?, ?, ?,sysdate)";
 		
 		Connection conn = DbConnection.getConn();
 		/* 避免重复创建*/
@@ -374,7 +374,7 @@ public class DbCreateStateFactory {
 	private static PreparedStatement createReportUpdate()
 	{
 		String typeQuerySql = "update customer_report setfilename=?, " +
-				"usertype=?, usernum=?, importnum=?, timestamp=sysdate where id = ?";
+				"usertype=?, usernum=?, importnum=?, mergenum = ?,timestamp=sysdate where id = ?";
 		
 		Connection conn = DbConnection.getConn();
 		/* 避免重复创建*/

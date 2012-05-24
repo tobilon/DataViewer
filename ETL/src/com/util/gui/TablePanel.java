@@ -9,13 +9,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.util.db.CustomerReport;
+
 public class TablePanel extends JPanel {
 	
 	static JTable table = null;
 	 public static int fileNum = 0;
 	
 	public TablePanel(){
-		String[] headers = { "文件类型", "文件名", "导入状态" };
+		String[] headers = { "文件类型", "文件名", "导入状态","总 记录数目","成功个数","合并个数"};
 		Object[][] cellData = null;
 
 		DefaultTableModel model = new DefaultTableModel(cellData, headers) {
@@ -41,7 +43,7 @@ public class TablePanel extends JPanel {
 		  // 填充数据
 		  Iterator it = map.entrySet().iterator();
 	      while (it.hasNext()) {
-	    	    String[] arr = new String[3];
+	    	    String[] arr = new String[6];
 				java.util.Map.Entry en = (java.util.Map.Entry) it.next();
 				// 返回与此项对应的键
 				String dirname = (String) en.getKey();
@@ -55,6 +57,9 @@ public class TablePanel extends JPanel {
 					arr[0] = dirname;
 					arr[1] = filename;
 					arr[2] = "未导入";
+					arr[3] = String.valueOf(0);
+					arr[4] = String.valueOf(0);
+					arr[5] = String.valueOf(0);
 					// 添加数据到表格
 				    tableModel.addRow(arr);
 				}
@@ -66,7 +71,7 @@ public class TablePanel extends JPanel {
 	
 	
 	
-	public static  void setStatue(String userType,String filename, String status){
+	public static  void setStatue(CustomerReport cp, String status){
 		 DefaultTableModel tableModel = (DefaultTableModel) table
 		  .getModel();
 		  
@@ -76,11 +81,15 @@ public class TablePanel extends JPanel {
 			  String tempdir = (String)tableModel.getValueAt(loop, 0);
 			  String tempfile = (String)tableModel.getValueAt(loop, 1);
 			 
-			  System.out.println(userType + " " + filename);
-			  if(tempdir.equals(userType) &&
-			     tempfile.equals(filename)){
+			 // System.out.println(userType + " " + filename);
+			  if(tempdir.equals(cp.getUsertype()) &&
+			     tempfile.equals(cp.getFilename())){
 				
 				  tableModel.setValueAt(status, loop, 2);
+				  tableModel.setValueAt(String.valueOf(cp.getUsernum()), loop, 3);
+				  tableModel.setValueAt(String.valueOf(cp.getUserImport()), loop, 4);
+				  tableModel.setValueAt(String.valueOf(cp.getUserMerge()), loop, 5);
+				  
 			  }
 		  }
 	}

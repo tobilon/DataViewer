@@ -46,7 +46,7 @@ public class AccessImp implements AccessRead {
 			e.printStackTrace();
 		}
 		try {
-			getTableHeadName();
+		     getTableData();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,11 +59,10 @@ public class AccessImp implements AccessRead {
 	
 	//初始化 
     private void init(String dbName,String dirname){
-    	File file = new File(".");
-    	String database = file.getAbsolutePath().replace(".", dbName);
+    
     	this.dirname = dirname;
     	dbUrl = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};";
-    	dbUrl = dbUrl +"DBQ="+database;
+    	dbUrl = dbUrl +"DBQ="+dbName;
     	filename = dbName;
     	listName.clear();
     	tableHeadList.clear();
@@ -80,22 +79,29 @@ public class AccessImp implements AccessRead {
    //获取所有表名
 	private void getAllTableName() throws SQLException{
 		try {
+			System.out.println("dbUrl-->"+dbUrl);
 			conn = DriverManager.getConnection(dbUrl);
+			
 			stmt=conn.createStatement();    
 			DatabaseMetaData  dbmd=conn.getMetaData();  
 			ResultSet  rs=dbmd.getTables(null,null,"%",null); 
 			String tablename = null;
 			while(rs.next()){  
 				tablename = rs.getString(3);
-				System.out.println(tablename);
-				if(!tablename.startsWith("MSys") ||
+				System.out.println("table->"+tablename);
+				if(!tablename.startsWith("MSys") &&
 					!tablename.contentEquals("~"))
 			     listName.add(tablename);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			  stmt.close();    
-			  conn.close();    
+			if(stmt != null){
+				stmt.close(); 
+			}
+			if(conn!= null){
+				conn.close();
+				}
+				      
 			  e.printStackTrace();
 		} 
 		
@@ -104,7 +110,7 @@ public class AccessImp implements AccessRead {
 	}
 	
 	//获取所有表头字段，根据表名
-	private void getTableHeadName() throws SQLException, IOException{
+	private void getTableData() throws SQLException, IOException{
 		try {
 			conn = DriverManager.getConnection(dbUrl);
 			stmt=conn.createStatement();

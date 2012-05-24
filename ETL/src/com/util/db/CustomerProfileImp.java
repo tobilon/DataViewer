@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerProfileImp {
+public class CustomerProfileImp implements CustomerProfileDAO{
 	
     public boolean insertCustomerProfile(CustomerProfile customerProfile)
     {

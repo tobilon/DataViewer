@@ -4,7 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomerReportImp {
+public class CustomerReportImp implements CustomerReportDAO {
 	
     public boolean insertCustomerReport(CustomerReport customerReport)
     {
@@ -19,6 +19,7 @@ public class CustomerReportImp {
 			state.setString(2, customerReport.getUsertype());
 			state.setLong(3, customerReport.getUsernum());
 			state.setLong(4, customerReport.getUserImport());
+			state.setLong(5, customerReport.getUserMerge());
 		    return state.execute();
 		}catch (SQLException e) {
 		    e.printStackTrace();
@@ -65,6 +66,7 @@ public class CustomerReportImp {
 				customerReport.setFilename(set.getString(2));
 				customerReport.setUsernum(set.getLong(3));
 				customerReport.setUserImport(set.getLong(4));
+				customerReport.setUserMerge(set.getLong(5));
 				return customerReport;
 			}
 			
@@ -89,7 +91,8 @@ public class CustomerReportImp {
 			state.setString(2, customerReport.getUsertype());
 			state.setLong(3, customerReport.getUsernum());
 			state.setLong(4, customerReport.getUserImport());
-			state.setLong(5, customerReport.getId());
+			//state.setLong(5, customerReport.getId());
+			state.setLong(5, customerReport.getUserMerge());
 		    return state.execute();
 		}catch (SQLException e) {
 		    e.printStackTrace();

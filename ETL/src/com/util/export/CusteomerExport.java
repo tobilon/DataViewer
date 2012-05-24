@@ -2,7 +2,11 @@ package com.util.export;
 
 import java.util.ArrayList;
 
+
+
 import com.util.db.CustomerProfile;
+import com.util.db.DbCustomerOperator;
+import com.util.gui.FileBrower;
 import com.util.tools.IdcardUtils;
 import com.util.tools.Log;
 import com.util.tools.StringUtil;
@@ -23,13 +27,20 @@ public class CusteomerExport {
 		//去掉空格
 		StringUtil.deleteBlankList(infoList);
 		StringUtil.deleteBlankList(headList);
+		FileBrower.customerReport.setUsernum(FileBrower.customerReport.getUsernum() + 1);
 		
 		//分类
 		String info = null;
 		CustomerProfile data = new CustomerProfile();
 		
-		data.usertype = dirname;
-		data.dataSource = filename;
+		for(int loop = 0; loop < FileBrower.typeList.size(); loop++){
+			if(dirname.equals(FileBrower.typeList.get(loop).getDisc())){
+				data.usertype = FileBrower.typeList.get(loop).getTag();
+				break;
+			}
+		}
+		
+		data.dataSource = FileBrower.id;
 		
 		for(int loop = 0; loop < infoList.size(); loop++){
 			//数字
@@ -56,7 +67,24 @@ public class CusteomerExport {
 		}
 	
      printlog(data);
+     
+     //数据进入oracle
+     if(checkImport(data)){
+    	 DbCustomerOperator db = new DbCustomerOperator();
+    	 db.importOracle(data);
+    	 
+     }
    }
+  
+  
+//check customer profile can import oracle
+static boolean checkImport(CustomerProfile data){
+	//mobilephone and mail all null ,then can not import 
+	if(data.mobilePhonelist.size() == 0 && data.getMail().length() == 0){
+		return false;
+	}
+	return true;
+}
 
 
 static void printlog(CustomerProfile data){
