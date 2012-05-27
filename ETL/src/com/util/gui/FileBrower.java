@@ -15,6 +15,7 @@ import com.util.db.CustomerReportImp;
 import com.util.db.CustomerType;
 import com.util.db.CustomerTypeDAO;
 import com.util.db.CustomerTypeImp;
+import com.util.db.DbConnection;
 import com.util.export.AccessImp;
 import com.util.export.AccessRead;
 import com.util.export.HxlsImp;
@@ -35,19 +36,6 @@ public class FileBrower {
 	 * @throws IOException
 	 * @throws SQLException
 	 */
-	public static void main(String[] args) throws SQLException, IOException {
-		// TODO Auto-generated method stub
-		Log.info("start now");
-		FileBrower entry = new FileBrower();
-		// 遍历一级目录，获取类型
-		// entry.dbDirBrower();
-		// 遍历文件
-		// entry.dbFileBrower();
-		// 处理文件
-		// entry.dbBrower();
-
-		// entry.dbFileReadHead();
-	}
 
 	public static void fileBrower(String startDir) {
 
@@ -65,7 +53,7 @@ public class FileBrower {
 			// System.out.println(dirfile[loop]);
 			File tempdir = new File(dirfile[loop]);
 			if (tempdir.isDirectory()) {
-				System.out.println(tempdir.getAbsolutePath());
+				//System.out.println(tempdir.getAbsolutePath());
 				dirList.add(tempdir.getAbsolutePath());
 			}
 		}
@@ -83,7 +71,7 @@ public class FileBrower {
 			}
 			System.out.println(" - " + dirList.get(loop));
 			String[] dirname = dirList.get(loop).split("\\\\");
-			System.out.println(dirname[dirname.length - 1]);
+			//System.out.println(dirname[dirname.length - 1]);
 			map.put(dirname[dirname.length - 1], list);
 		}
 	}
@@ -112,7 +100,7 @@ public class FileBrower {
 			java.util.Map.Entry en = (java.util.Map.Entry) it.next();
 			// 返回与此项对应的键
 			String dirname = (String) en.getKey();
-			System.out.println("--->" + dirname);
+			//System.out.println("--->" + dirname);
 			// 返回与此项对应的值
 			ArrayList<String> list = (ArrayList<String>) en.getValue();
 
@@ -180,6 +168,7 @@ public class FileBrower {
 
 			dbInsertReport(dirname,StringUtil.getFileName(name));
 			TablePanel.setStatue(customerReport, "入库中");
+			Log.error("import "+ dirname +" " + name +"starting");
 			if (name.endsWith(".mdb")) {
 				AccessRead access = new AccessImp();
 				access.read(name, dirname);
@@ -215,7 +204,10 @@ public class FileBrower {
 				}
 			}
 			
-
+			/* 及时关闭*/
+            if(DbConnection.getConn() != null){
+            	DbConnection.closeConn();
+            }
 			TablePanel.setStatue(customerReport, "完成");
 			count++;
 			ProPanel.progress.setValue(count);

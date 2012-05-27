@@ -162,6 +162,7 @@ public abstract class HxlsAbstract implements HSSFListener {
 			thisRow = brec.getRow();
 			thisColumn = brec.getColumn();
 			thisStr = "";
+			rowlist.add(thisColumn,"");
 			break;
 		case BoolErrRecord.sid:
 			BoolErrRecord berec = (BoolErrRecord) record;

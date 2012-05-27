@@ -13,6 +13,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.util.tools.Log;
+
 
 public class AccessImp implements AccessRead {
 	
@@ -39,12 +41,8 @@ public class AccessImp implements AccessRead {
 	public void read(String dbName,String dirname){
 		
 		init(dbName,dirname);
-		try {
-			getAllTableName();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		getAllTableName();
+		
 		try {
 		     getTableData();
 		} catch (SQLException e) {
@@ -77,7 +75,7 @@ public class AccessImp implements AccessRead {
     }
     
    //获取所有表名
-	private void getAllTableName() throws SQLException{
+	private void getAllTableName(){
 		try {
 			System.out.println("dbUrl-->"+dbUrl);
 			conn = DriverManager.getConnection(dbUrl);
@@ -96,30 +94,46 @@ public class AccessImp implements AccessRead {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			if(stmt != null){
-				stmt.close(); 
+				try {
+					stmt.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} 
 			}
 			if(conn!= null){
-				conn.close();
+				try {
+					conn.close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				}
 				      
 			  e.printStackTrace();
 		} 
 		
-		stmt.close();    
-        conn.close();    
+		try {
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+           
 	}
 	
 	//获取所有表头字段，根据表名
 	private void getTableData() throws SQLException, IOException{
+		String sql5 = null;
 		try {
 			conn = DriverManager.getConnection(dbUrl);
 			stmt=conn.createStatement();
-			
-			
 		    int tableLoop = 0;
+		    
 			for(tableLoop = 0; tableLoop < listName.size(); tableLoop++){
 				tableHeadList.clear();
-				String sql5="select * from "+ listName.get(tableLoop);
+				sql5="select * from "+ listName.get(tableLoop);
 			    ResultSet rs=stmt.executeQuery(sql5);  
 			    ResultSetMetaData metaDate   =   rs.getMetaData();   
 			    int   number   =   metaDate.getColumnCount();   
@@ -150,6 +164,7 @@ public class AccessImp implements AccessRead {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("execute "+sql5 +" failed");
 			stmt.close();    
 		    conn.close();
 		   // FileUtil.headInfoErr(filename);

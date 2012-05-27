@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.tools.Log;
+
 public class CustomerReportImp implements CustomerReportDAO {
 	
     public boolean insertCustomerReport(CustomerReport customerReport)
@@ -22,6 +24,7 @@ public class CustomerReportImp implements CustomerReportDAO {
 			state.setLong(5, customerReport.getUserMerge());
 		    return state.execute();
 		}catch (SQLException e) {
+			Log.error("insertCustomerReport failed");
 		    e.printStackTrace();
 	    }
 	
@@ -41,7 +44,11 @@ public class CustomerReportImp implements CustomerReportDAO {
 			{
 				return set.getLong(1);
 			}
+			else {
+				return 0L;
+			}
 		} catch (SQLException e) {
+			Log.error("getLastId failed");
 			e.printStackTrace();
 		}
 		
@@ -72,6 +79,7 @@ public class CustomerReportImp implements CustomerReportDAO {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("queryCustomerReport failed");
 			e.printStackTrace();
 		}
 		
@@ -95,6 +103,7 @@ public class CustomerReportImp implements CustomerReportDAO {
 			state.setLong(5, customerReport.getUserMerge());
 		    return state.execute();
 		}catch (SQLException e) {
+			Log.error("updateCustomerReport failed");
 		    e.printStackTrace();
 	    }
 	
@@ -113,6 +122,7 @@ public class CustomerReportImp implements CustomerReportDAO {
 			state.setLong(1, id);
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("deleteCustomerReport failed");
 			e.printStackTrace();
 		}
 		

@@ -2,6 +2,7 @@ package com.util.tools;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -329,5 +330,23 @@ public class StringUtil {
 		String[] temp = name.split("\\\\");
 		return temp[temp.length - 1];
 		
+	}
+	
+	public static boolean isBorn(String info){
+		if(info.length() < 6 || !info.startsWith("19")){
+			return false;
+		}
+		return info.matches( "^\\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|1[0-9]|2[0-9]|3[0-1])$"); 
+		
+	}
+	public static void deleteRepeat(ArrayList<String> list){
+		ArrayList<String> temp = new   ArrayList(new   HashSet<String>(list));
+		
+		list.clear();
+		
+		for(int loop = 0; loop < temp.size(); loop++){
+			
+			list.add(temp.get(loop));
+		}
 	}
 }

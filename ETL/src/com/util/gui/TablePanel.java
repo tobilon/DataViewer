@@ -47,7 +47,7 @@ public class TablePanel extends JPanel {
 				java.util.Map.Entry en = (java.util.Map.Entry) it.next();
 				// 返回与此项对应的键
 				String dirname = (String) en.getKey();
-				System.out.println("--->" + dirname);
+				//System.out.println("--->" + dirname);
 				// 返回与此项对应的值
 				ArrayList<String> list = (ArrayList<String>) en.getValue();
 				fileNum += list.size();

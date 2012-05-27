@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.tools.Log;
+
 public class CustomerPhoneImp implements CustomerPhoneDAO {
 
     public Long queryCustomerPhone(CustomerProfile customerProfile)
@@ -44,6 +46,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("queryCustomerPhone failed");
 			e.printStackTrace();
 		}
 		
@@ -55,6 +58,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
         PreparedStatement state = DbCreateStateFactory.createStateInstance("phoneInsert");
 	    
 		if(null == state){
+			Log.error("insertCustom erPhone failed"); 
 			return false;
 		}
 		
@@ -63,6 +67,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 			state.setString(2, customerPhone.getMobilePhone());
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("insertCustomerPhone failed");
 			e.printStackTrace();
 		}
 		
@@ -74,6 +79,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
         PreparedStatement state = DbCreateStateFactory.createStateInstance("phoneDelete");
 	    
 		if(null == state){
+			Log.error("deleteCustomerPhone failed");
 			return false;
 		}
 			
@@ -81,6 +87,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 			state.setLong(1, customerProfile.getId());
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("deleteCustomerPhone failed");
 			e.printStackTrace();
 		}
 		

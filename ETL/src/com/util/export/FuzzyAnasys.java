@@ -7,7 +7,7 @@ import com.util.tools.StringUtil;
 
 public class FuzzyAnasys {
 
-	public static String name[] = {"姓名"};
+	public static String name[] = {"姓名,开户人,联系人,业主"};
 	public static String address[] = {"地址"};
 	public static String company[] = {"公司"};
 	
@@ -16,7 +16,7 @@ public class FuzzyAnasys {
 		if(true != isFirstRow){
 			
 			for(int nameloop = 0; nameloop < name.length; nameloop++){
-				if(headName.equals(name[nameloop])){
+				if(headName.contains(name[nameloop]) && data.name !=null){
 					data.name = info;
 					return;
 				}
@@ -49,6 +49,9 @@ public class FuzzyAnasys {
 	    }
 	    else if(StringUtil.countChina(info)>= 2 && StringUtil.countChina(info) <= 4 && data.name.length() < 2){
 		  // System.out.println("name "+info);
+	    	if(data.name.length() > 1){
+	    		return ;
+	    	}
 			if(StringUtil.isName(info)){
 			 data.name = info;
 			 return;
@@ -56,6 +59,9 @@ public class FuzzyAnasys {
 		}
 		else if(StringUtil.countChina(info) >= 4){
 			//System.out.println(info);
+			if(data.address.length() > 1){
+	    		return ;
+	    	}
 			if(StringUtil.isAddress(info) && info.length() > data.address.length()){
 				data.address = info;
 				return;

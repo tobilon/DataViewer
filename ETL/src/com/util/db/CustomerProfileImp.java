@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.tools.Log;
+
 public class CustomerProfileImp implements CustomerProfileDAO{
 	
     public boolean insertCustomerProfile(CustomerProfile customerProfile)
@@ -36,6 +38,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 			state.setString(19, customerProfile.getRemarks());
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("insertCustomerProfile failed");
 			e.printStackTrace();
 		}
 		
@@ -73,6 +76,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 			state.setLong(20, customerProfile.getId());
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("updateCustomerProfile failed");
 			e.printStackTrace();
 		}
 		
@@ -118,6 +122,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("queryCustomerProfile failed");
 			e.printStackTrace();
 		}
 		
@@ -136,6 +141,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 			state.setLong(1, source);
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("deleteCustomerProfile failed");
 			e.printStackTrace();
 		}
 		

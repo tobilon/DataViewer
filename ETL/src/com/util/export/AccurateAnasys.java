@@ -44,6 +44,9 @@ public class AccurateAnasys {
 				}
 				return;
 			}
+			else if(StringUtil.isBorn(info)){
+				data.born = info;
+			}
 			else{
 				StringUtil.getMobilePhonelList(info,data.mobilePhonelist);
 				if(data.mobilePhonelist.size() >= 1){

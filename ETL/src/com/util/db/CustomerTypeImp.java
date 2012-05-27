@@ -5,6 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.util.tools.Log;
+
 public class CustomerTypeImp implements CustomerTypeDAO {
 
 	public boolean insertCustomerType(CustomerType customertype) {
@@ -20,6 +22,7 @@ public class CustomerTypeImp implements CustomerTypeDAO {
 			return state.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("insertCustomerType failed");
 			e.printStackTrace();
 		}
 		
@@ -39,6 +42,7 @@ public class CustomerTypeImp implements CustomerTypeDAO {
 			return CustomerTypeWapper.wapper(set, list);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("queryAll failed");
 			e.printStackTrace();
 		}
 		return false;
@@ -58,6 +62,7 @@ class CustomerTypeWapper {
 				list.add(type);
 				
 			}
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

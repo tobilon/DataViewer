@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import com.util.gui.FileBrower;
+import com.util.tools.Log;
 
 public class DbCustomerOperator {
 
@@ -78,6 +79,7 @@ public class DbCustomerOperator {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("updateTranction database exception: "+ FileBrower.customerReport.getFilename());
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {
@@ -233,6 +235,7 @@ public class DbCustomerOperator {
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("updateTranction database exception: "+ FileBrower.customerReport.getFilename());
 			try {
 				conn.rollback();
 			} catch (SQLException e1) {

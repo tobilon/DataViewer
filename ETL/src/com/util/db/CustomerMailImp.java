@@ -4,6 +4,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.util.tools.Log;
+
 public class CustomerMailImp implements CustomerMailDAO{
 
 	public Long queryCustomerMail(CustomerProfile customerProfile)
@@ -24,6 +26,7 @@ public class CustomerMailImp implements CustomerMailDAO{
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			Log.error("queryCustomerMail failed");
 			e.printStackTrace();
 		}
 		
@@ -43,6 +46,7 @@ public class CustomerMailImp implements CustomerMailDAO{
 			state.setString(2, customerMail.getMail());
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("insertCustomerMail failed");
 			e.printStackTrace();
 		}
 		
@@ -61,6 +65,7 @@ public class CustomerMailImp implements CustomerMailDAO{
 			state.setLong(1, customerProfile.getId());
 			return state.execute();
 		} catch (SQLException e) {
+			Log.error("deleteCustomerMail failed");
 			e.printStackTrace();
 		}
 		

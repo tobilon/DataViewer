@@ -1,17 +1,23 @@
 package com.util.gui;
 
 import java.awt.event.ActionEvent;
+
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
+
+import com.util.db.DbConnTest;
+import com.util.tools.Log;
 
 public class ToolBar extends JToolBar implements ActionListener {
 	
 	private JButton dirbutton = new JButton("选择导入目录");
+	private JButton dbbutton = new JButton("配置数据库");
 	private JButton impButton = new JButton("导  入");
 	private MainFrame mf ;
 	
@@ -19,13 +25,15 @@ public class ToolBar extends JToolBar implements ActionListener {
 		this.mf = mf;
 		dirbutton.addActionListener((ActionListener) this);
 		impButton.addActionListener(this);
+	    
 		this.add(dirbutton);
 		this.add(impButton);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == dirbutton){
+
+		 if(e.getSource() == dirbutton){
 			 JFileChooser chooser = new JFileChooser(".");
 			 chooser.setDialogTitle("选择需要导入文件的目录");
 			 
@@ -34,6 +42,7 @@ public class ToolBar extends JToolBar implements ActionListener {
 			 if(returnVal == JFileChooser.APPROVE_OPTION) {
 				String startDir = chooser.getSelectedFile().getAbsolutePath();
 				System.out.println("====:"+startDir);
+				Log.error("you choose the starting dir: "+startDir);
 				FileBrower.fileBrower(startDir);
 				mf.mainPane.tablePane.fillTable(FileBrower.map);
 			
@@ -44,7 +53,12 @@ public class ToolBar extends JToolBar implements ActionListener {
 			new Thread(){
 				public void run(){
 		        	try {
-				
+		        	  if(false == DbConnTest.dbtest()){
+		        		  System.out.println("1111111111");
+		        		  JOptionPane.showMessageDialog(mf.getContentPane(),
+		           		       "数据库连接错误 !", "系统信息", JOptionPane.ERROR_MESSAGE);
+		           	   return;
+		        	  }
 				      FileBrower.importDB();
 			          } catch (SQLException e1) {
 				      // TODO Auto-generated catch block
