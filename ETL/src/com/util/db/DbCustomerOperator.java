@@ -2,6 +2,7 @@ package com.util.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.util.gui.FileBrower;
 import com.util.tools.Log;
@@ -11,6 +12,7 @@ public class DbCustomerOperator {
 	CustomerProfileDAO prodao = new CustomerProfileImp();
 	CustomerPhoneDAO phoneDao = new CustomerPhoneImp();
 	CustomerMailDAO mailDAO = new CustomerMailImp();
+	CustomerReportDAO  reportDAO = new CustomerReportImp();
 	
 
 	public void importOracle(CustomerProfile customer){
@@ -25,6 +27,36 @@ public class DbCustomerOperator {
 			updateTranction(newCustomer,oldCustomer,customer);
 		}
 	}
+	
+	public void deleteOracle(CustomerReport report){
+		ArrayList<CustomerProfile> list = new ArrayList<CustomerProfile>();
+		prodao.queryCutomerProfile(list, report.getId());
+		
+		Connection conn = DbConnection.getConn();
+		try {
+			conn.setAutoCommit(false);
+			for(int loop = 0; loop < list.size(); loop++){
+				phoneDao.deleteCustomerPhone(list.get(loop));
+				mailDAO.deleteCustomerMail(list.get(loop));
+				prodao.deleteCustomerProfile(list.get(loop).getId());
+			}
+			
+			reportDAO.deleteCustomerReport(report.getId());
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 	private boolean isExistPhone(String phone,CustomerProfile customer){
 		if(phone.equals(customer.getMobile1())){
 			return true;
@@ -74,6 +106,8 @@ public class DbCustomerOperator {
 				mail.setMail(customerProfile.getMail());
 				mailDAO.insertCustomerMail(mail);
 			}
+			
+			conn.commit();
 			
 			FileBrower.customerReport.setUserMerge(FileBrower.customerReport.getUserMerge() + 1);
 			
@@ -231,6 +265,9 @@ public class DbCustomerOperator {
 				mail.setMail(customerProfile.getMail());
 				mailDAO.insertCustomerMail(mail);
 			}
+			
+			conn.commit();
+			
 			FileBrower.customerReport.setUserImport(FileBrower.customerReport.getUserImport() + 1);
 			
 		} catch (SQLException e) {

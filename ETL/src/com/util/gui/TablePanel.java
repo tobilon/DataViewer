@@ -14,7 +14,7 @@ import com.util.db.CustomerReport;
 public class TablePanel extends JPanel {
 	
 	static JTable table = null;
-	 public static int fileNum = 0;
+	public static int fileNum = 0;
 	
 	public TablePanel(){
 		String[] headers = { "文件类型", "文件名", "导入状态","总 记录数目","成功个数","合并个数"};

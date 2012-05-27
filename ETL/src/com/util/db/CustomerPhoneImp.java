@@ -84,8 +84,23 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 		}
 			
 		try{
-			state.setLong(1, customerProfile.getId());
-			return state.execute();
+			if(customerProfile.getMobile1().length() == 11){
+				state.setString(1, customerProfile.getMobile1());
+			    state.execute();
+			}
+			if(customerProfile.getMobile2().length() == 11){
+				state.setString(1, customerProfile.getMobile2());
+			    state.execute();
+			}
+			if(customerProfile.getMobile3().length() == 11){
+				state.setString(1, customerProfile.getMobile3());
+			    state.execute();
+			}
+			if(customerProfile.getMobile4().length() == 11){
+				state.setString(1, customerProfile.getMobile4());
+			    state.execute();
+			}
+			return true;
 		} catch (SQLException e) {
 			Log.error("deleteCustomerPhone failed");
 			e.printStackTrace();

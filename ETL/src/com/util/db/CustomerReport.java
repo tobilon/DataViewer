@@ -8,8 +8,18 @@ public class CustomerReport {
 	private Long usernum;
 	private Long  userImport;
 	private Long  userMerge;
+	private String time;
 	
 	
+	
+	
+	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public Long getUserMerge() {
 		return userMerge;
 	}

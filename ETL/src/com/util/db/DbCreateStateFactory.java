@@ -23,6 +23,8 @@ public class DbCreateStateFactory {
 	private static PreparedStatement report_update_state = null;
 	private static PreparedStatement report_delete_state = null;
 	private static PreparedStatement report_maxid_state = null;
+	private static PreparedStatement report_query_all_state = null;
+	private static PreparedStatement profile_query_source_state = null;
 	
 	public static PreparedStatement createStateInstance(String sqlType){
 		if(sqlType.equals("typeQuery")){
@@ -115,6 +117,13 @@ public class DbCreateStateFactory {
 			return createReportMaxID();
 		}
 		
+		else if(sqlType.equals("reportQueryall")){
+			return createQueryAllReport();
+		}
+		
+		else if(sqlType.equals("profileSource")){
+			return createProfileQueryAllBySource();
+		}
 		return null;
 	}
 	
@@ -192,7 +201,7 @@ public class DbCreateStateFactory {
 	
 	private static PreparedStatement createMailDelete()
 	{
-		String typeQuerySql = "delete from customer_mail where userid=?";
+		String typeQuerySql = "delete from customer_mail where mail=?";
 		Connection conn = DbConnection.getConn();
 		/* 避免重复创建*/
 		if(null != mail_delete_state){
@@ -247,7 +256,7 @@ public class DbCreateStateFactory {
 	
 	private static PreparedStatement createPhoneDelete()
 	{
-		String typeQuerySql = "delete from customer_phone where userid=?";
+		String typeQuerySql = "delete from customer_phone where MobilePhone=?";
 		Connection conn = DbConnection.getConn();
 		/* 避免重复创建*/
 		if(null != phone_delete_state){
@@ -332,7 +341,7 @@ public class DbCreateStateFactory {
 	
 	private static PreparedStatement createProfileDelete()
 	{
-		String typeQuerySql = "delete from customer_profile where source = ?";
+		String typeQuerySql = "delete from customer_profile where id = ?";
 		
 		Connection conn = DbConnection.getConn();
 		/* 避免重复创建*/
@@ -342,6 +351,25 @@ public class DbCreateStateFactory {
 		try {
 			profile_delete_state = conn.prepareStatement(typeQuerySql);
 			return profile_delete_state;
+		} catch (SQLException e) {
+		
+			e.printStackTrace();
+		}
+		return null;	
+	}
+	
+	private static PreparedStatement createProfileQueryAllBySource()
+	{
+		String typeQuerySql = "select * from customer_profile where source = ?";
+		
+		Connection conn = DbConnection.getConn();
+		/* 避免重复创建*/
+		if(null != profile_query_source_state){
+			return profile_query_source_state;
+		}
+		try {
+			profile_query_source_state = conn.prepareStatement(typeQuerySql);
+			return profile_query_source_state;
 		} catch (SQLException e) {
 		
 			e.printStackTrace();
@@ -450,5 +478,25 @@ public class DbCreateStateFactory {
 			e.printStackTrace();
 		}
 		return null;		
+	}
+	
+	private static PreparedStatement createQueryAllReport(){
+        
+		String typeQuerySql = "select * from customer_report";
+		
+		Connection conn = DbConnection.getConn();
+		/* 避免重复创建*/
+		if(null != report_query_all_state){
+			return report_query_all_state;
+		}
+		try {
+			report_query_all_state = conn.prepareStatement(typeQuerySql);
+			return report_query_all_state;
+		} catch (SQLException e) {
+		
+			
+			e.printStackTrace();
+		}
+		return null;	
 	}
 }

@@ -3,6 +3,7 @@ package com.util.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.util.tools.Log;
 
@@ -129,7 +130,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 		return null;
 	}
 	
-	public boolean deleteCustomerProfile(Long source)
+	public boolean deleteCustomerProfile(Long id)
 	{
         PreparedStatement state = DbCreateStateFactory.createStateInstance("profileDelete");
 	    
@@ -138,7 +139,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 		}
 			
 		try{
-			state.setLong(1, source);
+			state.setLong(1, id);
 			return state.execute();
 		} catch (SQLException e) {
 			Log.error("deleteCustomerProfile failed");
@@ -146,6 +147,53 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 		}
 		
 		return false;
+	}
+	
+	public void queryCutomerProfile(ArrayList<CustomerProfile> list,Long source){
+	
+
+        PreparedStatement state = DbCreateStateFactory.createStateInstance("profileSource");
+	    
+		if(null == state){
+			return;
+		}
+		
+		list.clear();
+			
+		try{
+			state.setLong(1, source);
+			ResultSet set = state.executeQuery();
+			if(set.next())
+			{
+				CustomerProfile customerProfile = new CustomerProfile();
+				customerProfile.setId(set.getLong(1));
+				customerProfile.setName(set.getString(2));
+				customerProfile.setAddress(set.getString(3));
+				customerProfile.setCompany(set.getString(4));
+				customerProfile.setProvince(set.getString(5));
+				customerProfile.setCity(set.getString(6));
+				customerProfile.setBorn(set.getString(7));
+				customerProfile.setIdCard(set.getString(8));
+				customerProfile.setMobile1(set.getString(9));
+				customerProfile.setMobile2(set.getString(10));
+				customerProfile.setMobile3(set.getString(11));
+				customerProfile.setMobile4(set.getString(12));
+				customerProfile.setFixPhone1(set.getString(13));
+				customerProfile.setFixPhone2(set.getString(14));
+				customerProfile.setPost(set.getString(15));
+				customerProfile.setMail(set.getString(16));
+				customerProfile.setSex(set.getString(17));
+				customerProfile.setUsertype(set.getLong(18));
+				customerProfile.setDataSource(set.getLong(19));
+				customerProfile.setRemarks(set.getString(20));
+			    list.add(customerProfile);
+			}
+		} catch (SQLException e) {
+			Log.error("deleteCustomerProfile failed");
+			e.printStackTrace();
+		}
+		
+		return ;
 	}
 
 }

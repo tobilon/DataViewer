@@ -62,7 +62,7 @@ public class CustomerMailImp implements CustomerMailDAO{
 		}
 			
 		try{
-			state.setLong(1, customerProfile.getId());
+			state.setString(1, customerProfile.getMail());
 			return state.execute();
 		} catch (SQLException e) {
 			Log.error("deleteCustomerMail failed");

@@ -3,6 +3,7 @@ package com.util.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.util.tools.Log;
 
@@ -126,6 +127,51 @@ public class CustomerReportImp implements CustomerReportDAO {
 			e.printStackTrace();
 		}
 		
+		return false;
+	}
+	
+	
+	public boolean  queryAll(ArrayList<CustomerReport> list) {
+		// TODO Auto-generated method stub
+		PreparedStatement state = DbCreateStateFactory.createStateInstance("reportQueryall");
+		/* protected*/
+		if(null == state){
+			return false;
+		}
+		
+		try {
+			ResultSet set = state.executeQuery();
+			return CustomerReportWapper.wapper(set, list);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			Log.error("queryAll failed");
+			e.printStackTrace();
+		}
+		return false;
+	}
+}
+
+/* °ü×°Àà*/
+class CustomerReportWapper {
+	public static boolean wapper(ResultSet set,ArrayList<CustomerReport> list){
+		try {
+			while(set.next()){
+				CustomerReport report = new CustomerReport();
+				report.setId(set.getLong(1));
+				report.setFilename(set.getString(2));
+				report.setUsertype(set.getString(3));
+				report.setUsernum(set.getLong(4));
+				report.setUserImport(set.getLong(5));
+				report.setUserMerge(set.getLong(6));
+				report.setTime(set.getString(7));
+				list.add(report);
+				
+			}
+			return true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 	}
 }

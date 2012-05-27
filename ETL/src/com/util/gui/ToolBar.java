@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JToolBar;
 
@@ -17,7 +18,7 @@ import com.util.tools.Log;
 public class ToolBar extends JToolBar implements ActionListener {
 	
 	private JButton dirbutton = new JButton("选择导入目录");
-	private JButton dbbutton = new JButton("配置数据库");
+	private JButton delbutton = new JButton("删 除 ");
 	private JButton impButton = new JButton("导  入");
 	private MainFrame mf ;
 	
@@ -25,15 +26,23 @@ public class ToolBar extends JToolBar implements ActionListener {
 		this.mf = mf;
 		dirbutton.addActionListener((ActionListener) this);
 		impButton.addActionListener(this);
+		delbutton.addActionListener(this);
+		
 	    
 		this.add(dirbutton);
 		this.add(impButton);
+		this.add(delbutton);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-
-		 if(e.getSource() == dirbutton){
+         if(e.getSource() == delbutton){
+        	 DelFrame df = new DelFrame();
+        	 df.setSize(600,400);
+        	 df.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        	 df.setVisible(true);
+         }
+         else if(e.getSource() == dirbutton){
 			 JFileChooser chooser = new JFileChooser(".");
 			 chooser.setDialogTitle("选择需要导入文件的目录");
 			 
