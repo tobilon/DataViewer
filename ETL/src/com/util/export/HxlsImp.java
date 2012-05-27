@@ -33,7 +33,7 @@ public class HxlsImp extends HxlsAbstract{
 			  //  System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
-		    CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,true);
+		    //CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,true);
 		}
 		else {
 			dataList.clear();
@@ -43,25 +43,20 @@ public class HxlsImp extends HxlsAbstract{
 			    dataList.add(rowlist.get(i));
 			    
 		    }
-		    CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,false);
+		    //CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,false);
 		    
 		}
 		
 		//System.out.println();
 	}
 	
-	public static void main(String[] args){
-		HxlsImp xls2csv;
-		try {
-			xls2csv = new HxlsImp("dd.xls");
-			xls2csv.process("dd.xls","dd");
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+	public ArrayList<String> getDataList()
+	{
+		return dataList;
+	}
+	
+	public ArrayList<String> getHeadList()
+	{
+		return tableHeadList;
 	}
 }

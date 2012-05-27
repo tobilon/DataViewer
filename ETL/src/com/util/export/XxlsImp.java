@@ -23,7 +23,7 @@ public class XxlsImp extends XxlsAbstract {
 			   // System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
 		    }
-		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,true);
+		    //CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,true);
 		}
 		else {
 			dataList.clear();
@@ -32,16 +32,19 @@ public class XxlsImp extends XxlsAbstract {
 			   // System.out.print("'"+rowlist.get(i)+"',");
 			    dataList.add(rowlist.get(i));
 		    }
-		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,false);
+		    //CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,false);
 		}
 		//System.out.println();
 		
+	}	
+	
+	public ArrayList<String> getDataList()
+	{
+		return dataList;
 	}
-
-	public static void main(String[] args) throws Exception {
-		XxlsImp howto = new XxlsImp();
-		howto.process("big.xlsx","dd");
-//		howto.processAllSheets("F:/new.xlsx");
+	
+	public ArrayList<String> getHeadList()
+	{
+		return tableHeadList;
 	}
-
 }
