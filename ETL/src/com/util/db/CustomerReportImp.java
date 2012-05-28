@@ -100,8 +100,8 @@ public class CustomerReportImp implements CustomerReportDAO {
 			state.setString(2, customerReport.getUsertype());
 			state.setLong(3, customerReport.getUsernum());
 			state.setLong(4, customerReport.getUserImport());
-			//state.setLong(5, customerReport.getId());
 			state.setLong(5, customerReport.getUserMerge());
+			state.setLong(6, customerReport.getId());
 		    return state.execute();
 		}catch (SQLException e) {
 			Log.error("updateCustomerReport failed");

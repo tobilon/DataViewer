@@ -14,4 +14,5 @@ public interface CustomerProfileDAO {
 	
 	public void queryCutomerProfile(ArrayList<CustomerProfile> list,Long source);
 	
+	public Long getLastId();
 }

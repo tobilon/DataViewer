@@ -56,9 +56,10 @@ create table customer_mail(
 create table customer_report(
     id             number(10) not null,
 	filename       varchar2(100),
-	usertype       number(22),
+	userdisc       varchar2(20),
 	usernum        number(10),
         importnum      number(10),
+        mergenum       number(10),
 	timestamp      date,
 	constraint pk_customer_report primary key (id)
         using index

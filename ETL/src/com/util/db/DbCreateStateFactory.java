@@ -18,6 +18,7 @@ public class DbCreateStateFactory {
 	private static PreparedStatement profile_update_state = null;
 	private static PreparedStatement profile_query_state = null;
 	private static PreparedStatement profile_delete_state = null;
+	private static PreparedStatement profile_maxid_state = null;
 	private static PreparedStatement report_insert_state = null;
 	private static PreparedStatement report_query_state = null;
 	private static PreparedStatement report_update_state = null;
@@ -88,6 +89,11 @@ public class DbCreateStateFactory {
 		/* profileDelete: delete user profile */
 		else if(sqlType.equals("profileDelete")){
 			return createProfileDelete();			
+		}
+		
+		/* profileMaxID: get max id of profile */
+		else if(sqlType.equals("profileMaxID")){
+			return createProfileMaxID();
 		}
 		
 		/* create report table SQL statement */
@@ -375,6 +381,26 @@ public class DbCreateStateFactory {
 			e.printStackTrace();
 		}
 		return null;	
+	}
+	
+	private static PreparedStatement createProfileMaxID()
+	{
+		String typeQuerySql = "select customer_profile_seq.currval from dual";
+		
+		Connection conn = DbConnection.getConn();
+		/* ±‹√‚÷ÿ∏¥¥¥Ω®*/
+		if(null != profile_maxid_state){
+			return profile_maxid_state;
+		}
+		try {
+			profile_maxid_state = conn.prepareStatement(typeQuerySql);
+			return profile_maxid_state;
+		} catch (SQLException e) {
+		
+			
+			e.printStackTrace();
+		}
+		return null;		
 	}
 	
 	private static PreparedStatement createReportInsert()

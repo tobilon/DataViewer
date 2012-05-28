@@ -195,5 +195,29 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 		
 		return ;
 	}
+	
+	public Long getLastId()
+	{
+		PreparedStatement state = DbCreateStateFactory.createStateInstance("profileMaxID");
+		/* protected*/
+		if(null == state){
+			return null;
+		}
+		try {
+			ResultSet set = state.executeQuery();
+			if(set.next())
+			{
+				return set.getLong(1);
+			}
+			else {
+				return 0L;
+			}
+		} catch (SQLException e) {
+			Log.error("getLastId failed");
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
 
 }
