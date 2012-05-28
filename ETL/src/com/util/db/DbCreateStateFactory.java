@@ -427,7 +427,7 @@ public class DbCreateStateFactory {
 	
 	private static PreparedStatement createReportUpdate()
 	{
-		String typeQuerySql = "update customer_report setfilename=?, " +
+		String typeQuerySql = "update customer_report set filename=?, " +
 				"usertype=?, usernum=?, importnum=?, mergenum = ?,timestamp=sysdate where id = ?";
 		
 		Connection conn = DbConnection.getConn();

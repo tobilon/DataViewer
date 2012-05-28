@@ -2,7 +2,7 @@ package com.util.db;
 
 public class CustomerPhone {
 	
-	private Long id;
+	private Long id=0L;
 	private String mobilePhone="";
 	public Long getId() {
 		return id;

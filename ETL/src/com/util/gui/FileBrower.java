@@ -51,7 +51,7 @@ public class FileBrower {
 
 		for (int loop = 0; loop < dirfile.length; loop++) {
 			// System.out.println(dirfile[loop]);
-			File tempdir = new File(dirfile[loop]);
+			File tempdir = new File(file.getAbsoluteFile() + "\\"+dirfile[loop]);
 			if (tempdir.isDirectory()) {
 				//System.out.println(tempdir.getAbsolutePath());
 				dirList.add(tempdir.getAbsolutePath());
@@ -117,7 +117,7 @@ public class FileBrower {
 
 		Iterator it = map.entrySet().iterator();
 		while (it.hasNext()) {
-			String[] arr = new String[3];
+			
 			java.util.Map.Entry en = (java.util.Map.Entry) it.next();
 			// 返回与此项对应的键
 			String dirname = (String) en.getKey();
@@ -125,14 +125,20 @@ public class FileBrower {
 			int loop = 0;
 			for (; loop < typeList.size(); loop++) {
 				if (dirname.equals(typeList.get(loop).getDisc())) {
-					type.setDisc(dirname);
-					type.setTag(typeList.size() * 2L);
-					typedao.insertCustomerType(type);
+					
 					break;
 				}
 			}
 
-			if (loop < typeList.size()) {
+			if (loop ==  typeList.size()) {
+				type.setDisc(dirname);
+				if(0 == typeList.size()){
+					type.setTag(1L);
+				}
+				else{
+				    type.setTag(typeList.size() * 2L);
+				}
+				typedao.insertCustomerType(type);
 				typeList.add(type);
 			}
 
@@ -140,7 +146,8 @@ public class FileBrower {
 	}
 	public static void dbInsertReport(String userType,String filename){
 		customerReport.setUserImport(0L);
-		customerReport.setUserImport(0L);
+		customerReport.setUserMerge(0L);
+	
 		CustomerReportDAO reportDao = new CustomerReportImp();
 		customerReport.setFilename(filename);
 		customerReport.setUsertype(userType);

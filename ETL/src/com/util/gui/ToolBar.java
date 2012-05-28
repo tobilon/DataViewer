@@ -62,6 +62,8 @@ public class ToolBar extends JToolBar implements ActionListener {
 			new Thread(){
 				public void run(){
 		        	try {
+		        	  String pro = "测试数据库连接...";
+		    		  mf.progress.progress.setString(pro);
 		        	  if(false == DbConnTest.dbtest()){
 		        		  System.out.println("1111111111");
 		        		  JOptionPane.showMessageDialog(mf.getContentPane(),

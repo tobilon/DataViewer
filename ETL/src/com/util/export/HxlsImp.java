@@ -28,12 +28,14 @@ public class HxlsImp extends HxlsAbstract{
 		//±íÍ· 
 		if(curRow == 0){
 			tableHeadList.clear();
+			dataList.clear();
 		    for (int i = 0 ;i< rowlist.size();i++){
 		    	
 			  //  System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
+			    dataList.add(rowlist.get(i));
 		    }
-		    //CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,true);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,true);
 		}
 		else {
 			dataList.clear();
@@ -43,7 +45,7 @@ public class HxlsImp extends HxlsAbstract{
 			    dataList.add(rowlist.get(i));
 			    
 		    }
-		    //CusteomerExport.anasys(dirname,filename,tableHeadList, (ArrayList<String>)rowlist,false);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,false);
 		    
 		}
 		

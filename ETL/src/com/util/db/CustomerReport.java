@@ -5,9 +5,9 @@ public class CustomerReport {
 	private Long id;
 	private String filename  ="";
 	private String usertype  ="";
-	private Long usernum;
-	private Long  userImport;
-	private Long  userMerge;
+	private Long usernum=0L;
+	private Long  userImport=0L;
+	private Long  userMerge=0L;
 	private String time;
 	
 	

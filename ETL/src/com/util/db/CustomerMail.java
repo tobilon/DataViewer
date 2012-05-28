@@ -2,7 +2,7 @@ package com.util.db;
 
 public class CustomerMail {
 	
-	private Long id;
+	private Long id=0L;
 	private String mail="";
 	public Long getId() {
 		return id;

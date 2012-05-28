@@ -18,12 +18,14 @@ public class XxlsImp extends XxlsAbstract {
 		//±íÍ· 
 		if(curRow == 0){
 			tableHeadList.clear();
+			dataList.clear();
 		    for (int i = 0 ;i< rowlist.size();i++){
 		    	
 			   // System.out.print("'"+rowlist.get(i)+"',");
 			    tableHeadList.add(rowlist.get(i));
+			    dataList.add(rowlist.get(i));
 		    }
-		    //CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,true);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,true);
 		}
 		else {
 			dataList.clear();
@@ -32,7 +34,7 @@ public class XxlsImp extends XxlsAbstract {
 			   // System.out.print("'"+rowlist.get(i)+"',");
 			    dataList.add(rowlist.get(i));
 		    }
-		    //CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,false);
+		    CusteomerExport.anasys(dirname,filename,tableHeadList, dataList,false);
 		}
 		//System.out.println();
 		

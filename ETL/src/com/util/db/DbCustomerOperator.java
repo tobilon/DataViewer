@@ -36,12 +36,23 @@ public class DbCustomerOperator {
 		try {
 			conn.setAutoCommit(false);
 			for(int loop = 0; loop < list.size(); loop++){
-				phoneDao.deleteCustomerPhone(list.get(loop));
-				mailDAO.deleteCustomerMail(list.get(loop));
-				prodao.deleteCustomerProfile(list.get(loop).getId());
+				if(false == phoneDao.deleteCustomerPhone(list.get(loop))){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
+				if(false == mailDAO.deleteCustomerMail(list.get(loop))){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
+				if(false == prodao.deleteCustomerProfile(list.get(loop).getId())){
+					conn.rollback();
+				    conn.setAutoCommit(true);}
 			}
 			
-			reportDAO.deleteCustomerReport(report.getId());
+			if(false == reportDAO.deleteCustomerReport(report.getId())){
+				conn.rollback();
+				conn.setAutoCommit(true);
+			}
 			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -79,32 +90,49 @@ public class DbCustomerOperator {
 		Connection conn = DbConnection.getConn();
 		try {
 			conn.setAutoCommit(false);
-			prodao.insertCustomerProfile(newCustomer);
+			if(false == prodao.insertCustomerProfile(newCustomer)){
+				return;
+			}
 			CustomerPhone customerPhone = new CustomerPhone();
 			CustomerMail   mail = new CustomerMail();
 			
 			if(customerProfile.getMobile1().length() == 11 && false == isExistPhone(customerProfile.getMobile1(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
-				phoneDao.insertCustomerPhone(customerPhone);
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
-			if(customerProfile.getMobile1().length() == 11 && false == isExistPhone(customerProfile.getMobile2(),oldCustomer)){
+			if(customerProfile.getMobile2().length() == 11 && false == isExistPhone(customerProfile.getMobile2(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
-				phoneDao.insertCustomerPhone(customerPhone);
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMobile3().length() == 11 &&  false == isExistPhone(customerProfile.getMobile3(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
-				phoneDao.insertCustomerPhone(customerPhone);
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMobile4().length() == 11 && false == isExistPhone(customerProfile.getMobile4(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
-				phoneDao.insertCustomerPhone(customerPhone);
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMail().length() > 1 && oldCustomer.getMail().length() == 0){
 				mail.setMail(customerProfile.getMail());
-				mailDAO.insertCustomerMail(mail);
+				if(false == mailDAO.insertCustomerMail(mail)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			conn.commit();
@@ -137,6 +165,7 @@ public class DbCustomerOperator {
 			CustomerProfile oldCustomer) {
 		// TODO Auto-generated method stub
 		CustomerProfile cp = new CustomerProfile();
+	
 		if(newCustomer.address.length() > 0 && oldCustomer.address.length() == 0){
 			cp.setAddress(newCustomer.address);
 		}
@@ -172,19 +201,19 @@ public class DbCustomerOperator {
 			cp.setAddress(newCustomer.mail);
 		}
 		
-	    if(oldCustomer.getMobile1().length() == 11){
+	    if(oldCustomer.getMobile1() != null && oldCustomer.getMobile1().length() == 11){
 		cp.getMobilePhonelist().add(oldCustomer.getMobile1());
 		}
 	    
-	    if(oldCustomer.getMobile2().length() == 11){
+	    if(oldCustomer.getMobile2() != null && oldCustomer.getMobile2().length() == 11){
 			cp.getMobilePhonelist().add(oldCustomer.getMobile2());
 	    }
 	    
-	    if(oldCustomer.getMobile3().length() == 11){
+	    if(oldCustomer.getMobile3() != null && oldCustomer.getMobile3().length() == 11){
 			cp.getMobilePhonelist().add(oldCustomer.getMobile3());
 			}
 	    
-	    if(oldCustomer.getMobile4().length() == 11){
+	    if(oldCustomer.getMobile4() != null && oldCustomer.getMobile4().length() == 11){
 			cp.getMobilePhonelist().add(oldCustomer.getMobile4());
 			}
 	    
@@ -213,8 +242,7 @@ public class DbCustomerOperator {
 		cp.setRemarks(oldCustomer.remarks);
 		cp.setDataSource(oldCustomer.getDataSource());
 		cp.setUsertype(oldCustomer.getUsertype());
-		
-		
+		cp.setId(oldCustomer.getId());
 		return cp;
 	}
 
@@ -238,32 +266,54 @@ public class DbCustomerOperator {
 		Connection conn = DbConnection.getConn();
 		try {
 			conn.setAutoCommit(false);
-			prodao.insertCustomerProfile(customerProfile);
+			if(false == prodao.insertCustomerProfile(customerProfile)){
+				return;
+			}
 			CustomerPhone customerPhone = new CustomerPhone();
 			CustomerMail   mail = new CustomerMail();
 			if(customerProfile.getMobile1().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile1());
-				phoneDao.insertCustomerPhone(customerPhone);
+				customerPhone.setId(prodao.getLastId());
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMobile2().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
-				phoneDao.insertCustomerPhone(customerPhone);
+				customerPhone.setId(prodao.getLastId());
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMobile3().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
-				phoneDao.insertCustomerPhone(customerPhone);
+				customerPhone.setId(prodao.getLastId());
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMobile4().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
-				phoneDao.insertCustomerPhone(customerPhone);
+				customerPhone.setId(prodao.getLastId());
+				if(false == phoneDao.insertCustomerPhone(customerPhone)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			if(customerProfile.getMail().length() > 1){
 				mail.setMail(customerProfile.getMail());
-				mailDAO.insertCustomerMail(mail);
+				mail.setId(prodao.getLastId());
+				if(false == mailDAO.insertCustomerMail(mail)){
+					conn.rollback();
+					conn.setAutoCommit(true);
+				}
 			}
 			
 			conn.commit();
