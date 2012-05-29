@@ -24,6 +24,7 @@ public class DbCustomerOperator {
 		else{
 			CustomerProfile oldCustomer = prodao.queryCustomerProfile(ID);
 			CustomerProfile newCustomer = combineCustomerProfile(customer,oldCustomer);
+			newCustomer.setId(ID);
 			updateTranction(newCustomer,oldCustomer,customer);
 		}
 	}
@@ -36,33 +37,30 @@ public class DbCustomerOperator {
 		try {
 			conn.setAutoCommit(false);
 			for(int loop = 0; loop < list.size(); loop++){
-				if(false == phoneDao.deleteCustomerPhone(list.get(loop))){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
-				if(false == mailDAO.deleteCustomerMail(list.get(loop))){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
-				if(false == prodao.deleteCustomerProfile(list.get(loop).getId())){
-					conn.rollback();
-				    conn.setAutoCommit(true);}
+				 phoneDao.deleteCustomerPhone(list.get(loop));
+				 mailDAO.deleteCustomerMail(list.get(loop));
+				 prodao.deleteCustomerProfile(list.get(loop).getId());
 			}
 			
-			if(false == reportDAO.deleteCustomerReport(report.getId())){
-				conn.rollback();
-				conn.setAutoCommit(true);
-			}
+			reportDAO.deleteCustomerReport(report.getId());
 			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			try {
-				conn.setAutoCommit(true);
+				conn.rollback();
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+		}
+		finally{
+			try {
+				conn.setAutoCommit(true);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 	}
@@ -90,49 +88,32 @@ public class DbCustomerOperator {
 		Connection conn = DbConnection.getConn();
 		try {
 			conn.setAutoCommit(false);
-			if(false == prodao.insertCustomerProfile(newCustomer)){
-				return;
-			}
+			prodao.updateCustomerProfile(newCustomer);
 			CustomerPhone customerPhone = new CustomerPhone();
 			CustomerMail   mail = new CustomerMail();
 			
 			if(customerProfile.getMobile1().length() == 11 && false == isExistPhone(customerProfile.getMobile1(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			if(customerProfile.getMobile2().length() == 11 && false == isExistPhone(customerProfile.getMobile2(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile3().length() == 11 &&  false == isExistPhone(customerProfile.getMobile3(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile4().length() == 11 && false == isExistPhone(customerProfile.getMobile4(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMail().length() > 1 && oldCustomer.getMail().length() == 0){
 				mail.setMail(customerProfile.getMail());
-				if(false == mailDAO.insertCustomerMail(mail)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				mailDAO.insertCustomerMail(mail);
 			}
 			
 			conn.commit();
@@ -166,39 +147,65 @@ public class DbCustomerOperator {
 		// TODO Auto-generated method stub
 		CustomerProfile cp = new CustomerProfile();
 	
-		if(newCustomer.address.length() > 0 && oldCustomer.address.length() == 0){
+		if(newCustomer.address.length() > 0 && oldCustomer.address == null){
 			cp.setAddress(newCustomer.address);
 		}
-		if(newCustomer.name.length() > 0 && oldCustomer.name.length() == 0){
-			cp.setAddress(newCustomer.name);
+		else if(oldCustomer.address != null){
+			cp.setAddress(oldCustomer.address);
+		}
+		if(newCustomer.name.length() > 0 && oldCustomer.name == null){
+			cp.setName(newCustomer.name);
+		}
+		else if(oldCustomer.name != null){
+			cp.setName(oldCustomer.name);
 		}
 		
-		if(newCustomer.city.length() > 0 && oldCustomer.city.length() == 0){
-			cp.setAddress(newCustomer.city);
+		if(newCustomer.city.length() > 0 && oldCustomer.city== null){
+			cp.setCity(newCustomer.city);
+		}
+		else if(oldCustomer.city != null){
+			cp.setCity(oldCustomer.city);
 		}
 		
-		if(newCustomer.province.length() > 0 && oldCustomer.province.length() == 0){
-			cp.setAddress(newCustomer.province);
+		if(newCustomer.province.length() > 0 && oldCustomer.province == null){
+			cp.setProvince(newCustomer.province);
+		}
+		else if(null != oldCustomer.province){
+			cp.setProvince(oldCustomer.province);
 		}
 		
-		if(newCustomer.company.length() > 0 && oldCustomer.company.length() == 0){
-			cp.setAddress(newCustomer.company);
+		if(newCustomer.company.length() > 0 && oldCustomer.company== null){
+			cp.setCompany(newCustomer.company);
+		}
+		else if(null != oldCustomer.company){
+			cp.setCompany(oldCustomer.company);
+		}
+		if(newCustomer.post.length() > 0 && oldCustomer.post == null){
+			cp.setPost(newCustomer.post);
+		}
+		else if(null != oldCustomer.post){
+			cp.setPost(oldCustomer.post);
 		}
 		
-		if(newCustomer.post.length() > 0 && oldCustomer.post.length() == 0){
-			cp.setAddress(newCustomer.post);
+		if(newCustomer.fixPhone1.length() > 0 && oldCustomer.fixPhone1 == null){
+			cp.setFixPhone1(newCustomer.fixPhone1);
+		}
+		else if(null != oldCustomer.fixPhone1){
+			cp.setFixPhone1(oldCustomer.fixPhone1);
 		}
 		
-		if(newCustomer.fixPhone1.length() > 0 && oldCustomer.fixPhone1.length() == 0){
-			cp.setAddress(newCustomer.fixPhone1);
+		if(newCustomer.fixPhone2.length() > 0 && oldCustomer.fixPhone2 == null){
+			cp.setFixPhone2(newCustomer.fixPhone2);
+		}
+		else if(null != oldCustomer.fixPhone2){
+		    cp.setFixPhone2(oldCustomer.fixPhone2);
 		}
 		
-		if(newCustomer.fixPhone2.length() > 0 && oldCustomer.fixPhone2.length() == 0){
-			cp.setAddress(newCustomer.fixPhone2);
+		if(newCustomer.mail.length() > 0 && oldCustomer.mail == null){
+			cp.setMail(newCustomer.mail);
 		}
-		
-		if(newCustomer.mail.length() > 0 && oldCustomer.mail.length() == 0){
-			cp.setAddress(newCustomer.mail);
+		else if(null != oldCustomer.mail){
+			cp.setMail(oldCustomer.mail);
 		}
 		
 	    if(oldCustomer.getMobile1() != null && oldCustomer.getMobile1().length() == 11){
@@ -231,18 +238,24 @@ public class DbCustomerOperator {
 		}
 		
 		cp.setUsertype(newCustomer.usertype | oldCustomer.usertype);
-		
-		
-	
-		
-		if(newCustomer.idCard.length() > 0 && oldCustomer.idCard.length() == 0){
-			cp.setAddress(newCustomer.idCard);
+    
+		if(newCustomer.idCard.length() > 0 && oldCustomer.idCard == null){
+			cp.setIdCard(newCustomer.idCard);
+		}
+		else if(null != oldCustomer.idCard){
+			cp.setIdCard(oldCustomer.idCard);
 		}
 		
+		if(newCustomer.born.length() > 0 && oldCustomer.born == null){
+			cp.setBorn(newCustomer.born);
+		}
+		else if(null != oldCustomer.born){
+			cp.setBorn(oldCustomer.born);
+		}
 		cp.setRemarks(oldCustomer.remarks);
 		cp.setDataSource(oldCustomer.getDataSource());
 		cp.setUsertype(oldCustomer.getUsertype());
-		cp.setId(oldCustomer.getId());
+		
 		return cp;
 	}
 
@@ -274,46 +287,31 @@ public class DbCustomerOperator {
 			if(customerProfile.getMobile1().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile1());
 				customerPhone.setId(prodao.getLastId());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile2().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
 				customerPhone.setId(prodao.getLastId());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile3().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
 				customerPhone.setId(prodao.getLastId());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile4().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
 				customerPhone.setId(prodao.getLastId());
-				if(false == phoneDao.insertCustomerPhone(customerPhone)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMail().length() > 1){
 				mail.setMail(customerProfile.getMail());
 				mail.setId(prodao.getLastId());
-				if(false == mailDAO.insertCustomerMail(mail)){
-					conn.rollback();
-					conn.setAutoCommit(true);
-				}
+			    mailDAO.insertCustomerMail(mail);
 			}
 			
 			conn.commit();

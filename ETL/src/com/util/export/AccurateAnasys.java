@@ -50,7 +50,7 @@ public class AccurateAnasys {
 			else{
 				StringUtil.getMobilePhonelList(info,data.mobilePhonelist);
 				if(data.mobilePhonelist.size() >= 1){
-					HashMap map = MobileUtil.getPhoneInfo(data.getMobile1().substring(0, 6));
+					HashMap map = MobileUtil.getPhoneInfo(data.getMobile1().substring(0, 7));
 					
 					String str = (String) map.get("city");
 					if(null != str){

@@ -163,7 +163,7 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 		try{
 			state.setLong(1, source);
 			ResultSet set = state.executeQuery();
-			if(set.next())
+			while(set.next())
 			{
 				CustomerProfile customerProfile = new CustomerProfile();
 				customerProfile.setId(set.getLong(1));

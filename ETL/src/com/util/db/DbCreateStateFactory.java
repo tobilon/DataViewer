@@ -406,7 +406,7 @@ public class DbCreateStateFactory {
 	private static PreparedStatement createReportInsert()
 	{
 		String typeQuerySql = "insert into customer_report(filename, " +
-				"usertype, usernum, importnum, mergenum,timestamp) values " +
+				"userdisc, usernum, importnum, mergenum,timestamp) values " +
 				"(?, ?, ?, ?, ?,sysdate)";
 		
 		Connection conn = DbConnection.getConn();
@@ -428,7 +428,7 @@ public class DbCreateStateFactory {
 	private static PreparedStatement createReportUpdate()
 	{
 		String typeQuerySql = "update customer_report set filename=?, " +
-				"usertype=?, usernum=?, importnum=?, mergenum = ?,timestamp=sysdate where id = ?";
+				"userdisc=?, usernum=?, importnum=?, mergenum = ?,timestamp=sysdate where id = ?";
 		
 		Connection conn = DbConnection.getConn();
 		/* ±‹√‚÷ÿ∏¥¥¥Ω®*/

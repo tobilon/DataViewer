@@ -19,7 +19,10 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 import com.util.db.CustomerReport;
+import com.util.db.CustomerReportDAO;
+import com.util.db.CustomerReportImp;
 import com.util.db.DbCustomerOperator;
+import com.util.tools.Log;
 
 public class DelTablePanel extends JPanel implements ActionListener{
 
@@ -68,6 +71,7 @@ public class DelTablePanel extends JPanel implements ActionListener{
 		table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		JScrollPane js = new JScrollPane(table);
 		this.add(js);
+		fillTable();
 	}
 
 	public void fillTable() {
@@ -77,6 +81,8 @@ public class DelTablePanel extends JPanel implements ActionListener{
 
 		// Ìî³äÊý¾Ý
 		ArrayList<CustomerReport> list = new ArrayList<CustomerReport>();
+		CustomerReportDAO reportDao = new CustomerReportImp();
+		reportDao.queryAll(list);
 		Iterator it = list.iterator();
 
 		while (it.hasNext()) {
@@ -102,6 +108,10 @@ public class DelTablePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		int row = table.getSelectedRow();
+		if(row >= table.getRowCount()){
+			Log.error("row is beyond table");
+			return;
+		}
 		report.setId(Long.valueOf((String) table.getValueAt(row, 0)));
 		report.setFilename((String)table.getValueAt(row, 1));
 		report.setUsertype((String)table.getValueAt(row, 2));

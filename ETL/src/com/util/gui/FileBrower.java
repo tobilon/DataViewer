@@ -147,7 +147,7 @@ public class FileBrower {
 	public static void dbInsertReport(String userType,String filename){
 		customerReport.setUserImport(0L);
 		customerReport.setUserMerge(0L);
-	
+	    customerReport.setUsernum(0L);
 		CustomerReportDAO reportDao = new CustomerReportImp();
 		customerReport.setFilename(filename);
 		customerReport.setUsertype(userType);
@@ -211,10 +211,6 @@ public class FileBrower {
 				}
 			}
 			
-			/* 及时关闭*/
-            if(DbConnection.getConn() != null){
-            	DbConnection.closeConn();
-            }
 			TablePanel.setStatue(customerReport, "完成");
 			count++;
 			ProPanel.progress.setValue(count);
