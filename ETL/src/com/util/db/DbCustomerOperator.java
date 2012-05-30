@@ -21,7 +21,7 @@ public class DbCustomerOperator {
 		if(0 == ID){
 			insertTranction(customer);
 		}
-		else{
+		else if(ID != -1L){
 			CustomerProfile oldCustomer = prodao.queryCustomerProfile(ID);
 			CustomerProfile newCustomer = combineCustomerProfile(customer,oldCustomer);
 			newCustomer.setId(ID);
@@ -67,6 +67,9 @@ public class DbCustomerOperator {
 	
 	
 	private boolean isExistPhone(String phone,CustomerProfile customer){
+		if(phone == null){
+			return true;
+		}
 		if(phone.equals(customer.getMobile1())){
 			return true;
 		}
@@ -93,26 +96,31 @@ public class DbCustomerOperator {
 			CustomerMail   mail = new CustomerMail();
 			
 			if(customerProfile.getMobile1().length() == 11 && false == isExistPhone(customerProfile.getMobile1(),oldCustomer)){
-				customerPhone.setMobilePhone(customerProfile.getMobile2());
+				customerPhone.setMobilePhone(customerProfile.getMobile1());
+				customerPhone.setId(newCustomer.getId());
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			if(customerProfile.getMobile2().length() == 11 && false == isExistPhone(customerProfile.getMobile2(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
+				customerPhone.setId(newCustomer.getId());
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile3().length() == 11 &&  false == isExistPhone(customerProfile.getMobile3(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
+				customerPhone.setId(newCustomer.getId());
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMobile4().length() == 11 && false == isExistPhone(customerProfile.getMobile4(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
+				customerPhone.setId(newCustomer.getId());
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(customerProfile.getMail().length() > 1 && oldCustomer.getMail().length() == 0){
 				mail.setMail(customerProfile.getMail());
+				mail.setId(newCustomer.getId());
 				mailDAO.insertCustomerMail(mail);
 			}
 			
@@ -262,11 +270,10 @@ public class DbCustomerOperator {
 	private Long IsExistCustomer(CustomerProfile customer){
 		
 		Long phoneID = phoneDao.queryCustomerPhone(customer);
+		Long mailID = mailDAO.queryCustomerMail(customer);
 		
-		if(phoneID == 0L){
-		
-			Long mailID = mailDAO.queryCustomerMail(customer);
-			return mailID;
+		if(phoneID != mailID){
+			return -1L;
 		}
 		else{
 			return phoneID;
@@ -279,9 +286,7 @@ public class DbCustomerOperator {
 		Connection conn = DbConnection.getConn();
 		try {
 			conn.setAutoCommit(false);
-			if(false == prodao.insertCustomerProfile(customerProfile)){
-				return;
-			}
+			prodao.insertCustomerProfile(customerProfile);
 			CustomerPhone customerPhone = new CustomerPhone();
 			CustomerMail   mail = new CustomerMail();
 			if(customerProfile.getMobile1().length() == 11){

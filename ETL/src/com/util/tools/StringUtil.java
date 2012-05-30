@@ -298,7 +298,7 @@ public class StringUtil {
 	
 	public static String getProvince(String str){
 		int index = str.indexOf("ʡ");
-		if(0 == index){
+		if( index > 0){
 		    return str.substring(0, index);
 		}
 		else{
@@ -310,8 +310,8 @@ public class StringUtil {
 	public static String getCity(String str){
 			
 		int index = str.indexOf("ʡ");
-		if(0 == index){
-		   return str.substring(index+1, str.length()-1);
+		if( index > 0){
+		   return str.substring(index+1, str.length());
 		   }
 		else{
 			return str;
