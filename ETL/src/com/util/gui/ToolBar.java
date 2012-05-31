@@ -70,6 +70,8 @@ public class ToolBar extends JToolBar implements ActionListener {
 		           		       "数据库连接错误 !", "系统信息", JOptionPane.ERROR_MESSAGE);
 		           	   return;
 		        	  }
+		        	   pro = "测试数据库连接成功，正在 导入数据 。。。。";
+		    		  mf.progress.progress.setString(pro);
 				      FileBrower.importDB();
 			          } catch (SQLException e1) {
 				      // TODO Auto-generated catch block

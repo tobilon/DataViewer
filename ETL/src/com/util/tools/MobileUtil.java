@@ -17,6 +17,7 @@ public class MobileUtil {
 	static PreparedStatement  stmt = null;
 	static String sqlStatement = "select City,Memo from T_mobile where Code = ?";
 	static HashMap map = new HashMap();
+	static LRUCache<String,String> cache = new LRUCache<String,String>();
 	
 	static {
 		try {
@@ -52,6 +53,13 @@ public class MobileUtil {
 			System.out.println("null");
 			//return null;
 		}
+		if(cache.size() > 0){
+			String address = cache.get(phone);
+			if(address != null){
+				map.put("city", address);
+				return map;
+			}
+		}
 		else{
 			try {
 				if(stmt != null)
@@ -66,7 +74,7 @@ public class MobileUtil {
 				ResultSet res = stmt.executeQuery();
 				if(res.next()){
 					map.put("city", res.getString(1));
-					map.put("memo", res.getString(2));
+					cache.put(phone, (String)map.get("city"));
 
 				}
 			} catch (SQLException e) {

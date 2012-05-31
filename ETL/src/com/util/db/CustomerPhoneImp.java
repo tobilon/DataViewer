@@ -3,36 +3,38 @@ package com.util.db;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import com.util.tools.Log;
 
 public class CustomerPhoneImp implements CustomerPhoneDAO {
 
-	public Long queryCustomerPhone(CustomerProfile customerProfile) {
+	
+	public Long queryCustomerPhone(CustomerProfile customerProfile,ArrayList<String> list) {
 		PreparedStatement state = DbCreateStateFactory
 				.createStateInstance("phoneQuery");
 		/* protected */
+		list.clear();
 		if (null == state) {
 			return 0L;
 		}
 		try {
-			Long id1 = 0L;
-			Long id2 = 0L;
-			Long id3 = 0L;
-			Long id4 = 0L;
+			Long[] id = new Long[4];
+			id[0] = 0L;
+			id[1] = 0L;
+			id[3] = 0L;
+			id[4] = 0L;
 			ResultSet set = null;
 			if (customerProfile.getMobile1() != null
 					&& customerProfile.getMobile1().length() == 11) {
 				state.setString(1, customerProfile.getMobile1());
 				set = state.executeQuery();
 				if (set.next()) {
-					id1 = set.getLong(1);
+					id[0] = set.getLong(1);
+				}else{
+					list.add(customerProfile.getMobile1());
 				}
 
-				if (id1.longValue() == 0) {
-					return -1L;
-
-				}
 			}
 
 			if (customerProfile.getMobile2() != null
@@ -40,14 +42,11 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 				state.setString(1, customerProfile.getMobile2());
 				set = state.executeQuery();
 				if (set.next()) {
-					id2 = set.getLong(1);
+					id[1] = set.getLong(1);
+				}else{
+					list.add(customerProfile.getMobile2());
 				}
 
-				if (id2.longValue() == 0) {
-					return id1;
-				} else if (id1.longValue() != id2.longValue()) {
-					return -1L;
-				}
 			}
 
 			if (customerProfile.getMobile3() != null
@@ -55,14 +54,12 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 				state.setString(1, customerProfile.getMobile3());
 				set = state.executeQuery();
 				if (set.next()) {
-					id3 = set.getLong(1);
+					id[0] = set.getLong(1);
+				}else{
+					list.add(customerProfile.getMobile3());
 				}
 
-				if (id3.longValue() == 0) {
-					return id1;
-				} else if (id3.longValue() != id1.longValue()) {
-					return -1L;
-				}
+				
 			}
 
 			if (customerProfile.getMobile4() != null
@@ -70,17 +67,33 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 				state.setString(1, customerProfile.getMobile4());
 				set = state.executeQuery();
 				if (set.next()) {
-					id4 = set.getLong(1);
+					id[3] = set.getLong(1);
+			    }else{
+					list.add(customerProfile.getMobile4());
 				}
-
-				if (id4.longValue() == 0) {
-					return id1;
-				} else if (id4.longValue() != id4.longValue()) {
-					return 0L;
+	
+			}
+			
+			Long index = 0L;
+			
+			for(int i = 0; i < 4; i++){
+				if(id[i].longValue() != 0L){
+					index = id[i];
+					break;
 				}
 			}
+			
+			for(int i = 0; i < 4; i++){
+				if(index.longValue() != id[i].longValue() && 
+				  id[i].longValue() != 0){
+					return -1L;
+				}
+			}
+			
+			return index;
+			
 
-			return id1;
+		
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			Log.error("queryCustomerPhone failed");

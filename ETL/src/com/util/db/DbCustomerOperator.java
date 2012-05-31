@@ -13,9 +13,11 @@ public class DbCustomerOperator {
 	CustomerPhoneDAO phoneDao = new CustomerPhoneImp();
 	CustomerMailDAO mailDAO = new CustomerMailImp();
 	CustomerReportDAO  reportDAO = new CustomerReportImp();
+	ArrayList<String> list = new ArrayList<String>();
 	
 
 	public void importOracle(CustomerProfile customer){
+		
 		Long ID = IsExistCustomer(customer);
 		
 		if(0 == ID){
@@ -95,24 +97,24 @@ public class DbCustomerOperator {
 			CustomerPhone customerPhone = new CustomerPhone();
 			CustomerMail   mail = new CustomerMail();
 			
-			if(customerProfile.getMobile1().length() == 11 && false == isExistPhone(customerProfile.getMobile1(),oldCustomer)){
+			if(newCustomer.getMobile1().length() == 11 && false == isExistPhone(newCustomer.getMobile1(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile1());
 				customerPhone.setId(newCustomer.getId());
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
-			if(customerProfile.getMobile2().length() == 11 && false == isExistPhone(customerProfile.getMobile2(),oldCustomer)){
+			if(customerProfile.getMobile2().length() == 11 && false == isExistPhone(newCustomer.getMobile2(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
 				customerPhone.setId(newCustomer.getId());
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
-			if(customerProfile.getMobile3().length() == 11 &&  false == isExistPhone(customerProfile.getMobile3(),oldCustomer)){
+			if(newCustomer.getMobile3().length() == 11 &&  false == isExistPhone(newCustomer.getMobile3(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
 				customerPhone.setId(newCustomer.getId());
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
-			if(customerProfile.getMobile4().length() == 11 && false == isExistPhone(customerProfile.getMobile4(),oldCustomer)){
+			if(newCustomer.getMobile4().length() == 11 && false == isExistPhone(newCustomer.getMobile4(),oldCustomer)){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
 				customerPhone.setId(newCustomer.getId());
 				 phoneDao.insertCustomerPhone(customerPhone);
@@ -124,7 +126,26 @@ public class DbCustomerOperator {
 				mailDAO.insertCustomerMail(mail);
 			}
 			
-			conn.commit();
+			ArrayList<String> phoneList = new ArrayList<String>();
+			for(int loop = 0; loop < list.size(); loop++){
+				int secLoop = 0;
+				for(; secLoop < newCustomer.mobilePhonelist.size(); secLoop++){
+					
+					if(list.get(loop).equals(newCustomer.mobilePhonelist.get(secLoop))){
+						break;
+					}
+				}
+				if(secLoop == newCustomer.mobilePhonelist.size()){
+					phoneList.add(list.get(loop));
+				}
+			}
+			
+			if(phoneList.size() > 0){
+				customerProfile.setMobilePhonelist(phoneList);
+				customerProfile.setMail("");
+				insertTranction(customerProfile);
+			}
+    		conn.commit();
 			
 			FileBrower.customerReport.setUserMerge(FileBrower.customerReport.getUserMerge() + 1);
 			
@@ -269,15 +290,27 @@ public class DbCustomerOperator {
 
 	private Long IsExistCustomer(CustomerProfile customer){
 		
-		Long phoneID = phoneDao.queryCustomerPhone(customer);
+		Long phoneID = phoneDao.queryCustomerPhone(customer,list);
 		Long mailID = mailDAO.queryCustomerMail(customer);
 		
-		if(phoneID != mailID){
+		if(phoneID == -1L){
 			return -1L;
 		}
-		else{
+		
+		if(phoneID != mailID && mailID != 0L && phoneID != 0L){
+			return -1L;
+		}
+		
+		
+		if(mailID == 0L && phoneID != 0L){
 			return phoneID;
 		}
+		
+		if(mailID != 0L && phoneID == 0L){
+			return mailID;
+		}
+		
+		return 0L;
 	}
 	
 	
@@ -289,33 +322,35 @@ public class DbCustomerOperator {
 			prodao.insertCustomerProfile(customerProfile);
 			CustomerPhone customerPhone = new CustomerPhone();
 			CustomerMail   mail = new CustomerMail();
-			if(customerProfile.getMobile1().length() == 11){
+			Long index = prodao.getLastId();
+			
+			if(customerProfile.getMobile1() != null && customerProfile.getMobile1().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile1());
-				customerPhone.setId(prodao.getLastId());
+				customerPhone.setId(index);
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
-			if(customerProfile.getMobile2().length() == 11){
+			if(customerProfile.getMobile2() != null && customerProfile.getMobile2().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile2());
-				customerPhone.setId(prodao.getLastId());
+				customerPhone.setId(index);
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
-			if(customerProfile.getMobile3().length() == 11){
+			if(customerProfile.getMobile3() != null &&  customerProfile.getMobile3().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile3());
-				customerPhone.setId(prodao.getLastId());
+				customerPhone.setId(index);
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
-			if(customerProfile.getMobile4().length() == 11){
+			if(customerProfile.getMobile4() != null &&  customerProfile.getMobile4().length() == 11){
 				customerPhone.setMobilePhone(customerProfile.getMobile4());
-				customerPhone.setId(prodao.getLastId());
+				customerPhone.setId(index);
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
-			if(customerProfile.getMail().length() > 1){
+			if(customerProfile.getMail() != null && customerProfile.getMail().length() > 1){
 				mail.setMail(customerProfile.getMail());
-				mail.setId(prodao.getLastId());
+				mail.setId(index);
 			    mailDAO.insertCustomerMail(mail);
 			}
 			
