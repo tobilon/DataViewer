@@ -209,6 +209,9 @@ public class StringUtil {
 			 return false;
 		 } 
 		 
+		 if(!str.startsWith("0")){
+			return false; 
+		 }
 		 return str.matches(phoneRegexp);
 	 }
 	 
