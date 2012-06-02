@@ -22,8 +22,8 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 			Long[] id = new Long[4];
 			id[0] = 0L;
 			id[1] = 0L;
+			id[2] = 0L;
 			id[3] = 0L;
-			id[4] = 0L;
 			ResultSet set = null;
 			if (customerProfile.getMobile1() != null
 					&& customerProfile.getMobile1().length() == 11) {
@@ -54,7 +54,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 				state.setString(1, customerProfile.getMobile3());
 				set = state.executeQuery();
 				if (set.next()) {
-					id[0] = set.getLong(1);
+					id[2] = set.getLong(1);
 				}else{
 					list.add(customerProfile.getMobile3());
 				}

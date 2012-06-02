@@ -18,6 +18,7 @@ public class DbCustomerOperator {
 
 	public void importOracle(CustomerProfile customer){
 		
+		list.clear();
 		Long ID = IsExistCustomer(customer);
 		
 		if(0 == ID){
@@ -98,24 +99,24 @@ public class DbCustomerOperator {
 			CustomerMail   mail = new CustomerMail();
 			
 			if(newCustomer.getMobile1().length() == 11 && false == isExistPhone(newCustomer.getMobile1(),oldCustomer)){
-				customerPhone.setMobilePhone(customerProfile.getMobile1());
+				customerPhone.setMobilePhone(newCustomer.getMobile1());
 				customerPhone.setId(newCustomer.getId());
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			if(customerProfile.getMobile2().length() == 11 && false == isExistPhone(newCustomer.getMobile2(),oldCustomer)){
-				customerPhone.setMobilePhone(customerProfile.getMobile2());
+				customerPhone.setMobilePhone(newCustomer.getMobile2());
 				customerPhone.setId(newCustomer.getId());
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(newCustomer.getMobile3().length() == 11 &&  false == isExistPhone(newCustomer.getMobile3(),oldCustomer)){
-				customerPhone.setMobilePhone(customerProfile.getMobile3());
+				customerPhone.setMobilePhone(newCustomer.getMobile3());
 				customerPhone.setId(newCustomer.getId());
 				phoneDao.insertCustomerPhone(customerPhone);
 			}
 			
 			if(newCustomer.getMobile4().length() == 11 && false == isExistPhone(newCustomer.getMobile4(),oldCustomer)){
-				customerPhone.setMobilePhone(customerProfile.getMobile4());
+				customerPhone.setMobilePhone(newCustomer.getMobile4());
 				customerPhone.setId(newCustomer.getId());
 				 phoneDao.insertCustomerPhone(customerPhone);
 			}
@@ -141,6 +142,11 @@ public class DbCustomerOperator {
 			}
 			
 			if(phoneList.size() > 0){
+				customerProfile.setMobile1("");
+				customerProfile.setMobile2("");
+				customerProfile.setMobile3("");
+				customerProfile.setMobile4("");
+				customerProfile.getMobilePhonelist().clear();
 				customerProfile.setMobilePhonelist(phoneList);
 				customerProfile.setMail("");
 				insertTranction(customerProfile);

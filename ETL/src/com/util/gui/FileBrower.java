@@ -168,11 +168,12 @@ public class FileBrower {
 		int count = 0;
 		
 		dbInsertCustomerType();
+		long startTime = 0;
 		
 		while (it.hasNext()) {
 			name = (String) it.next();
 			System.out.println("name -->" + StringUtil.getFileName(name));
-
+			startTime = System.currentTimeMillis();
 			dbInsertReport(dirname,StringUtil.getFileName(name));
 			TablePanel.setStatue(customerReport, "入库中");
 			Log.error("import "+ dirname +" " + name +"starting");
@@ -217,7 +218,8 @@ public class FileBrower {
 			String pro = "执行进度 " + ((float)count / TablePanel.fileNum) * 100 + "%";
 			ProPanel.progress.setString(pro);
 			dbUpdateReport();
-
+			System.out.println(name + " "+(System.currentTimeMillis() - startTime)/1000 + " 秒");
+	        Log.error(name + " "+(System.currentTimeMillis() - startTime)/1000 + " 秒");
 		}
 		
 		String pro = "执行进度 " + "100 %";
