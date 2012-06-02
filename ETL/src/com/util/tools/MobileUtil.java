@@ -9,13 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 
+import com.util.db.DbConnection;
+
 public class MobileUtil {
 
 	static String driverName = "sun.jdbc.odbc.JdbcOdbcDriver";
 	static String dbUrl = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};";
 	static Connection conn = null;
 	static PreparedStatement  stmt = null;
-	static String sqlStatement = "select City,Memo from T_mobile where Code = ?";
+	static String sqlStatement = "select \"city\" from \"T_mobile\" where \"code\" = ?";
 	static HashMap map = new HashMap();
 	static LRUCache<String,String> cache = new LRUCache<String,String>();
 	
@@ -35,7 +37,7 @@ public class MobileUtil {
 	public static void  getStatement(){
 		if(conn == null){
 			try {
-				conn = DriverManager.getConnection(dbUrl);
+				conn = DbConnection.getConn();
 				stmt = conn.prepareStatement(sqlStatement);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
