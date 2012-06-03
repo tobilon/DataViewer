@@ -349,4 +349,18 @@ public class StringUtil {
 			list.add(temp.get(loop));
 		}
 	}
+
+
+	public static boolean isActor(String info) {
+		// TODO Auto-generated method stub
+		String[] actor = {"干部","员工","经理","厂长","校长","行长","局长","处长"};
+		
+		for(int loop = 0;loop < actor.length;loop++){
+			if(info.equals(actor[loop])){
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }

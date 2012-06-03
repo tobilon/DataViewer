@@ -27,11 +27,20 @@ public class CustomerProfile {
 	public String fixPhone2="";
 	public String province="";
 	public String city="";
+	public String actor="";
 	public Long usertype=0L;
 	public String remarks ="";
 	
 	public Long dataSource;
 	
+	
+	
+	public String getActor() {
+		return actor;
+	}
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
 	public String getPost() {
 		return post;
 	}

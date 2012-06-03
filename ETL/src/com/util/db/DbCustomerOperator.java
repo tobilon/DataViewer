@@ -1,10 +1,13 @@
 package com.util.db;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import com.util.export.CusteomerExport;
 import com.util.gui.FileBrower;
+import com.util.tools.FileUtil;
 import com.util.tools.Log;
 
 public class DbCustomerOperator {
@@ -29,6 +32,14 @@ public class DbCustomerOperator {
 			CustomerProfile newCustomer = combineCustomerProfile(customer,oldCustomer);
 			newCustomer.setId(ID);
 			updateTranction(newCustomer,oldCustomer,customer);
+		}
+		else{
+			try {
+				FileUtil.writeError(CusteomerExport.printlog(customer));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

@@ -1,10 +1,12 @@
 package com.util.export;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.util.db.CustomerProfile;
 import com.util.db.DbCustomerOperator;
 import com.util.gui.FileBrower;
+import com.util.tools.FileUtil;
 import com.util.tools.IdcardUtils;
 import com.util.tools.Log;
 import com.util.tools.StringUtil;
@@ -69,14 +71,47 @@ public class CusteomerExport {
 		if (data.mobilePhonelist.size() > 1) {
 			StringUtil.deleteRepeat(data.mobilePhonelist);
 		}
-		printlog(data);
-
+		
+         
+		checkLengthValid(data);
 		// 数据进入oracle
 		if (checkImport(filename, data)) {
 			DbCustomerOperator db = new DbCustomerOperator();
 			db.importOracle(data);
 
 		}
+		else{
+			try {
+				FileUtil.writeError(printlog(data));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private static void checkLengthValid(CustomerProfile data) {
+		// TODO Auto-generated method stub
+		if(data.getName().length() > 20){
+			data.setName(data.getName().substring(0,20));
+		}
+		
+		if(data.getAddress().length() > 200){
+			data.setAddress(data.getAddress().substring(0,200));
+		}
+		
+		if(data.getCompany().length() > 50){
+			data.setCompany(data.getCompany().substring(0,50));
+		}
+		
+		if(data.getBorn().length() > 10){
+			data.setBorn("");
+		}
+		
+		if(data.getMail().length() > 50){
+			data.setMail("");
+		}
+		
 	}
 
 	// check customer profile can import oracle
@@ -91,7 +126,7 @@ public class CusteomerExport {
 		return true;
 	}
 
-	static void printlog(CustomerProfile data) {
+	public static String printlog(CustomerProfile data) {
 		String phone = "";
 		for (int loop = 0; loop < data.mobilePhonelist.size(); loop++) {
 			phone += data.mobilePhonelist.get(loop);
@@ -104,9 +139,7 @@ public class CusteomerExport {
 				+ data.mail + " post: " + data.post + " phone: " + phone
 				+ " sex: " + data.sex + "  -------";
 
-		Log.error(content);
-		// System.out.println(content);
-		content = null;
+		return content;
 
 	}
 

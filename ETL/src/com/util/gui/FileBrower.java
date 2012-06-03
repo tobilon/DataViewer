@@ -1,7 +1,9 @@
 package com.util.gui;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -30,6 +32,7 @@ public class FileBrower {
 	public static HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 	public static ArrayList<CustomerType> typeList = new ArrayList<CustomerType>();
     public static CustomerReport          customerReport = new CustomerReport();
+    public static BufferedWriter bw = null;
 	public static Long id;
     /**
 	 * @param args
@@ -176,6 +179,15 @@ public class FileBrower {
 			startTime = System.currentTimeMillis();
 			dbInsertReport(dirname,StringUtil.getFileName(name));
 			TablePanel.setStatue(customerReport, "入库中");
+			int index = name.lastIndexOf(".");
+			String bwname = name.substring(0, index) + "err.txt";
+			
+			try {
+				bw = new BufferedWriter(new FileWriter(new File(name),true));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			Log.error("import "+ dirname +" " + name +"starting");
 			if (name.endsWith(".mdb")) {
 				AccessRead access = new AccessImp();
@@ -212,6 +224,14 @@ public class FileBrower {
 				}
 			}
 			
+			try {
+				if(bw != null){
+				    bw.close();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			TablePanel.setStatue(customerReport, "完成");
 			count++;
 			ProPanel.progress.setValue(count);

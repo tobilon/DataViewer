@@ -9,32 +9,42 @@ public class FuzzyAnasys {
 
 	public static String name[] = {"姓名,开户人,联系人,业主"};
 	public static String address[] = {"地址"};
-	public static String company[] = {"公司"};
+	public static String company[] = {"公司","学校","银行"};
+	public static String actor[]={"职务"};
 	
 	public static void fuzzy(CustomerProfile data,String info,String headName,boolean isFirstRow)
 	{
 		if(true != isFirstRow){
 			
 			for(int nameloop = 0; nameloop < name.length; nameloop++){
-				if(headName.contains(name[nameloop]) && data.name !=null){
+				if(headName.equals(name[nameloop]) && data.name !=null && StringUtil.isName(info)){
 					data.name = info;
 					return;
 				}
 			}
 			
 	       for(int addressLoop = 0; addressLoop < address.length; addressLoop++){
-			if(headName.equals(address[addressLoop])){
+			if(headName.equals(address[addressLoop]) && StringUtil.countChina(info) >= 4){
 						data.address = info;
 						return;
 					}
 	       }
 	       
 		  for(int comLoop = 0; comLoop < company.length; comLoop++){
-			 if(headName.equals(company[comLoop])){
+			 if(headName.equals(company[comLoop]) && StringUtil.countChina(info) >= 4){
 					data.company = info;
 					return;
 				} 
 		 }
+		  
+		  for(int comLoop = 0; comLoop < actor.length; comLoop++){
+				 if(headName.equals(actor[comLoop]) && StringUtil.countChina(info) >= 2){
+						data.actor = info;
+						return;
+					} 
+			 }
+		  
+		  
 		}
 		
 		
@@ -47,6 +57,10 @@ public class FuzzyAnasys {
 	    	}
 	    	return;
 	    }
+		else if(StringUtil.isActor(info)){
+			data.actor = info;
+			return;
+		}
 	    else if(StringUtil.countChina(info)>= 2 && StringUtil.countChina(info) <= 4 && data.name.length() < 2){
 		  // System.out.println("name "+info);
 	    	if(data.name.length() > 1){

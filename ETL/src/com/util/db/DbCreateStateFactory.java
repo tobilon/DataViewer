@@ -283,8 +283,8 @@ public class DbCreateStateFactory {
 		String typeQuerySql = "insert into customer_profile(name, address, " +
 				"company, province, city, born, idcard, MobilePhone1," +
 				"MobilePhone2, MobilePhone3, MobilePhone4, HomePhone1," +
-				"HomePhone2, post, mail, sex, UserType, source, extra) values " +
-				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				"HomePhone2, post, mail, sex, UserType, source, actor,extra) values " +
+				"(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?, ?)";
 		
 		Connection conn = DbConnection.getConn();
 		/* ±‹√‚÷ÿ∏¥¥¥Ω®*/
@@ -307,7 +307,7 @@ public class DbCreateStateFactory {
 		String typeQuerySql = "update customer_profile set name=?,address=?,"+
 		         "company=?,province=?,city=?,born=?,idcard=?,MobilePhone1=?,"+
 		         "MobilePhone2=?, MobilePhone3=?, MobilePhone4=?, HomePhone1=?,"+
-		         "HomePhone2=?,post=?,mail=?,sex=?,UserType=?,source=?,extra=? "+
+		         "HomePhone2=?,post=?,mail=?,sex=?,UserType=?,source=?,actor=?,extra=? "+
 		         "where id=?";
 		
 		Connection conn = DbConnection.getConn();

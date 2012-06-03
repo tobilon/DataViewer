@@ -36,7 +36,8 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 			state.setString(16, customerProfile.getSex());
 			state.setLong(17, customerProfile.getUsertype());
 			state.setLong(18, customerProfile.getDataSource());
-			state.setString(19, customerProfile.getRemarks());
+			state.setString(19, customerProfile.getActor());
+			state.setString(20, customerProfile.getRemarks());
 			return state.execute();
 		} catch (SQLException e) {
 			Log.error("insertCustomerProfile failed");
@@ -73,8 +74,9 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 			state.setString(16, customerProfile.getSex());
 			state.setLong(17, customerProfile.getUsertype());
 			state.setLong(18, customerProfile.getDataSource());
-			state.setString(19, customerProfile.getRemarks());
-			state.setLong(20, customerProfile.getId());
+			state.setString(19, customerProfile.getActor());
+			state.setString(20, customerProfile.getRemarks());
+			state.setLong(21, customerProfile.getId());
 			return state.execute();
 		} catch (SQLException e) {
 			Log.error("updateCustomerProfile failed");
@@ -117,7 +119,8 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 				customerProfile.setSex(set.getString(17));
 				customerProfile.setUsertype(set.getLong(18));
 				customerProfile.setDataSource(set.getLong(19));
-				customerProfile.setRemarks(set.getString(20));
+				customerProfile.setActor(set.getString(20));
+				customerProfile.setRemarks(set.getString(21));
 				return customerProfile;
 			}
 			
@@ -185,7 +188,8 @@ public class CustomerProfileImp implements CustomerProfileDAO{
 				customerProfile.setSex(set.getString(17));
 				customerProfile.setUsertype(set.getLong(18));
 				customerProfile.setDataSource(set.getLong(19));
-				customerProfile.setRemarks(set.getString(20));
+				customerProfile.setActor(set.getString(20));
+				customerProfile.setRemarks(set.getString(21));
 			    list.add(customerProfile);
 			}
 		} catch (SQLException e) {
