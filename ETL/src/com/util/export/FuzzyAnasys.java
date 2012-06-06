@@ -46,7 +46,7 @@ public class FuzzyAnasys {
 		  
 		  
 		}
-		
+	
 		
 		if(info.length() == 1){
 	    	if(info.equals("ÄÐ")){

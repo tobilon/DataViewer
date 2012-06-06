@@ -19,7 +19,7 @@ import com.util.tools.Log;
 public class AccessImp implements AccessRead {
 	
 	private String driverName = "sun.jdbc.odbc.JdbcOdbcDriver";
-	private String dbUrl = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};";
+	private String dbUrl = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb,*.accdb)};";
 	private Connection conn = null;
 	private Statement  stmt = null;
 	private String filename = null;
@@ -88,7 +88,7 @@ public class AccessImp implements AccessRead {
 				tablename = rs.getString(3);
 				System.out.println("table->"+tablename);
 				if(!tablename.startsWith("MSys") &&
-					!tablename.contentEquals("~"))
+					!tablename.contains("~"))
 			     listName.add(tablename);
 			}
 		} catch (SQLException e) {
@@ -114,8 +114,10 @@ public class AccessImp implements AccessRead {
 		} 
 		
 		try {
-			stmt.close();
-			conn.close();
+			if(stmt != null){
+			    stmt.close();}
+			if(conn!=null){
+			conn.close();}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -165,13 +167,17 @@ public class AccessImp implements AccessRead {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			Log.error("execute "+sql5 +" failed");
-			stmt.close();    
-		    conn.close();
+			if(stmt != null){
+			    stmt.close();}
+			if(conn!=null){
+			conn.close();}
 		   // FileUtil.headInfoErr(filename);
 			e.printStackTrace();
 		}
-		stmt.close();    
-	    conn.close();
+		if(stmt != null){
+		    stmt.close();}
+		if(conn!=null){
+		conn.close();}
 	}
 	
 

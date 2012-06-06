@@ -310,20 +310,20 @@ public class DbCustomerOperator {
 		Long phoneID = phoneDao.queryCustomerPhone(customer,list);
 		Long mailID = mailDAO.queryCustomerMail(customer);
 		
-		if(phoneID == -1L){
+		if(phoneID.longValue() == -1){
 			return -1L;
 		}
 		
-		if(phoneID != mailID && mailID != 0L && phoneID != 0L){
+		if((phoneID.longValue() != mailID.longValue() )&& (mailID.longValue() != 0) &&(phoneID.longValue() != 0) ){
 			return -1L;
 		}
 		
 		
-		if(mailID == 0L && phoneID != 0L){
+		if(mailID.longValue() == 0 && phoneID.longValue() != 0){
 			return phoneID;
 		}
 		
-		if(mailID != 0L && phoneID == 0L){
+		if(mailID.longValue()!= 0 && phoneID.longValue() == 0){
 			return mailID;
 		}
 		

@@ -154,7 +154,9 @@ public class StringUtil {
 		 
 		// phonelist.clear();
 		 int i = 0;
-		 
+		 if(str == null){
+			 return;
+		 }
 		 while(i< str.length())
 		 {
 			 if(str.charAt(i) == '1' && str.length() - i >= 11)
@@ -177,6 +179,9 @@ public class StringUtil {
 
 	 public static boolean isMobileNO(String mobiles)
 	 { 
+		 if(null == mobiles){
+			return false;
+		 }
 		 Pattern p = Pattern.compile("^((13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$"); 
 		 Matcher m = p.matcher(mobiles); 
 		// System.out.println(m.matches()+"---"); 
@@ -248,7 +253,9 @@ public class StringUtil {
 	 }
 	 
 	 public static boolean isAddress(String str){
-		 
+		 if(null == str){
+			 return false;
+		 }
 		 for(int loop = 0 ; loop < str.length(); loop++){
 			 if(str.charAt(loop) == '省' ||
 			    str.charAt(loop) == '县' ||
@@ -262,6 +269,9 @@ public class StringUtil {
 	 }
 	 
 	public static boolean isCompany(String str){
+		 if(null == str){
+			 return false;
+		 }
 		for(int loop = 0; loop < company.length; loop++){
 			if(str.contains(company[loop])){
 				return true;
@@ -271,7 +281,9 @@ public class StringUtil {
 	}
 	
 	public static boolean isName(String str){
-		
+		 if(null == str){
+			 return false;
+		 }
 		Integer in = map.get(String.valueOf(str.charAt(0)));
 	    if(null == in){
 	    	return false;
@@ -300,6 +312,9 @@ public class StringUtil {
 	}
 	
 	public static String getProvince(String str){
+		 if(null == str){
+			 return str;
+		 }
 		int index = str.indexOf("省");
 		if( index > 0){
 		    return str.substring(0, index);
@@ -311,7 +326,9 @@ public class StringUtil {
 	}
 	
 	public static String getCity(String str){
-			
+		 if(null == str){
+			 return str;
+		 }
 		int index = str.indexOf("省");
 		if( index > 0){
 		   return str.substring(index+1, str.length());
@@ -333,6 +350,9 @@ public class StringUtil {
 	}
 	
 	public static boolean isBorn(String info){
+		 if(null == info){
+			 return false;
+		 }
 		if(info.length() < 6 || !info.startsWith("19")){
 			return false;
 		}
@@ -352,11 +372,15 @@ public class StringUtil {
 
 
 	public static boolean isActor(String info) {
+		 if(null == info){
+			 return false;
+		 }
 		// TODO Auto-generated method stub
-		String[] actor = {"干部","员工","经理","厂长","校长","行长","局长","处长"};
+		String[] actor = {"干部","员工","秘书","董事","董秘","总裁","	经理","总监 ","会计","助理",
+				        "专员","	主管","厂长","师","员","	翻译","前台","美工","代表","工程师","主任","技工","顾问","主编","编辑","设计","策划"};
 		
 		for(int loop = 0;loop < actor.length;loop++){
-			if(info.equals(actor[loop])){
+			if(info.contains(actor[loop])){
 				return true;
 			}
 		}

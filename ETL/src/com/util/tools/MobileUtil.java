@@ -13,26 +13,14 @@ import com.util.db.DbConnection;
 
 public class MobileUtil {
 
-	static String driverName = "sun.jdbc.odbc.JdbcOdbcDriver";
-	static String dbUrl = "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};";
+	
 	static Connection conn = null;
 	static PreparedStatement  stmt = null;
 	static String sqlStatement = "select \"city\" from \"T_mobile\" where \"code\" = ?";
 	static HashMap map = new HashMap();
 	static LRUCache<String,String> cache = new LRUCache<String,String>();
 	
-	static {
-		try {
-			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-			File file = new File(".");
-			dbUrl += "DBQ=" +file.getAbsolutePath()+"\\config\\mobile.mdb";
-			System.out.println(dbUrl);
-			//conn = DriverManager.getConnection(dbUrl);;
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+
 	
 	public static void  getStatement(){
 		if(conn == null){
@@ -62,11 +50,8 @@ public class MobileUtil {
 				return map;
 			}
 		}
-		else{
+		else if(stmt != null){
 			try {
-				if(stmt != null)
-				System.out.println(phone);
-				
 				stmt.setString(1, phone);
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block

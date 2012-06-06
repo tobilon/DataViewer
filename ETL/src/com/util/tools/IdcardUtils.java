@@ -182,12 +182,12 @@ public class IdcardUtils extends StringUtils {
         if (validateIdCard15(card)) {
             return true;
         }
-        String[] cardval = validateIdCard10(card);
+       /* String[] cardval = validateIdCard10(card);
         if (cardval != null) {
             if (cardval[2].equals("true")) {
                 return true;
             }
-        }
+        }*/
         return false;
     }
   

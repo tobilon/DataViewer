@@ -112,6 +112,10 @@ public class CusteomerExport {
 			data.setMail("");
 		}
 		
+		if(data.getActor().length() > 10){
+			data.setActor(data.getActor().substring(0,10));
+		}
+		
 	}
 
 	// check customer profile can import oracle
