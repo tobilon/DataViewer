@@ -25,6 +25,19 @@ create table customer_profile(
         initrans 4
         tablespace PH_INDEX_TABLESPACE
 )
+partition by range(id) 
+(
+partition part_01 values less than(1000000),
+partition part_02 values less than(2000000),
+partition part_03 values less than(3000000),
+partition part_04 values less than(4000000),
+partition part_05 values less than(5000000),
+partition part_06 values less than(6000000),
+partition part_07 values less than(7000000),
+partition part_08 values less than(8000000),
+partition part_09 values less than(9000000),
+partition part_10 values less than(maxvalue)
+)
 
 create table customer_type(
     id             number(2) not null,
@@ -43,6 +56,19 @@ create table customer_phone(
         using index
         initrans 4
         tablespace PH_INDEX_TABLESPACE
+)
+partition by range(userid) 
+(
+partition part_01 values less than(1000000),
+partition part_02 values less than(2000000),
+partition part_03 values less than(3000000),
+partition part_04 values less than(4000000),
+partition part_05 values less than(5000000),
+partition part_06 values less than(6000000),
+partition part_07 values less than(7000000),
+partition part_08 values less than(8000000),
+partition part_09 values less than(9000000),
+partition part_10 values less than(maxvalue)
 )
 
 create table customer_mail(
@@ -65,7 +91,7 @@ create table customer_report(
 	constraint pk_customer_report primary key (id)
         using index
         initrans 4
-        tablespace &&PH_INDEX_TABLESPACE
+        tablespace PH_INDEX_TABLESPACE
 )
 
 CREATE SEQUENCE customer_profile_seq
