@@ -47,7 +47,7 @@ public class CusteomerExport {
 			
 			info = infoList.get(loop);
 			// System.out.println(info);
-			if (info.length() < 1) {
+			if (info.length() < 1 || null == info) {
 				continue;
 			}
 			// ¾«È·²éÑ¯
@@ -92,16 +92,16 @@ public class CusteomerExport {
 
 	private static void checkLengthValid(CustomerProfile data) {
 		// TODO Auto-generated method stub
-		if(data.getName().length() > 20){
-			data.setName(data.getName().substring(0,20));
+		if(data.getName().length() > 10){
+			data.setName(data.getName().substring(0,10));
 		}
 		
-		if(data.getAddress().length() > 200){
-			data.setAddress(data.getAddress().substring(0,200));
+		if(data.getAddress().length() > 100){
+			data.setAddress(data.getAddress().substring(0,100));
 		}
 		
-		if(data.getCompany().length() > 50){
-			data.setCompany(data.getCompany().substring(0,50));
+		if(data.getCompany().length() > 25){
+			data.setCompany(data.getCompany().substring(0,25));
 		}
 		
 		if(data.getBorn().length() > 10){
@@ -112,8 +112,9 @@ public class CusteomerExport {
 			data.setMail("");
 		}
 		
-		if(data.getActor().length() > 10){
-			data.setActor(data.getActor().substring(0,10));
+		if(data.getActor().length() > 5){
+			
+			data.setActor("");
 		}
 		
 	}

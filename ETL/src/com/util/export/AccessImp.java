@@ -155,7 +155,7 @@ public class AccessImp implements AccessRead {
 			    		data = "";
 			    		data=rs.getString(tableHeadList.get(loop));
 			    		
-			    		System.out.print(" "+data);
+			    		//System.out.print(" "+data);
 			    		dataList.add(data);
 			    	}
 			    	CusteomerExport.anasys(dirname,filename, tableHeadList,dataList,false);

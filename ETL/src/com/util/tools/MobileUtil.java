@@ -50,7 +50,7 @@ public class MobileUtil {
 				return map;
 			}
 		}
-		else if(stmt != null){
+		if(stmt != null){
 			try {
 				stmt.setString(1, phone);
 			} catch (SQLException e1) {

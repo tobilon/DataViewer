@@ -327,6 +327,10 @@ public class DbCustomerOperator {
 			return mailID;
 		}
 		
+		if(phoneID.longValue() != 0 && mailID.longValue() != 0 && phoneID.longValue() == mailID.longValue()){
+			return phoneID;
+		}
+		
 		return 0L;
 	}
 	

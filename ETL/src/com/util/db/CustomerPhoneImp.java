@@ -103,7 +103,7 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 		return 0L;
 	}
 
-	public boolean insertCustomerPhone(CustomerPhone customerPhone) {
+	public boolean insertCustomerPhone(CustomerPhone customerPhone) throws SQLException{
 		PreparedStatement state = DbCreateStateFactory
 				.createStateInstance("phoneInsert");
 
@@ -112,16 +112,10 @@ public class CustomerPhoneImp implements CustomerPhoneDAO {
 			return false;
 		}
 
-		try {
-			state.setLong(1, customerPhone.getId());
-			state.setString(2, customerPhone.getMobilePhone());
+		state.setLong(1, customerPhone.getId());
+		state.setString(2, customerPhone.getMobilePhone());
 			return state.execute();
-		} catch (SQLException e) {
-			Log.error("insertCustomerPhone failed");
-			e.printStackTrace();
-		}
-
-		return false;
+		
 	}
 
 	public boolean deleteCustomerPhone(CustomerProfile customerProfile) {

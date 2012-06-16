@@ -33,7 +33,7 @@ public class CustomerMailImp implements CustomerMailDAO{
 		return 0L;
 	}
 	
-	public boolean insertCustomerMail(CustomerMail customerMail)
+	public boolean insertCustomerMail(CustomerMail customerMail) throws SQLException
 	{
 		PreparedStatement state = DbCreateStateFactory.createStateInstance("mailInsert");
 	    
@@ -41,16 +41,10 @@ public class CustomerMailImp implements CustomerMailDAO{
 			return false;
 		}
 		
-		try{
-			state.setLong(1, customerMail.getId());
-			state.setString(2, customerMail.getMail());
-			return state.execute();
-		} catch (SQLException e) {
-			Log.error("insertCustomerMail failed");
-			e.printStackTrace();
-		}
+		state.setLong(1, customerMail.getId());
+		state.setString(2, customerMail.getMail());
+		return state.execute();
 		
-		return false;
 	}
 	
 	public boolean deleteCustomerMail(CustomerProfile customerProfile)

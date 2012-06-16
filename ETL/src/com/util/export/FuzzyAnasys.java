@@ -9,7 +9,7 @@ public class FuzzyAnasys {
 
 	public static String name[] = {"姓名,开户人,联系人,业主"};
 	public static String address[] = {"地址"};
-	public static String company[] = {"公司","学校","银行"};
+	public static String company[] = {"单位"};
 	public static String actor[]={"职务"};
 	
 	public static void fuzzy(CustomerProfile data,String info,String headName,boolean isFirstRow)
@@ -76,10 +76,15 @@ public class FuzzyAnasys {
 			if(data.address.length() > 1){
 	    		return ;
 	    	}
-			if(StringUtil.isAddress(info) && info.length() > data.address.length()){
+			if(StringUtil.isAddress(info) &&  data.address.length() <= 10){
 				data.address = info;
 				return;
 			}
+			
+		    if(StringUtil.isCompany(info) &&  data.company.length() <= 1){
+		    	data.company = info;
+		    	return;
+		    }
 		}
 		else{
 			if(StringUtil.isMail(info)){

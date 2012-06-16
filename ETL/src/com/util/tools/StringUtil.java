@@ -12,9 +12,8 @@ import java.util.regex.Pattern;
 
 public class StringUtil {
 
-	 static String[] company = {"学校",
-			                    "公司",
-			                    "银行"};
+	 static String[] company = {"有限公司","集团","厂","办事处","事务所","中心","学校","所","餐厅","公司","网","处","研究院","大学","旅行社",
+		                        "俱乐部","馆","国际","饭店","酒店","单位","社","科技","院","支行"};
 	 
 	 static String[] firstname ={"赵","钱","孙","李","周","吴","郑","王","冯","陈","褚","卫", 
 		 "蒋","沈","韩","杨","朱","秦","尤","许","何","吕","施","张", 
@@ -285,8 +284,13 @@ public class StringUtil {
 			 return false;
 		 }
 		Integer in = map.get(String.valueOf(str.charAt(0)));
-	    if(null == in){
-	    	return false;
+	    if(null != in){
+	    	return true;
+	    }
+	    
+	    in = map.get(str.substring(0, 2));
+	    if(null != in){
+	    	return true;
 	    }
 		return true;
 	}
@@ -380,7 +384,7 @@ public class StringUtil {
 				        "专员","	主管","厂长","师","员","	翻译","前台","美工","代表","工程师","主任","技工","顾问","主编","编辑","设计","策划"};
 		
 		for(int loop = 0;loop < actor.length;loop++){
-			if(info.contains(actor[loop])){
+			if(info.contains(actor[loop]) && info.length() < 10){
 				return true;
 			}
 		}

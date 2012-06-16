@@ -9,7 +9,7 @@ public class Log {
 	private static Logger logger = Logger.getLogger(Log.class);
 	
 	static {
-		PropertyConfigurator.configure("log4j.properties");
+		PropertyConfigurator.configure("./config/log4j.properties");
 	}
 	
 	public static void debug(String debugInfo){

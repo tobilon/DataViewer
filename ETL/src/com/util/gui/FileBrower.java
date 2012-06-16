@@ -86,9 +86,10 @@ public class FileBrower {
 		for (int loop = 0; loop < listfile.length; loop++) {
 			if (listfile[loop].isDirectory()) {
 				dbFile(listfile[loop], list);
-			} else if (listfile[loop].getAbsolutePath().endsWith(".mdb")
+			} else if ((listfile[loop].getAbsolutePath().endsWith(".mdb")
 					|| listfile[loop].getAbsolutePath().endsWith(".xls")
-					|| listfile[loop].getAbsolutePath().endsWith(".xlsx")) {
+					|| listfile[loop].getAbsolutePath().endsWith(".xlsx"))&&
+					!listfile[loop].getAbsolutePath().contains("~$")) {
 				System.out.println(listfile[loop].getAbsolutePath());
 				list.add(listfile[loop].getAbsolutePath());
 			}
@@ -180,10 +181,10 @@ public class FileBrower {
 			dbInsertReport(dirname,StringUtil.getFileName(name));
 			TablePanel.setStatue(customerReport, "Èë¿âÖÐ");
 			int index = name.lastIndexOf(".");
-			String bwname = name.substring(0, index) + "err.txt";
+			String bwname = name.substring(0, index) + "err.log";
 			
 			try {
-				bw = new BufferedWriter(new FileWriter(new File(name),true));
+				bw = new BufferedWriter(new FileWriter(new File(bwname),true));
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

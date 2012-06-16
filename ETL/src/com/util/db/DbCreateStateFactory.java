@@ -385,7 +385,7 @@ public class DbCreateStateFactory {
 	
 	private static PreparedStatement createProfileMaxID()
 	{
-		String typeQuerySql = "select customer_profile_seq.currval from dual";
+		String typeQuerySql = "select  customer_profile_seq.currval from dual";
 		
 		Connection conn = DbConnection.getConn();
 		/* ±‹√‚÷ÿ∏¥¥¥Ω®*/

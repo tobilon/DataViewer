@@ -45,7 +45,8 @@ public class AccurateAnasys {
 				return;
 			}
 			else if(StringUtil.isBorn(info)){
-				data.born = info;
+				String born = info.replace("-","");
+				data.born = born;
 			}
 			else{
 				StringUtil.getMobilePhonelList(info,data.mobilePhonelist);
