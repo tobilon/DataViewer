@@ -1,0 +1,235 @@
+Jsp+Oracle实现多条件动态组合查询(框架也一样)
+
+
+
+
+原文地址：http://www.lizhongda.net/info/news_detail.asp?newsid=541
+
+ 
+
+更多内容请大家访问我的网站[上述链接]，谢谢大家的支持。
+
+ 
+
+<html>
+
+    <head>
+
+       <title>统计查询</title>
+
+       <script type="text/javascript" src="js/calendar.js"></script>
+
+    </head>
+
+    <!-- 页面编码转换 -->
+
+    <%
+
+       request.setCharacterEncoding("GBK");
+
+    %>
+
+    <%
+
+       Connection con = null;
+
+       Statement sta = null;
+
+       ResultSet rs = null;
+
+    %>
+
+    <!-- 连接数据库配置 -->
+
+    <%
+
+       String url = "jdbc:oracle:thin:@127.0.0.1:1521:orcl";
+
+       DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+
+       con = DriverManager.getConnection(url, "用户名", "密码");
+
+    %>
+
+    <!-- 接收参数 -->
+
+    <%
+
+       String regionname = request.getParameter("regionname");
+
+       regionname = new String(regionname.getBytes("iso-8859-1"), "GB2312");
+
+       String commiteuserid = request.getParameter("commiteuserid");
+
+       String sdate = request.getParameter("sdate");
+
+       String edate = request.getParameter("edate");
+
+       if (regionname != null)
+
+           regionname = request.getParameter("regionname").trim();
+
+    %>
+
+    <!-- 定义Sql -->
+
+    <%
+
+       String sql0 = " 1 = 1 ";
+
+       String sql1 = "";
+
+       String sql2 = "";
+
+       String sql3 = "";
+
+ 
+
+       int i = 1;
+
+       int j = 0;
+
+       if (regionname != null && !regionname.equals("")) {
+
+           sql1 = " and regionname = '" + regionname + "' ";
+
+           //System.out.println("sql1 = "+sql1);
+
+       }
+
+ 
+
+       if (commiteuserid != null && !commiteuserid.equals("")) {
+
+           sql2 = " and commiteuserid ='" + commiteuserid + "' ";
+
+           //System.out.println("sql2 = "+sql2);
+
+       }
+
+ 
+
+       if (sdate != null && edate != null && !sdate.equals("")
+
+              && !edate.equals("")) {
+
+           sql3 = " and commitedate between to_date ('" + sdate
+
+                  + "','yyyy-mm-dd') and to_date('" + edate
+
+                  + "','yyyy-mm-dd')";
+
+           //System.out.println("sql3 = "+sql3);
+
+       }
+
+ 
+
+       String sql = "select regionname,commiteuserid,count(*) as counts from 表名 where "
+
+              + sql0
+
+              + sql1
+
+              + sql2
+
+              + sql3
+
+              + " group by regionname,commiteuserid order by regionname";
+
+       try {
+
+           sta = con.createStatement();
+
+           rs = sta.executeQuery(sql);
+
+    %>
+
+ 
+
+    <body>
+
+       <form action="poijclist.jsp" accept-charset="gb2312" method="post">
+
+           <table width="100%" border="0" bgcolor="#A9C4DA">
+
+              <tr>
+
+                  <td>
+
+                     按地区查看：
+
+                     <select id="regionname" name="regionname">
+
+                         <option value="">
+
+                            请选择地级市
+
+                         </option>
+
+                         <option value="济南市">
+
+                            济南市
+
+                         </option>
+
+                         <option value="青岛市">
+
+                            青岛市
+
+                         </option>
+
+                         <option value="济宁市">
+
+                            济宁市
+
+                         </option>
+
+                         <option value="潍坊市">
+
+                            潍坊市
+
+                         </option>
+
+                         <option value="菏泽市">
+
+                            菏泽市
+
+                         </option>
+
+                         <option value="枣庄市">
+
+                            枣庄市
+
+                         </option>
+
+                         <option value="威海市">
+
+                            威海市
+
+                         </option>
+
+                         <option value="日照市">
+
+                            日照市
+
+                         </option>
+
+                         <option value="烟台市">
+
+                            烟台市
+
+                         </option>
+
+                         <option value="泰安市">
+
+                            泰安市
+
+                         </option>
+
+                         <option value="莱芜市">
+
+                            莱芜市
+
+ 
+
