@@ -94,6 +94,41 @@ create table customer_report(
         tablespace PH_INDEX_TABLESPACE
 )
 
+create table master(
+        id number(10) not null,
+        name varchar2(20) not null,
+        truename varchar2(20) not null,
+        pass varchar2(20) not null,
+        joindate varchar2(10) not null,
+        classid number(10) not null,
+        loginnum number(10) not null,
+        ipaddress varchar2(20) not null,
+        constraint pk_master primary key(id)
+        using index
+        initrans 4
+        tablespace ph_index_tablespace
+)
+
+create table service_content(
+        id number(10) not null,
+        msginfo       varchar2(500) not null,
+        timestamp     date,
+        constraint pk_service_content primary key (id)
+        using index
+        initrans 4
+        tablespace PH_INDEX_TABLESPACE
+)
+
+create table service_log(
+        serviceid number(10) not null,
+        userid number(10) not null,
+        ackflag  number(1) not null,
+        acktime  date,
+        dealflag number(1) not null,
+        dealtime date
+)
+        
+
 CREATE SEQUENCE customer_profile_seq
     START WITH     1
     INCREMENT BY   1
@@ -111,6 +146,22 @@ CREATE SEQUENCE customer_type_seq
     CACHE 20;
 	
 CREATE SEQUENCE customer_report_seq
+    START WITH     1
+    INCREMENT BY   1
+    MAXVALUE 999999999999
+    CYCLE
+    ORDER
+    CACHE 20;
+
+CREATE SEQUENCE master_seq
+    START WITH     1
+    INCREMENT BY   1
+    MAXVALUE 999999999999
+    CYCLE
+    ORDER
+    CACHE 20;
+
+CREATE SEQUENCE service_seq
     START WITH     1
     INCREMENT BY   1
     MAXVALUE 999999999999
@@ -141,3 +192,21 @@ create or replace trigger report_seq_trigger
         select customer_report_seq.nextval into:new.id from dual;  
     end;
 	/
+
+create or replace trigger master_seq_trigger
+    before insert on master 
+	for each row 
+    begin  
+        select master_seq.nextval into:new.id from dual;  
+    end;
+	/
+
+create or replace trigger service_seq_trigger
+    before insert on service_content 
+	for each row 
+    begin  
+        select service_seq.nextval into:new.id from dual;  
+    end;
+	/
+
+INSERT INTO master (name, truename, pass, joindate, classid, loginnum, ipaddress)VALUES('admin','总管理员','admin','2012-07-11',0,143,'172.18.88.218');
