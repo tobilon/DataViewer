@@ -7,7 +7,7 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="0">
-<title>南京凤凰藏品数据平台</title>
+<title>财务管理系统</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 <script Language="JavaScript">
 <!--
@@ -92,6 +92,13 @@ function check_input(theForm)
 		<TD width="70%" class="forumrow">
 			<select name="classid">
 			<option value="">请选择所属部门</option>
+			<%	Vector listclass = new Vector();
+			DispClass dispclass = new DispClass();
+			listclass = dispclass.allClass();
+			for(int i=0;i<listclass.size();i++) {
+			IClass classinfo = (IClass)listclass.elementAt(i);%>
+			<option value="<%=classinfo.getID()%>"><%=classinfo.getName()%></option>
+			<%}%>
 	  </select>&nbsp;**</TD>
 	</TR>
 

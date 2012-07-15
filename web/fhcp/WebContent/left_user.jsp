@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
-<title>南京凤凰藏品数据平台</title>
+<title>财务管理系统</title>
 <STYLE type=text/css>
 BODY {
 	SCROLLBAR-FACE-COLOR: #799ae1; BACKGROUND: #799ae1; MARGIN: 0px; FONT: 12px 宋体; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1
@@ -87,7 +87,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
               <TD class=menu_title id=menuTitle1 
           onmouseover="this.className='menu_title2';" style="CURSOR: hand" 
           onclick=showsubmenu(0) onmouseout="this.className='menu_title';" 
-          background=images/admin_left_1.gif height=25><SPAN>费用管理</SPAN> </TD>
+          background=images/admin_left_2.gif height=25><SPAN>营销业务管理</SPAN> </TD>
             </TR>
         <TR>
           <TD id=submenu0 style="DISPLAY: none">
@@ -101,7 +101,16 @@ eval("submenu" + sid + ".style.display=\"none\";");
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><a 
                   href="pay_manage_user.jsp" 
-                  target=main>部门费用</a></TD>
+                  target=main>业务管理</a></TD>
+                      </TR>
+                      <TR> 
+                        <TD height=5></TD>
+                      </TR>
+                      <TR> 
+                        <TD height=20><IMG height=20 alt="" 
+                  src="images/bullet.gif" width=15 border=0><a 
+                  href="pay_manage_user.jsp" 
+                  target=main>增加业务</a></TD>
                       </TR>
                     <TBODY>
                     </TBODY>
@@ -118,7 +127,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
               <TD class=menu_title id=menuTitle1 
           onmouseover="this.className='menu_title2';" style="CURSOR: hand" 
           onclick=showsubmenu(2) onmouseout="this.className='menu_title';" 
-          background=images/admin_left_3.gif height=25><SPAN>用户管理</SPAN> </TD>
+          background=images/admin_left_3.gif height=25><SPAN>系统管理</SPAN> </TD>
             </TR>
         <TR>
           <TD id=submenu2 style="DISPLAY: none">
@@ -157,8 +166,8 @@ eval("submenu" + sid + ".style.display=\"none\";");
             <TABLE cellSpacing=0 cellPadding=0 align=center>
               <TBODY>
               <TR>
-                 <TD height=40>版权所有：<A 
-                  href="http://www.upol.cn" target=_blank>www.upol.cn</A></TD>
+                 <TD height=40>版本：0.1.0<br>版权所有：<A 
+                  href="" target=_blank>凤凰藏品</A></TD>
                       </TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE>
         <table width="100" border="0" align="center" cellpadding="0" cellspacing="0">
           <tr>

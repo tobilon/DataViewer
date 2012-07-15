@@ -2,9 +2,9 @@
 <%@ include file="incdb.jsp"%>
 <%@ include file="sessionadmin.jsp"%>
 <%int id = Integer.parseInt(request.getParameter("id"));
-	MasterControl mastercontrol = new MasterControl();
-	mastercontrol.setID(id);
-	mastercontrol.delmaster();
+	ClassControl classcontrol= new ClassControl();
+	classcontrol.setID(id);
+	classcontrol.delclass();
 %>
 <html>
 <head>
@@ -12,12 +12,12 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="0">
-<meta HTTP-EQUIV=REFRESH CONTENT='0; URL=user_manage.jsp'>
+<meta HTTP-EQUIV=REFRESH CONTENT='0; URL=class_manage.jsp'>
 <title>财务管理系统</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 </head>
 <body>
-	<span id=yu></span>
+	<span id=yu></span><a href=javascript:countDown></a>
 	<script>
 	function 
 	countDown(secs){yu.innerText=secs;if(--secs>0)setTimeout("countDown("+secs+")",1000);}countDown(0);

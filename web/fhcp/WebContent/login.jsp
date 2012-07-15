@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=gb2312" %>
 <%@ include file="incdb.jsp"%>
 <%
-String userName = (String) session.getAttribute("userName_s");
-if (userName!=null){ 
-response.sendRedirect("index.jsp");
-}
+//String userName = (String) session.getAttribute("userName_s");
+//if (userName!=null){ 
+//response.sendRedirect("index.jsp");
+//}
 %>
 <html>
 <head>
@@ -58,26 +58,29 @@ function check_input(theForm)
 </script>
 </head>
 <body>
-<p>&nbsp;</p><FORM action=./LoginServlet?act=login method=post onsubmit="return check_input(this)">
+<p>&nbsp;</p><FORM action=chklogin.jsp method=post onsubmit="return check_input(this)">
 <table width="400" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#6685C5">
- 
+
   <tr>
     <td bgcolor="#FFFFFF"><table width="400" border="0" align="center" cellpadding="0" cellspacing="0">
       <tr>
         <td colspan="3"><img src="images/login.gif" width="400" height="167"></td>
       </tr>
       <tr>
-        <td height="35" colspan="3"><div align="center">用户：
-              <INPUT 
-	name=username class="s01" size=16 maxLength=16>
-        密码：
+        <td height="35" colspan="3">
+        <div align="center">
+                           用户：
+        <INPUT name=username class="s01" size=16 maxLength=16>
+                           密码：
         <INPUT name=password type=password class="s01" size=16 maxLength=20>
-        </div></td>
+        </div>
+        </td>
       </tr>
       <tr>
         <td width="239" height="37"><div align="center">版权所有：数据开发二人组 &nbsp;</div></td>
         <td width="21">&nbsp;            </td>
-        <td width="140"><input name=submit type=submit class="s02" value="登 陆">
+        <td width="140">
+          <input name=submit type=submit class="s02" value="登 陆">
           <input name=submit1 type=reset class="s02" id="submit1" value="取 消"></td>
       </tr>
 	 

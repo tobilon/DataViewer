@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
-<title>财务管理系统</title>
+<title>客户信息系统</title>
 <STYLE type=text/css>
 BODY {
 	SCROLLBAR-FACE-COLOR: #799ae1; BACKGROUND: #799ae1; MARGIN: 0px; FONT: 12px 宋体; SCROLLBAR-HIGHLIGHT-COLOR: #799ae1; SCROLLBAR-SHADOW-COLOR: #799ae1; SCROLLBAR-3DLIGHT-COLOR: #799ae1; SCROLLBAR-ARROW-COLOR: #ffffff; SCROLLBAR-TRACK-COLOR: #aabfec; SCROLLBAR-DARKSHADOW-COLOR: #799ae1
@@ -87,7 +87,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
               <TD class=menu_title id=menuTitle1 
           onmouseover="this.className='menu_title2';" style="CURSOR: hand" 
           onclick=showsubmenu(0) onmouseout="this.className='menu_title';" 
-          background=images/admin_left_1.gif height=25><SPAN>费用管理</SPAN> </TD>
+          background=images/admin_left_1.gif height=25><SPAN>客户资源管理</SPAN> </TD>
             </TR>
         <TR>
           <TD id=submenu0 style="DISPLAY: none">
@@ -101,44 +101,14 @@ eval("submenu" + sid + ".style.display=\"none\";");
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><a 
                   href="pay_manage.jsp" 
-                  target=main>所有费用</a></TD>
+                  target=main>客户管理</a></TD>
                       </TR>
                       <TR> 
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><a 
                   href="pay_add.jsp?inout=1" 
-                  target=main>增加收入</a></TD>
-                      </TR>
-                      <TR> 
-                        <TD height=20><IMG height=20 alt="" 
-                  src="images/bullet.gif" width=15 border=0><a 
-                  href="pay_add.jsp?inout=-1" 
-                  target=main>增加支出</a></TD>
-                      </TR>
-                      <TR> 
-                        <TD height=20><IMG height=20 alt="" 
-                  src="images/bullet.gif" width=15 border=0><A 
-                  href="paytype_manage.jsp" 
-                  target=main>费用类型</A></TD>
-                      </TR>
-                      <TR>
-                        <TD height=20><IMG height=20 alt="" 
-                  src="images/bullet.gif" width=15 border=0><A 
-                  href="paytype_add.jsp" 
-                  target=main>添加类型</A></TD>
-                      </TR>
-                      <TR>
-                        <TD height=20><IMG height=20 alt="" 
-                  src="images/bullet.gif" width=15 border=0><A 
-                  href="payer_manage.jsp" 
-                  target=main>报销人</A></TD>
-                      </TR>
-                      <TR>
-                        <TD height=20><IMG height=20 alt="" 
-                  src="images/bullet.gif" width=15 border=0><A 
-                  href="payer_add.jsp" 
-                  target=main>添加报销人</A></TD>
-                      </TR>
+                  target=main>增加客户</a></TD>
+                      </TR>                     
                     <TBODY>
                     </TBODY>
                   </TABLE>
@@ -154,7 +124,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
               <TD class=menu_title id=menuTitle1 
           onmouseover="this.className='menu_title2';" style="CURSOR: hand" 
           onclick=showsubmenu(1) onmouseout="this.className='menu_title';" 
-          background=images/admin_left_2.gif height=25><SPAN>费用统计</SPAN> </TD>
+          background=images/admin_left_2.gif height=25><SPAN>营销业务管理</SPAN> </TD>
             </TR>
         <TR>
           <TD id=submenu1 style="DISPLAY: none">
@@ -168,8 +138,15 @@ eval("submenu" + sid + ".style.display=\"none\";");
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><A 
                   href="pay_count.jsp" 
-                  target=main>费用统计</A></TD>
+                  target=main>业务管理</A></TD>
                       </TR>
+                      <TR> 
+                        <TD height=20><IMG height=20 alt="" 
+                  src="images/bullet.gif" width=15 border=0><A 
+                  href="pay_count.jsp" 
+                  target=main>增加业务</A></TD>
+                      </TR>
+                      
                     <TBODY>
                     </TBODY>
                   </TABLE>
@@ -185,7 +162,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
               <TD class=menu_title id=menuTitle1 
           onmouseover="this.className='menu_title2';" style="CURSOR: hand" 
           onclick=showsubmenu(2) onmouseout="this.className='menu_title';" 
-          background=images/admin_left_3.gif height=25><SPAN>用户管理</SPAN> </TD>
+          background=images/admin_left_3.gif height=25><SPAN>系统管理</SPAN> </TD>
             </TR>
         <TR>
           <TD id=submenu2 style="DISPLAY: none">
@@ -211,30 +188,6 @@ eval("submenu" + sid + ".style.display=\"none\";");
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><a href="user_log.jsp" target="main">登陆信息</a></TD>
                       </TR>
-                    <TBODY>
-                    </TBODY>
-                  </TABLE>
-                </DIV>
-            <DIV style="WIDTH: 158px">
-            <TABLE cellSpacing=0 cellPadding=0 width=135 align=center>
-              <TBODY>
-              <TR>
-                <TD height=20></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE>
-        <TABLE cellSpacing=0 cellPadding=0 width=158 align=center>
-          <TBODY>
-            <TR>
-              <TD class=menu_title id=menuTitle1 
-          onmouseover="this.className='menu_title2';" style="CURSOR: hand" 
-          onclick=showsubmenu(3) onmouseout="this.className='menu_title';" 
-          background=images/admin_left_5.gif height=25><SPAN>部门管理</SPAN> </TD>
-            </TR>
-            <TR>
-              <TD id=submenu3 style="DISPLAY: none"><DIV class=sec_menu style="WIDTH: 158px">
-                  <TABLE cellSpacing=0 cellPadding=0 width=150 align=center>
-                    <TBODY>
-                      <TR>
-                        <TD height=5></TD>
-                      </TR>
                       <TR>
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><A 
@@ -251,15 +204,12 @@ eval("submenu" + sid + ".style.display=\"none\";");
                     </TBODY>
                   </TABLE>
                 </DIV>
-                  <DIV style="WIDTH: 158px">
-                    <TABLE cellSpacing=0 cellPadding=0 width=135 align=center>
-                      <TBODY>
-                        <TR>
-                          <TD height=20></TD>
-                        </TR>
-                      </TBODY>
-                    </TABLE>
-                </DIV></TD>
+                
+                <DIV style="WIDTH: 158px">
+            <TABLE cellSpacing=0 cellPadding=0 width=135 align=center>
+              <TBODY>
+              <TR>
+                <TD height=20></TD></TR></TBODY></TABLE></DIV>                      
             </TR>
           </TBODY>
         </TABLE>
@@ -277,8 +227,8 @@ eval("submenu" + sid + ".style.display=\"none\";");
             <TABLE cellSpacing=0 cellPadding=0 align=center>
               <TBODY>
               <TR>
-                 <TD height=40>版权所有：<A 
-                  href="http://www.upol.cn" target=_blank>www.upol.cn</A></TD>
+                 <TD height=40>版本：0.1.0<br>版权所有：<A 
+                  href="" target=_blank>凤凰藏品</A></TD>
                       </TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE><table width="100" border="0" align="center" cellpadding="0" cellspacing="0">
   <tr>
     <td><IFRAME border=0 

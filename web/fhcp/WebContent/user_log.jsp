@@ -8,7 +8,7 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <meta http-equiv="refresh" content="60*60">
-<title>南京凤凰藏品数据平台</title>
+<title>财务管理系统</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 <%Vector listlog = new Vector();
 DispLog displog = new DispLog();
@@ -41,7 +41,7 @@ int l_end = dispage.getEnd();
 			for(i=l_start;i<l_end;i++) {
 			Log loginfo = (Log)listlog.elementAt(i);%> 
 	<TR >
-		<TD height="22" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户 <span class="red"><%=loginfo.getUser()%> </span>在 <%=loginfo.getLogindate()%> 登陆，在 <%=loginfo.getLogoutdate()%> 离开，IP地址为：<%=loginfo.getIp()%></TD>
+		<TD height="22" bgcolor="#FFFFFF">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户 <span class="red"><%=loginfo.getUser()%> </span>在 <%=loginfo.getLogindate()%> 登陆，在 <%=loginfo.getLogoutdate()%> 离开</TD>
 	  </TR>
 	<%}%>   
 	  

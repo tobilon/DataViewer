@@ -24,7 +24,7 @@ if("".equals(passWord)) {
 	DispMaster dispmaster = new DispMaster();
 	dispmaster.setUserName(userName);
 	dispmaster.setUserPassword(passWord);
-	if(dispmaster.chkLogin()){
+	if(dispmaster.chkLogin() == false){
 		loginerror = "用户名或密码错误！请重新登陆。";
 %>
 

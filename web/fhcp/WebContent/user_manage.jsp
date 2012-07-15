@@ -8,7 +8,7 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <meta http-equiv="refresh" content="60*60">
-<title>南京凤凰藏品数据平台</title>
+<title>财务管理系统</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 <script language="JavaScript" type="text/JavaScript">
 function delpay()

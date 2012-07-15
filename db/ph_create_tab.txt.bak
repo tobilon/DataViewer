@@ -258,7 +258,7 @@ create or replace trigger userlog_seq_trigger
     before insert on userlog 
 	for each row 
     begin  
-        select userlog_seq.nextval into:new.id from dual;  
+        select class_seq.nextval into:new.id from dual;  
     end;
 /
 

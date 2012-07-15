@@ -7,54 +7,54 @@
 <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <meta http-equiv="refresh" content="60*30">
-<title>南京凤凰藏品数据平台</title>
+<title>财务管理系统</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 </head>
 <body topmargin=0>
-<TABLE class=tableBorder cellSpacing=0 cellPadding=4 width="98%" align=center 
+<TABLE class=tableBorder cellSpacing=0 cellPadding=4 width=600 align=left 
 border=0>
   <TBODY>
     <TR> 
-      <TH class=tableHeaderText colSpan=2 height=22>系 统 信 息</TH>
-    <TR> 
-      <TD colSpan=2 height=22>&nbsp;该系统由中国石油大学现代远程教育自主开发使用，<font color="#FF0000"> 
-        财务管理系统</font>Version1.0 。</TD>
-    </TR>
-    <TR> 
-      <TD width="36%" height=23>&nbsp;&nbsp;&nbsp;系统开发：中国石油大学现代远程教育</TD>
-      <TD width="64%">建议分辨率：1024 * 768 </TD>
-    </TR>
-    <TR> 
-      <TD height=23>&nbsp;&nbsp;&nbsp;客户端类型：(IP:<%= request.getRemoteAddr() %>)</TD>
-      <TD>&nbsp;</TD>
-    </TR>
+      <TH class=tableHeaderText colSpan=2 height=22>凤凰藏品客户营销管理系统</TH>
+    </TR> 
+    
+     
     <TR>
-      <TD height=23>&nbsp;&nbsp;&nbsp;用户信息：<font class=red><%
-	  	DispMaster dispmaster = new DispMaster();
-		dispmaster.setUserName(userName);
-		Master master = dispmaster.nameToMaster();
-		out.println(master.getUserTruename());	  
-	  %></font></TD>
-      <TD><div align="right"></div></TD>
+    <TD colspan="2" align=center>
+    <IMG src="images/main.gif">
+    </TD>
     </TR>
-    <TR>
-      <TD height=23>&nbsp;&nbsp;&nbsp;登陆名：<font class=red><%=userName%></font></TD>
-      <TD>&nbsp;</TD>
+    
+      <TR>
+      <TD width="50%" height=23 align=center>&nbsp;&nbsp;&nbsp;营销业务管理：</TD>
+      <TD width="50%">维护部门业务记录，分析营销数据</TD>
     </TR>
-    <TR>
-      <TD height=23>&nbsp;&nbsp;&nbsp;管理部门：<font class=red></font></TD>
-      <TD>&nbsp;</TD>
+    <TR> 
+      <TD width="50%" height=23 align=center>&nbsp;&nbsp;&nbsp;系统管理：</TD>
+      <TD width="50%">修改用户密码</TD>
     </TR>
+    
+    
     <TR>
       <TD height=23>&nbsp;</TD>
       <TD>&nbsp;</TD>
     </TR>
+    
+    <TR>
+    <TD colspan="2" align=center>登录用户：<font class=red><%=userName%></font>&nbsp;&nbsp;&nbsp;
+                                                                                                               部门： <font class=red><%
+        DispMaster dispmaster = new DispMaster();
+	    dispmaster.setUserName(userName);
+	    Master master = dispmaster.nameToMaster();
+	    DispClass dispClass = new DispClass();
+		dispClass.setID(master.getClassid());
+		IClass iclass = dispClass.idToClass();
+		out.println(iclass.getName());
+        %></font>
+    </TD>
+    </TR>
   </TBODY>
 </TABLE>
+<br>
 <P></P>
-<TABLE align=center>
-  <TBODY>
-  <TR>
-    <TD width="315">Copyright (c) www.upol.cn <a href="http://www.upol.cn" target="_blank"></a> 
-        All Rights Reserved .</TD>
-  </TR></TBODY></TABLE></BODY></HTML>
+</BODY></HTML>

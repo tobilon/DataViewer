@@ -30,7 +30,7 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="0">
 <meta HTTP-EQUIV=REFRESH CONTENT='4; URL=user_manage.jsp'>
-<title>南京凤凰藏品数据平台</title>
+<title>财务管理系统</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 </head>
 <body topmargin=0>

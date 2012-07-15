@@ -1,3 +1,13 @@
+/**
+ *  Title  fhcp customer dataplat
+ *  @author: tobilon
+ *  Company: marvel2
+ *  Copyright: Copyright (c) 2012
+ *  @version 1.0
+ *  数据库连接常用操作的函数
+ */
+
+
 package fhcp;
 
 import java.sql.*;
@@ -10,7 +20,7 @@ public class DBConnect {
 
     void init() {
         dcm = DBConnectionManager.getInstance();
-		conn = dcm.getConnection("mysql");
+		conn = dcm.getConnection("oracle");
     }
 
 	/**
@@ -131,6 +141,18 @@ public class DBConnect {
 		}
 		else return null;
 	}
+	
+	public void execute(String sql) throws SQLException {
+		if (stmt != null) {
+			stmt.execute(sql);
+		}
+	}
+
+	public void execute() throws SQLException {
+		if (prepstmt != null) {
+			prepstmt.execute();
+		}
+	}
 
 	/**
 	 * 执行SQL语句
@@ -159,7 +181,7 @@ public class DBConnect {
 		if (conn!=null)
 		{
 
-			dcm.freeConnection("mysql",conn);
+			dcm.freeConnection("oracle",conn);
 
 		}
 
