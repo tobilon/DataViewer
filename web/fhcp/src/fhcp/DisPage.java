@@ -23,8 +23,8 @@ public class DisPage {
 		l_totalnum = totalnum;
 
 		if (currentpage >= 0) {
-			if (currentpage >= (int) Math.ceil(l_totalnum / int_num))
-				l_curpage = (int) Math.floor(l_totalnum / int_num);
+			if (currentpage >= (int) Math.ceil(l_totalnum / (float)int_num))
+				l_curpage = (int) Math.floor(l_totalnum / (float)int_num);
 			else
 				l_curpage = currentpage;
 		} else {
@@ -37,8 +37,8 @@ public class DisPage {
 		if (l_end > l_totalnum)
 			l_end = l_totalnum;
 
-		l_totalpage = (int) Math.ceil(l_totalnum / int_num);
-
+		l_totalpage = (int) Math.ceil(l_totalnum / (float)int_num);
+		System.out.println(l_totalnum+" "+int_num+" "+l_totalpage);
 	}
 
 	public int getCurpage() {
@@ -54,10 +54,10 @@ public class DisPage {
 	}
 
 	public int getNextpage() {
-		if (l_curpage + 1 <= l_totalpage) {
+		if (l_curpage + 1 < l_totalpage) {
 			return l_curpage + 1;
 		} else {
-			return l_totalpage;
+			return l_totalpage-1;
 		}
 	}
 

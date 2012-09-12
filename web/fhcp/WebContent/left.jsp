@@ -100,15 +100,9 @@ eval("submenu" + sid + ".style.display=\"none\";");
                       <TR> 
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><a 
-                  href="pay_manage.jsp" 
+                  href="customer_manage.jsp" 
                   target=main>客户管理</a></TD>
-                      </TR>
-                      <TR> 
-                        <TD height=20><IMG height=20 alt="" 
-                  src="images/bullet.gif" width=15 border=0><a 
-                  href="pay_add.jsp?inout=1" 
-                  target=main>增加客户</a></TD>
-                      </TR>                     
+                      </TR>                                  
                     <TBODY>
                     </TBODY>
                   </TABLE>
@@ -137,13 +131,13 @@ eval("submenu" + sid + ".style.display=\"none\";");
                       <TR> 
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><A 
-                  href="pay_count.jsp" 
+                  href="service_manage.jsp" 
                   target=main>业务管理</A></TD>
                       </TR>
                       <TR> 
                         <TD height=20><IMG height=20 alt="" 
                   src="images/bullet.gif" width=15 border=0><A 
-                  href="pay_count.jsp" 
+                  href="service_add.jsp" 
                   target=main>增加业务</A></TD>
                       </TR>
                       
