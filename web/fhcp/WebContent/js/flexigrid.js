@@ -1169,8 +1169,8 @@
 			}
 			//add search and advanced search button
 			if (p.searchitems) {
-				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pAdvSearch pButton'><span></span></div></div>");
-				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pSearch pButton'><span></span></div> </div>");
+				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pAdvSearch pButton'></div></div><div class='pGroup'><span class='pcontrol'>高级查询</span></div>");
+				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pSearch pButton'></div></div><div class='pGroup'><span class='pcontrol'>一般查询</span></div>");
 				$('.pAdvSearch', g.pDiv).click(function () {
 					$(g.s1Div).slideToggle('fast', function() {
 						$('.s1Div:visible input:first', g.gDiv).trigger('focus');
@@ -1196,7 +1196,7 @@
 						"&nbsp;身份证&nbsp;"+"<input type='text' value='' size='20' name='cid' class='qsbox' />"+
 						"&nbsp;地址&nbsp;"+"<input type='text' value='' size='30' name='caddr' class='qsbox' />"+
 						"&nbsp;公司&nbsp;"+"<input type='text' value='' size='20' name='ccompany' class='qsbox' /><br><br>"+
-						"<div class='cusertype'>&nbsp;运算逻辑&nbsp;<input type='radio' name='clogic' checked='checked' value='and' class='qsbox'/>&nbsp;与&nbsp;<input type='radio' name='clogic' value='or' class='qsbox'/>&nbsp;或&nbsp;</div><br>"+						
+						"<div class='cusertype'>&nbsp;运算逻辑&nbsp;<input type='radio' name='clogic' checked='checked' value='and' class='qsbox'/>&nbsp;交集&nbsp;<input type='radio' name='clogic' value='or' class='qsbox'/>&nbsp;合集&nbsp;</div><br>"+						
 						"&nbsp;数据来源&nbsp;"+"<input type='text' value='' size='10' name='csource' class='qsbox' />"+
 						"&nbsp;备注&nbsp;"+"<input type='text' value='' size='30' name='cother' class='qsbox' /><br><br>"+
 						"<input type='button' name='advsearchbtn' value='高级查询'> &nbsp;&nbsp;<input type=reset value='清除'> &nbsp;&nbsp;<input type='button' name='exphonebtn' value='导出手机号码'>&nbsp;&nbsp;<input type='button' name='exmailbtn' value='导出邮箱地址'><br><br>"+
@@ -1213,7 +1213,7 @@
 					dataType:'html',
 					success: function (data) {						
 						$('.cusertype', g.s1Div).prepend(data);
-						$('.cusertype', g.s1Div).prepend("&nbsp;用户类型&nbsp;");
+						$('.cusertype', g.s1Div).prepend("&nbsp;数据类别&nbsp;");
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {
 						try {
@@ -1256,11 +1256,15 @@
 				    p.caddrvalue= $('input[name=caddr]', g.s1Div).val();
 				    p.ccompanyvalue= $('input[name=ccompany]', g.s1Div).val();
 				    p.ctypevalue=0;
-				    $('input[name=ctype][checked]', g.s1Div).each(function(){
-				    	p.ctypevalue+=parseInt($(this).val());
+				    $('input[name=ctype]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    	    p.ctypevalue+=parseInt($(this).val());
+				    	}
 				    });
-				    $('input[name=clogic][checked]', g.s1Div).each(function(){
-				    	p.ctypelogic=$(this).val();
+				    $('input[name=clogic]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    		p.ctypelogic=$(this).val();
+				    	}
 				    });
 				    
 				    p.csourcevalue = $('input[name=csource]', g.s1Div).val();
@@ -1293,12 +1297,17 @@
 				    p.caddrvalue= $('input[name=caddr]', g.s1Div).val();
 				    p.ccompanyvalue= $('input[name=ccompany]', g.s1Div).val();
 				    p.ctypevalue=0;
-				    $('input[name=ctype][checked]', g.s1Div).each(function(){
-				    	p.ctypevalue+=parseInt($(this).val());
+				    $('input[name=ctype]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    	    p.ctypevalue+=parseInt($(this).val());
+				    	}
 				    });
-				    $('input[name=clogic][checked]', g.s1Div).each(function(){
-				    	p.ctypelogic=$(this).val();
+				    $('input[name=clogic]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    	    p.ctypelogic=$(this).val();
+				    	}
 				    });
+				    alert(p.ctypelogic);
 				    
 				    p.csourcevalue = $('input[name=csource]', g.s1Div).val();
 				    p.cothervalue= $('input[name=cother]', g.s1Div).val();
@@ -1335,11 +1344,15 @@
 				    p.caddrvalue= $('input[name=caddr]', g.s1Div).val();
 				    p.ccompanyvalue= $('input[name=ccompany]', g.s1Div).val();
 				    p.ctypevalue=0;
-				    $('input[name=ctype][checked]', g.s1Div).each(function(){
-				    	p.ctypevalue+=parseInt($(this).val());
+				    $('input[name=ctype]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    		p.ctypevalue+=parseInt($(this).val());
+				    	}
 				    });
-				    $('input[name=clogic][checked]', g.s1Div).each(function(){
-				    	p.ctypelogic=$(this).val();
+				    $('input[name=clogic]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {	
+				    		p.ctypelogic=$(this).val();				    	
+				    	}
 				    });
 				    
 				    p.csourcevalue = $('input[name=csource]', g.s1Div).val();
@@ -1361,11 +1374,15 @@
 				    p.caddrvalue= $('input[name=caddr]', g.s1Div).val();
 				    p.ccompanyvalue= $('input[name=ccompany]', g.s1Div).val();
 				    p.ctypevalue=0;
-				    $('input[name=ctype][checked]', g.s1Div).each(function(){
-				    	p.ctypevalue+=parseInt($(this).val());
+				    $('input[name=ctype]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    	    p.ctypevalue+=parseInt($(this).val());
+				    	}
 				    });
-				    $('input[name=clogic][checked]', g.s1Div).each(function(){
-				    	p.ctypelogic=$(this).val();
+				    $('input[name=clogic]', g.s1Div).each(function(){
+				    	if ($(this).attr("checked") == "checked") {
+				    	    p.ctypelogic=$(this).val();
+				    	}
 				    });
 				    
 				    p.csourcevalue = $('input[name=csource]', g.s1Div).val();

@@ -16,7 +16,7 @@ public class CustomerControl extends Customer{
 	public DBConnect dbc = null;
 	public ResultSet rs;	
 	
-	/* 获取所有记录数目  */
+	/* 鑾峰彇鎵�湁璁板綍鏁扮洰  */
 	public int getAllCustomerCount() {
 		
 		int count = 0;
@@ -42,7 +42,7 @@ public class CustomerControl extends Customer{
 		return count;
 	}
 
-	/* 获取所有用户记录  */
+	/* 鑾峰彇鎵�湁鐢ㄦ埛璁板綍  */
 	public void allCustomer(int startRow, int endRow) {
 		int count = 0;
 
@@ -67,8 +67,26 @@ public class CustomerControl extends Customer{
 		
 		try {
 			dbc = new DBConnect();
-			dbc.prepareStatement("SELECT count(*) FROM customer_profile where "
-					+ qtype + " like " + "'%" + qvalue + "%'");
+			System.out.println(qtype);
+			if(qtype.equals("id"))
+			{		
+				dbc.prepareStatement("SELECT count(*) FROM customer_profile where "
+						+ qtype + "=" + qvalue);
+				System.out.println("SELECT count(*) FROM customer_profile where "
+						+ qtype + "=" + qvalue);
+			}
+			else if(qtype.equals("mobilephone1"))
+			{
+				dbc.prepareStatement("SELECT count(*) FROM customer_profile where id=(select userid from customer_phone where mobilephone='"+qvalue+"')");
+			}
+			else
+			{
+				dbc.prepareStatement("SELECT count(*) FROM customer_profile where "
+						+ qtype + " like " + "'%" + qvalue + "%'");
+				System.out.println("SELECT count(*) FROM customer_profile where "
+						+ qtype + " like " + "'%" + qvalue + "%'");
+			}			
+					
 			rs = dbc.executeQuery(); 
 			while (rs.next()) {
 				count = rs.getInt(1);
@@ -88,11 +106,26 @@ public class CustomerControl extends Customer{
 	}
 	
 	public void getCustomerFilter(String qtype, String qvalue, int startRow, int endRow) {
+		
+		String strSQL=null;
+		
 		try {
-
+			
 			dbc = new DBConnect();
-			String strSQL = "SELECT * FROM customer_profile where " + qtype
-					+ " like " + "'%" + qvalue + "%'";
+			if(qtype.equals("id"))
+			{	
+				strSQL = "SELECT * FROM customer_profile where " + qtype
+						+ "=" + qvalue;
+			}
+			else if(qtype.equals("mobilephone1"))
+			{
+				strSQL = "SELECT * FROM customer_profile where id=(select userid from customer_phone where mobilephone='"+qvalue+"')";
+			}
+			else
+			{
+				 strSQL = "SELECT * FROM customer_profile where " + qtype
+						+ " like " + "'%" + qvalue + "%'";
+			}
 			dbc.prepareStatement("select * from (select e.*,ROWNUM rn from ("+strSQL+")e where ROWNUM<=?) where rn>=?");
 			dbc.setInt(1, endRow);
 			dbc.setInt(2, startRow);
@@ -426,6 +459,59 @@ public class CustomerControl extends Customer{
 		}
 	}
 	
+	public String getDataSource(long id)
+	{
+		String str="";
+		
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT filename FROM customer_report where id=?");
+			dbc.setLong(1, id);
+			rs = dbc.executeQuery();
+			while (rs.next()) {		
+				str=rs.getString("filename");				
+			}
+
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				rs.close();
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return str;
+	}
+	
+	public String getUserType(long id)
+	{
+		String str="";
+		
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT disc FROM customer_type where bitand(id,?)!=0");
+			dbc.setLong(1, id);
+			rs = dbc.executeQuery();
+			while (rs.next()) {		
+				str+=rs.getString("disc");
+				str+=" ";
+			}
+
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				rs.close();
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return str;
+	}
+	
 	public String getUserTypeString()
 	{
 		String str="";
@@ -554,7 +640,8 @@ public class CustomerControl extends Customer{
 						fieldValue = "";
 					else
 						fieldValue = fieldValue.trim();
-					hdRow.put(colum[i].toLowerCase(), fieldValue);//.toLowerCase()
+					hdRow.put(colum[i].toLowerCase(), fieldValue);
+					System.out.println(colum[i].toLowerCase());
 				}
 			}
 			

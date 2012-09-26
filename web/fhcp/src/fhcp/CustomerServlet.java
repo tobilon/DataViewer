@@ -65,7 +65,7 @@ public class CustomerServlet extends HttpServlet {
 		
 		if(request.getParameter("ctitlevalue") != "")
 		{
-			cellMap.put("title", new String(request.getParameter("ctitlevalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("actor", new String(request.getParameter("ctitlevalue").getBytes("ISO8859-1"), "UTF-8"));
 		}
 		
 		if(request.getParameter("cprovincevalue") != "")
@@ -128,23 +128,36 @@ public class CustomerServlet extends HttpServlet {
 	
 	public String getJsonString(List list, Map pageInfo) {
 		List mapList = new ArrayList();
+		CustomerControl customerCtrl = new CustomerControl();
+		String strSrc;
+		String strClass;
+		String id;
 		for(int i = 0; i < list.size(); i++) {   
 		Map cellMap = new HashMap();   
-		cellMap.put("id", ((Map)list.get(i)).get("id"));   
+		cellMap.put("id", ((Map)list.get(i)).get("id")); 
+		id = (String)(((Map)list.get(i)).get("source"));
+		strSrc = customerCtrl.getDataSource(Integer.parseInt(id));
+		id = (String)(((Map)list.get(i)).get("usertype"));
+		strClass = customerCtrl.getUserType(Integer.parseInt(id));
 		cellMap.put("cell", new Object[] {
 				((Map)list.get(i)).get("id"),
 				((Map)list.get(i)).get("name"), 
 				((Map)list.get(i)).get("sex"),
 				((Map)list.get(i)).get("born"),
 				((Map)list.get(i)).get("company"),
+				((Map)list.get(i)).get("actor"),
 				((Map)list.get(i)).get("province"),
 				((Map)list.get(i)).get("city"),
 				((Map)list.get(i)).get("post"),
 				((Map)list.get(i)).get("mobilephone1"),
+				((Map)list.get(i)).get("mobilephone2"),
+				((Map)list.get(i)).get("mobilephone3"),
+				((Map)list.get(i)).get("mobilephone4"),
 				((Map)list.get(i)).get("homephone1"),
+				((Map)list.get(i)).get("homephone2"),
 				((Map)list.get(i)).get("mail"),
-				((Map)list.get(i)).get("usertype"),
-				((Map)list.get(i)).get("source"),
+				strClass,
+				strSrc,
 				((Map)list.get(i)).get("extra")}); 
 		mapList.add(cellMap);
 		}	
@@ -162,7 +175,7 @@ public class CustomerServlet extends HttpServlet {
 		Map cellMap = new HashMap();
 		response.setCharacterEncoding("utf-8");		
 		String action = request.getParameter("action");
-		System.out.println("action:"+action);		
+		System.out.println("action:"+action);	
 		
 		if("add".equals(action))
 		{
@@ -235,7 +248,19 @@ public class CustomerServlet extends HttpServlet {
 					if(customerCtrl.rs.getString("mobilephone1") != null)
 					{
 						out.println(customerCtrl.rs.getString("mobilephone1"));
-					}					
+					}		
+					if(customerCtrl.rs.getString("mobilephone2") != null)
+					{
+						out.println(customerCtrl.rs.getString("mobilephone2"));
+					}
+					if(customerCtrl.rs.getString("mobilephone3") != null)
+					{
+						out.println(customerCtrl.rs.getString("mobilephone3"));
+					}
+					if(customerCtrl.rs.getString("mobilephone4") != null)
+					{
+						out.println(customerCtrl.rs.getString("mobilephone4"));
+					}
 				} 
 				out.flush();
 				out.close();
@@ -275,9 +300,9 @@ public class CustomerServlet extends HttpServlet {
 		String query=new String(request.getParameter("query").getBytes("ISO8859-1"), "UTF-8");
 		String qtype=new String(request.getParameter("qtype").getBytes("ISO8859-1"), "UTF-8");
 				
-		// ��õ�ǰҳ��
+		// ��õ�ǰҳ��?
 		String pageIndex = request.getParameter("page");
-		// ���ÿҳ��������
+		// ���ÿҳ��������?
 		String pageSize = request.getParameter("rp");
 
 		int count = 0;
@@ -320,7 +345,7 @@ public class CustomerServlet extends HttpServlet {
  
 		//������ҳ�� 
 		int intPageCount = (count+intPageSize-1) / intPageSize; 
-		//�������ʾ��ҳ�� 
+		//�������ʾ��ҳ��?
 		if(intPage>intPageCount) intPage = intPageCount; 
 	
 		if(intPageCount>0){ 
@@ -343,7 +368,7 @@ public class CustomerServlet extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-			//��ʾ��� 
+			//��ʾ���?
 		}
 		
 		PrintWriter out = response.getWriter();
