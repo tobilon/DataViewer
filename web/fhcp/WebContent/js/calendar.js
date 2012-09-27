@@ -1,7 +1,7 @@
-/*ÈÕÆÚÇÒ°üº¬Ê±¼äÖÁÃë ÀıÈç£º2010-2-14  10:10:10 */
+/*æ—¥æœŸä¸”åŒ…å«æ—¶é—´è‡³ç§’ ä¾‹å¦‚ï¼š2010-2-14  10:10:10 */
 /*
-       1¡¢headÖĞÒıÓÃ <script src="/js/Datepicker.js" type="text/javascript"></script>
-       2¡¢ĞèÒªÌîĞ´ÈÕÆÚµÄµØ·½<input type="text"  onclick="calendar();"/>
+       1ã€headä¸­å¼•ç”¨ <script src="/js/Datepicker.js" type="text/javascript"></script>
+       2ã€éœ€è¦å¡«å†™æ—¥æœŸçš„åœ°æ–¹<input type="text"  onclick="calendar();"/>
 */
 
  
@@ -13,7 +13,7 @@ document.write("<iframe name=meizzCalendarIframe scrolling=no frameborder=0 widt
 function writeIframe()
 {
     var strIframe = "<html><head><meta http-equiv='Content-Type' content='text/html; charset=gb2312'><style>"+
-    "*{font-size: 12px; font-family: ËÎÌå}"+
+    "*{font-size: 12px; font-family: å®‹ä½“}"+
 
     "</style></head><body onselectstart='return false' style='margin: 0px' oncontextmenu='return false'><form name=meizz>";
     if (WebCalendar.drag){ strIframe += "<scr"+"ipt language=javascript>"+
@@ -38,21 +38,21 @@ function writeIframe()
     "<table id=tableMain border='1' cellpadding='0' cellspacing='0' bordercolor='#C0D0E8' bordercolorlight='#C0D0E8' bordercolordark='#C0D0E8' width='100%' height='100%'>"+
     "<tr><td height=19 bgcolor='"+ WebCalendar.lightColor +"'>"+
     "    <table width='98%' id=tableHead border=0 cellspacing=1 cellpadding=0 align='center'><tr align=center>"+
-    "    <td title='ÏòÇ°·­ 1 Äê' onclick='parent.prevY()' style='cursor: hand' class=bg><<</td>"+
-    "    <td width=15 height=19 class=bg title='ÏòÇ°·­ 1 ÔÂ' style='cursor: hand' onclick='parent.prevM()'><</td>"+
-    "    <td width=60 id=meizzYearHead  title='µã»÷´Ë´¦Ñ¡ÔñÄê·İ' onclick='parent.funYearSelect(parseInt(this.innerText, 10))'"+
+    "    <td title='å‘å‰ç¿» 1 å¹´' onclick='parent.prevY()' style='cursor: hand' class=bg><<</td>"+
+    "    <td width=15 height=19 class=bg title='å‘å‰ç¿» 1 æœˆ' style='cursor: hand' onclick='parent.prevM()'><</td>"+
+    "    <td width=60 id=meizzYearHead  title='ç‚¹å‡»æ­¤å¤„é€‰æ‹©å¹´ä»½' onclick='parent.funYearSelect(parseInt(this.innerText, 10))'"+
     "        onmouseover='this.bgColor=parent.WebCalendar.darkColor; this.style.color=parent.WebCalendar.lightColor'"+
     "        onmouseout='this.bgColor=parent.WebCalendar.lightColor; this.style.color=parent.WebCalendar.wordColor'></td>"+
-    "    <td width=50 id=meizzYearMonth title='µã»÷´Ë´¦Ñ¡ÔñÔÂ·İ' onclick='parent.funMonthSelect(parseInt(this.innerText, 10))'"+
+    "    <td width=50 id=meizzYearMonth title='ç‚¹å‡»æ­¤å¤„é€‰æ‹©æœˆä»½' onclick='parent.funMonthSelect(parseInt(this.innerText, 10))'"+
     "        onmouseover='this.bgColor=parent.WebCalendar.darkColor; this.style.color=parent.WebCalendar.lightColor'"+
     "        onmouseout='this.bgColor=parent.WebCalendar.lightColor; this.style.color=parent.WebCalendar.wordColor'></td>"+
-    "    <td width=15 class=bg title='Ïòºó·­ 1 ÔÂ' onclick='parent.nextM()' style='cursor: hand'>></td>"+
-    "    <td title='Ïòºó·­ 1 Äê' onclick='parent.nextY()' style='cursor: hand' class=bg>>></td>"+
+    "    <td width=15 class=bg title='å‘åç¿» 1 æœˆ' onclick='parent.nextM()' style='cursor: hand'>></td>"+
+    "    <td title='å‘åç¿» 1 å¹´' onclick='parent.nextY()' style='cursor: hand' class=bg>>></td>"+
     "</tr></table>"+
     "</td></tr><tr><td height=20 align='center'><table id=tableWeek border=1 width='98%' cellpadding=0 cellspacing=0 ";
     if(WebCalendar.drag){strIframe += "onmousedown='dragStart()' onmouseup='drag=false' onmouseout='drag=false'";}
     strIframe += " borderColorLight='#FFFFFF' borderColorDark='#FFFFFF'>"+
-    "    <tr align=center bgcolor='#6699FF'><td height=20><font color='#FF0000'>ÈÕ</font></td><td>Ò»</td><td>¶ş</td><td>Èı</td><td>ËÄ</td><td>Îå</td><td><font color='#FF0000'>Áù</font></td></tr></table>"+
+    "    <tr align=center bgcolor='#6699FF'><td height=20><font color='#FF0000'>æ—¥</font></td><td>ä¸€</td><td>äºŒ</td><td>ä¸‰</td><td>å››</td><td>äº”</td><td><font color='#FF0000'>å…­</font></td></tr></table>"+
     "</td></tr><tr><td valign=top align='center' bgcolor='"+ WebCalendar.lightColor +"'>"+
     "    <table id=tableDay height='100%' width='98%' border=0 cellspacing=1 cellpadding=0>";
          for(var x=0; x<5; x++){ strIframe += "<tr>";
@@ -62,23 +62,23 @@ function writeIframe()
 
          strIframe +="<td colspan=3 class=out title='"+ WebCalendar.regInfo +"'><input style=' background-color: "+
          WebCalendar.btnBgColor +";cursor: hand; padding-top: 4px; width: 100%; height: 100%; border: 0' onfocus='this.blur()'"+
-         " type=button value='    ¹Ø±Õ' onclick='parent.hiddenCalendar()'></td></tr></table>"+
+         " type=button value='    å…³é—­' onclick='parent.hiddenCalendar()'></td></tr></table>"+
     "</td></tr><tr><td height=20  align='center' bgcolor='"+ WebCalendar.lightColor +"'>"+
     "    <table border=0 cellpadding=1 cellspacing=0 width='98%'>"+
     "    <tr>"+
-    "        <td width=15 height=19 title='ÏòÇ°·­ 1 Ğ¡Ê±' onclick='parent.prevH()' style='cursor: hand' class=bg><<</td>"+
-    "        <td width=15 height=19 title='ÏòÇ°·­ 1 ·ÖÖÓ' onclick='parent.prevMi()' style='cursor: hand' class=bg><</td>"+
-    "        <td width=60 id=meizzHourHead  title='µã»÷´Ë´¦Ñ¡ÔñĞ¡Ê±' onclick='parent.funHourSelect(parseInt(this.innerText, 10))'"+
+    "        <td width=15 height=19 title='å‘å‰ç¿» 1 å°æ—¶' onclick='parent.prevH()' style='cursor: hand' class=bg><<</td>"+
+    "        <td width=15 height=19 title='å‘å‰ç¿» 1 åˆ†é’Ÿ' onclick='parent.prevMi()' style='cursor: hand' class=bg><</td>"+
+    "        <td width=60 id=meizzHourHead  title='ç‚¹å‡»æ­¤å¤„é€‰æ‹©å°æ—¶' onclick='parent.funHourSelect(parseInt(this.innerText, 10))'"+
     "        onmouseover='this.bgColor=parent.WebCalendar.darkColor; this.style.color=parent.WebCalendar.lightColor'"+
     "        onmouseout='this.bgColor=parent.WebCalendar.lightColor; this.style.color=parent.WebCalendar.wordColor'></td>"+
-    "    <td width=50 id=meizzMinuteHead title='µã»÷´Ë´¦Ñ¡Ôñ·ÖÖÓ' onclick='parent.funMinuteSelect(parseInt(this.innerText, 10))'"+
+    "    <td width=50 id=meizzMinuteHead title='ç‚¹å‡»æ­¤å¤„é€‰æ‹©åˆ†é’Ÿ' onclick='parent.funMinuteSelect(parseInt(this.innerText, 10))'"+
     "        onmouseover='this.bgColor=parent.WebCalendar.darkColor; this.style.color=parent.WebCalendar.lightColor'"+
     "        onmouseout='this.bgColor=parent.WebCalendar.lightColor; this.style.color=parent.WebCalendar.wordColor'></td>"+
-    "    <td width=50 id=meizzSecondHead title='µã»÷´Ë´¦Ñ¡ÔñÃë' onclick='parent.funSecondSelect(parseInt(this.innerText, 10))'"+
+    "    <td width=50 id=meizzSecondHead title='ç‚¹å‡»æ­¤å¤„é€‰æ‹©ç§’' onclick='parent.funSecondSelect(parseInt(this.innerText, 10))'"+
     "        onmouseover='this.bgColor=parent.WebCalendar.darkColor; this.style.color=parent.WebCalendar.lightColor'"+
     "        onmouseout='this.bgColor=parent.WebCalendar.lightColor; this.style.color=parent.WebCalendar.wordColor'></td>"+
-    "        <td title='Ïòºó·­ 1 ·ÖÖÓ' onclick='parent.nextMi()' style='cursor: hand' class=bg>></td>"+
-    "        <td title='Ïòºó·­ 1 Ğ¡Ê±' onclick='parent.nextH()' style='cursor: hand' class=bg>>></td>"+
+    "        <td title='å‘åç¿» 1 åˆ†é’Ÿ' onclick='parent.nextMi()' style='cursor: hand' class=bg>></td>"+
+    "        <td title='å‘åç¿» 1 å°æ—¶' onclick='parent.nextH()' style='cursor: hand' class=bg>>></td>"+
     "</tr></table>"+
     "</td></tr><table></form></body></html>";
     with(WebCalendar.iframe)
@@ -93,40 +93,41 @@ function writeIframe()
         }
     }
 }
-function WebCalendar() //³õÊ¼»¯ÈÕÀúµÄÉèÖÃ
+function WebCalendar() //åˆå§‹åŒ–æ—¥å†çš„è®¾ç½®
 {
     this.daysMonth  = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
-    this.day        = new Array(39);            //¶¨ÒåÈÕÀúÕ¹Ê¾ÓÃµÄÊı×é
-    this.dayObj     = new Array(39);            //¶¨ÒåÈÕÆÚÕ¹Ê¾¿Ø¼şÊı×é
-    this.dateStyle  = null;                     //±£´æ¸ñÊ½»¯ºóÈÕÆÚÊı×é
-    this.objExport  = null;                     //ÈÕÀú»Ø´«µÄÏÔÊ¾¿Ø¼ş
-    this.eventSrc   = null;                     //ÈÕÀúÏÔÊ¾µÄ´¥·¢¿Ø¼ş
-    this.inputDate  = null;                     //×ª»¯ÍâµÄÊäÈëµÄÈÕÆÚ(d/m/yyyy)
-    this.thisYear   = new Date().getFullYear(); //¶¨ÒåÄêµÄ±äÁ¿µÄ³õÊ¼Öµ
-    this.thisMonth  = new Date().getMonth()+ 1; //¶¨ÒåÔÂµÄ±äÁ¿µÄ³õÊ¼Öµ
-    this.thisDay    = new Date().getDate();     //¶¨ÒåÈÕµÄ±äÁ¿µÄ³õÊ¼Öµ
-    this.thisHour   = new Date().getHours();    //¶¨ÒåĞ¡Ê±µÃ±äÁ¿³õÊ¼Öµ
-    this.thisMinute = new Date().getMinutes();  //¶¨Òå·ÖÖÓµÃ±äÁ¿³õÊ¼Öµ
-    this.thisSecond = new Date().getSeconds();  //¶¨ÒåÃëµÃ±êÁ¿µÄ³õÊ¼Öµ
-    this.today      = this.thisDay +"/"+ this.thisMonth +"/"+ this.thisYear;   //½ñÌì(d/m/yyyy)
-    this.iframe     = window.frames("meizzCalendarIframe"); //ÈÕÀúµÄ iframe ÔØÌå
-    this.calendar   = getObjectById("meizzCalendarLayer");  //ÈÕÀúµÄ²ã
-    this.dateReg    = "";           //ÈÕÀú¸ñÊ½ÑéÖ¤µÄÕıÔòÊ½
-    this.yearFall   = 50;           //¶¨ÒåÄêÏÂÀ­¿òµÄÄê²îÖµ
-    this.format     = "yyyy-mm-dd"; //»Ø´«ÈÕÆÚµÄ¸ñÊ½
-    this.timeShow   = true;        //ÊÇ·ñ·µ»ØÊ±¼ä
-    this.drag       = false;         //ÊÇ·ñÔÊĞíÍÏ¶¯
-    this.darkColor  = "#0000D0";    //¿Ø¼şµÄ°µÉ«
-    this.lightColor = "#FFFFFF";    //¿Ø¼şµÄÁÁÉ«
-    this.btnBgColor = "#E6E6FA";    //¿Ø¼şµÄ°´Å¥±³¾°É«
-    this.wordColor  = "#000080";    //¿Ø¼şµÄÎÄ×ÖÑÕÉ«
-    this.wordDark   = "#DCDCDC";    //¿Ø¼şµÄ°µÎÄ×ÖÑÕÉ«
-    this.dayBgColor = "#F5F5FA";    //ÈÕÆÚÊı×Ö±³¾°É«
-    this.todayColor = "#FF0000";    //½ñÌìÔÚÈÕÀúÉÏµÄ±êÊ¾±³¾°É«
-    this.DarkBorder = "#D4D0C8";    //ÈÕÆÚÏÔÊ¾µÄÁ¢Ìå±í´ïÉ«
+    this.day        = new Array(39);            //å®šä¹‰æ—¥å†å±•ç¤ºç”¨çš„æ•°ç»„
+    this.dayObj     = new Array(39);            //å®šä¹‰æ—¥æœŸå±•ç¤ºæ§ä»¶æ•°ç»„
+    this.dateStyle  = null;                     //ä¿å­˜æ ¼å¼åŒ–åæ—¥æœŸæ•°ç»„
+    this.objExport  = null;                     //æ—¥å†å›ä¼ çš„æ˜¾ç¤ºæ§ä»¶
+    this.eventSrc   = null;                     //æ—¥å†æ˜¾ç¤ºçš„è§¦å‘æ§ä»¶
+    this.inputDate  = null;                     //è½¬åŒ–å¤–çš„è¾“å…¥çš„æ—¥æœŸ(d/m/yyyy)
+    this.thisYear   = new Date().getFullYear(); //å®šä¹‰å¹´çš„å˜é‡çš„åˆå§‹å€¼
+    this.thisMonth  = new Date().getMonth()+ 1; //å®šä¹‰æœˆçš„å˜é‡çš„åˆå§‹å€¼
+    this.thisDay    = new Date().getDate();     //å®šä¹‰æ—¥çš„å˜é‡çš„åˆå§‹å€¼
+    this.thisHour   = new Date().getHours();    //å®šä¹‰å°æ—¶å¾—å˜é‡åˆå§‹å€¼
+    this.thisMinute = new Date().getMinutes();  //å®šä¹‰åˆ†é’Ÿå¾—å˜é‡åˆå§‹å€¼
+    this.thisSecond = new Date().getSeconds();  //å®šä¹‰ç§’å¾—æ ‡é‡çš„åˆå§‹å€¼
+    this.today      = this.thisDay +"/"+ this.thisMonth +"/"+ this.thisYear;   //ä»Šå¤©(d/m/yyyy)
+    this.iframe     = window.frames("meizzCalendarIframe"); //æ—¥å†çš„ iframe è½½ä½“
+    this.calendar   = getObjectById("meizzCalendarLayer");  //æ—¥å†çš„å±‚
+    this.dateReg    = "";           //æ—¥å†æ ¼å¼éªŒè¯çš„æ­£åˆ™å¼
+    this.yearFall   = 50;           //å®šä¹‰å¹´ä¸‹æ‹‰æ¡†çš„å¹´å·®å€¼
+    this.format     = "yyyy-mm-dd"; //å›ä¼ æ—¥æœŸçš„æ ¼å¼
+    this.timeShow   = true;        //æ˜¯å¦è¿”å›æ—¶é—´
+    this.drag       = false;         //æ˜¯å¦å…è®¸æ‹–åŠ¨
+    this.darkColor  = "#0000D0";    //æ§ä»¶çš„æš—è‰²
+    this.lightColor = "#FFFFFF";    //æ§ä»¶çš„äº®è‰²
+    this.btnBgColor = "#E6E6FA";    //æ§ä»¶çš„æŒ‰é’®èƒŒæ™¯è‰²
+    this.wordColor  = "#000080";    //æ§ä»¶çš„æ–‡å­—é¢œè‰²
+    this.wordDark   = "#DCDCDC";    //æ§ä»¶çš„æš—æ–‡å­—é¢œè‰²
+    this.dayBgColor = "#F5F5FA";    //æ—¥æœŸæ•°å­—èƒŒæ™¯è‰²
+    this.todayColor = "#FF0000";    //ä»Šå¤©åœ¨æ—¥å†ä¸Šçš„æ ‡ç¤ºèƒŒæ™¯è‰²
+    this.DarkBorder = "#D4D0C8";    //æ—¥æœŸæ˜¾ç¤ºçš„ç«‹ä½“è¡¨è¾¾è‰²
 }   var WebCalendar = new WebCalendar();
-function calendar() //Ö÷µ÷º¯Êı
+function calendar() //ä¸»è°ƒå‡½æ•°
 {
+	WebCalendar.timeShow   = true;
     var e = window.event.srcElement;   writeIframe();
     var o = WebCalendar.calendar.style; WebCalendar.eventSrc = e;
  if (arguments.length == 0) WebCalendar.objExport = e;
@@ -151,7 +152,7 @@ function calendar() //Ö÷µ÷º¯Êı
                 WebCalendar.thisYear   = new Date().getFullYear();
                 WebCalendar.thisMonth  = new Date().getMonth()+ 1;
                 WebCalendar.thisDay    = new Date().getDate();
-                alert("Ô­ÎÄ±¾¿òÀïµÄÈÕÆÚÓĞ´íÎó£¡\n¿ÉÄÜÓëÄã¶¨ÒåµÄÏÔÊ¾Ê±·ÖÃëÓĞ³åÍ»£¡");
+                alert("åŸæ–‡æœ¬æ¡†é‡Œçš„æ—¥æœŸæœ‰é”™è¯¯ï¼\nå¯èƒ½ä¸ä½ å®šä¹‰çš„æ˜¾ç¤ºæ—¶åˆ†ç§’æœ‰å†²çªï¼");
                 writeCalendar(); return false;
             }
             else
@@ -165,14 +166,55 @@ function calendar() //Ö÷µ÷º¯Êı
         }  else writeCalendar();
     }  catch(e){writeCalendar();}
 }
-function funMonthSelect() //ÔÂ·İµÄÏÂÀ­¿ò
+function calendar_date() //ä¸»è°ƒå‡½æ•°
+{
+	WebCalendar.timeShow   = false;
+    var e = window.event.srcElement;   writeIframe();
+    var o = WebCalendar.calendar.style; WebCalendar.eventSrc = e;
+ if (arguments.length == 0) WebCalendar.objExport = e;
+    else WebCalendar.objExport = eval(arguments[0]);
+    WebCalendar.iframe.tableWeek.style.cursor = WebCalendar.drag ? "move" : "default";
+ var t = e.offsetTop,  h = e.clientHeight, l = e.offsetLeft, p = e.type;
+ while (e = e.offsetParent){t += e.offsetTop; l += e.offsetLeft;}
+    o.display = ""; WebCalendar.iframe.document.body.focus();
+    var cw = WebCalendar.calendar.clientWidth, ch = WebCalendar.calendar.clientHeight;
+    var dw = document.body.clientWidth, dl = document.body.scrollLeft, dt = document.body.scrollTop;
+   
+    if (document.body.clientHeight + dt - t - h >= ch) o.top = (p=="image")? t + h : t + h + 6;
+    else o.top  = (t - dt < ch) ? ((p=="image")? t + h : t + h + 6) : t - ch;
+    if (dw + dl - l >= cw) o.left = l; else o.left = (dw >= cw) ? dw - cw + dl : dl;
+    if  (!WebCalendar.timeShow) WebCalendar.dateReg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2})$/;
+    else WebCalendar.dateReg = /^(\d{1,4})(-|\/)(\d{1,2})\2(\d{1,2}) (\d{1,2}):(\d{1,2}):(\d{1,2})$/;
+    try{
+        if (WebCalendar.objExport.value.trim() != ""){
+            WebCalendar.dateStyle = WebCalendar.objExport.value.trim().match(WebCalendar.dateReg);
+            if (WebCalendar.dateStyle == null)
+            {
+                WebCalendar.thisYear   = new Date().getFullYear();
+                WebCalendar.thisMonth  = new Date().getMonth()+ 1;
+                WebCalendar.thisDay    = new Date().getDate();
+                alert("åŸæ–‡æœ¬æ¡†é‡Œçš„æ—¥æœŸæœ‰é”™è¯¯ï¼\nå¯èƒ½ä¸ä½ å®šä¹‰çš„æ˜¾ç¤ºæ—¶åˆ†ç§’æœ‰å†²çªï¼");
+                writeCalendar(); return false;
+            }
+            else
+            {
+                WebCalendar.thisYear   = parseInt(WebCalendar.dateStyle[1], 10);
+                WebCalendar.thisMonth  = parseInt(WebCalendar.dateStyle[3], 10);
+                WebCalendar.thisDay    = parseInt(WebCalendar.dateStyle[4], 10);
+                WebCalendar.inputDate  = parseInt(WebCalendar.thisDay, 10) +"/"+ parseInt(WebCalendar.thisMonth, 10) +"/"+
+                parseInt(WebCalendar.thisYear, 10); writeCalendar();
+            }
+        }  else writeCalendar();
+    }  catch(e){writeCalendar();}
+}
+function funMonthSelect() //æœˆä»½çš„ä¸‹æ‹‰æ¡†
 {
     var m = isNaN(parseInt(WebCalendar.thisMonth, 10)) ? new Date().getMonth() + 1 : parseInt(WebCalendar.thisMonth);
     var e = WebCalendar.iframe.document.forms[0].tmpMonthSelect;
-    for (var i=1; i<13; i++) e.options.add(new Option(i +"ÔÂ", i));
+    for (var i=1; i<13; i++) e.options.add(new Option(i +"æœˆ", i));
     e.style.display = ""; e.value = m; e.focus(); window.status = e.style.top;
 }
-function funYearSelect() //Äê·İµÄÏÂÀ­¿ò
+function funYearSelect() //å¹´ä»½çš„ä¸‹æ‹‰æ¡†
 {
     var n = WebCalendar.yearFall;
     var e = WebCalendar.iframe.document.forms[0].tmpYearSelect;
@@ -182,35 +224,35 @@ function funYearSelect() //Äê·İµÄÏÂÀ­¿ò
     var max = (y + n <= 9999) ? y + n : 9999;
         min = (max == 9999) ? max-n*2 : min;
         max = (min == 1000) ? min+n*2 : max;
-    for (var i=min; i<=max; i++) e.options.add(new Option(i +"Äê", i));
+    for (var i=min; i<=max; i++) e.options.add(new Option(i +"å¹´", i));
     e.style.display = ""; e.value = y; e.focus();
 }
 
-function funHourSelect() //Ğ¡Ê±µÄÏÂÀ­¿ò
+function funHourSelect() //å°æ—¶çš„ä¸‹æ‹‰æ¡†
 {
     var e = WebCalendar.iframe.document.forms[0].tmpHourSelect;
     var h = isNaN(parseInt(WebCalendar.thisHour, 10)) ? new Date().getHours() : parseInt(WebCalendar.thisHour);
-    for (var i=0; i<=23; i++) e.options.add(new Option(appendZero(i) +"Ê±", i));
+    for (var i=0; i<=23; i++) e.options.add(new Option(appendZero(i) +"æ—¶", i));
     e.style.display = ""; e.value = h; e.focus();
 }
 
-function funMinuteSelect() //·ÖÖÓµÄÏÂÀ­¿ò
+function funMinuteSelect() //åˆ†é’Ÿçš„ä¸‹æ‹‰æ¡†
 {
     var e = WebCalendar.iframe.document.forms[0].tmpMinuteSelect;
     var mi = isNaN(parseInt(WebCalendar.thisMinute, 10)) ? new Date().getMinutes() : parseInt(WebCalendar.thisMinute);
-    for (var i=0; i<=59; i++) e.options.add(new Option(appendZero(i) +"·Ö", i));
+    for (var i=0; i<=59; i++) e.options.add(new Option(appendZero(i) +"åˆ†", i));
     e.style.display = ""; e.value = mi; e.focus();
 }
 
-function funSecondSelect() //ÃëµÄÏÂÀ­¿ò
+function funSecondSelect() //ç§’çš„ä¸‹æ‹‰æ¡†
 {
     var e = WebCalendar.iframe.document.forms[0].tmpSecondSelect;
     var s = isNaN(parseInt(WebCalendar.thisSecond, 10)) ? new Date().getSecondes() : parseInt(WebCalendar.thisSecond);
-    for (var i=0; i<=59; i++) e.options.add(new Option(appendZero(i) +"Ãë", i));
+    for (var i=0; i<=59; i++) e.options.add(new Option(appendZero(i) +"ç§’", i));
     e.style.display = ""; e.value = s; e.focus();
 }
 
-function prevM()  //ÍùÇ°·­ÔÂ·İ
+function prevM()  //å¾€å‰ç¿»æœˆä»½
 {
     WebCalendar.thisDay = 1;
     if (WebCalendar.thisMonth==1)
@@ -220,7 +262,7 @@ function prevM()  //ÍùÇ°·­ÔÂ·İ
     }
     WebCalendar.thisMonth--; writeCalendar();
 }
-function nextM()  //Íùºó·­ÔÂ·İ
+function nextM()  //å¾€åç¿»æœˆä»½
 {
     WebCalendar.thisDay = 1;
     if (WebCalendar.thisMonth==12)
@@ -231,7 +273,7 @@ function nextM()  //Íùºó·­ÔÂ·İ
     WebCalendar.thisMonth++; writeCalendar();
 }
 
-function prevH()   //ÍùÇ°·­Ğ¡Ê±
+function prevH()   //å¾€å‰ç¿»å°æ—¶
 {
     WebCalendar.thisHour--;
     if(WebCalendar.thisHour==-1)
@@ -240,7 +282,7 @@ function prevH()   //ÍùÇ°·­Ğ¡Ê±
     }
     writeCalendar();
 }
-function nextH()   //Íùºó·­Ğ¡Ê±
+function nextH()   //å¾€åç¿»å°æ—¶
 {
     WebCalendar.thisHour++;
     if(WebCalendar.thisHour==24)
@@ -251,7 +293,7 @@ function nextH()   //Íùºó·­Ğ¡Ê±
 }
 
 
-function prevMi()   //ÍùÇ°·­Ğ¡Ê±
+function prevMi()   //å¾€å‰ç¿»å°æ—¶
 {
     WebCalendar.thisMinute--;
     if(WebCalendar.thisMinute==-1)
@@ -260,7 +302,7 @@ function prevMi()   //ÍùÇ°·­Ğ¡Ê±
     }
     writeCalendar();
 }
-function nextMi()   //Íùºó·­Ğ¡Ê±
+function nextMi()   //å¾€åç¿»å°æ—¶
 {
     WebCalendar.thisMinute++;
     if(WebCalendar.thisMinute==60)
@@ -271,12 +313,12 @@ function nextMi()   //Íùºó·­Ğ¡Ê±
 }
 
 
-function prevY(){WebCalendar.thisDay = 1; WebCalendar.thisYear--; writeCalendar();}//ÍùÇ°·­ Year
-function nextY(){WebCalendar.thisDay = 1; WebCalendar.thisYear++; writeCalendar();}//Íùºó·­ Year
+function prevY(){WebCalendar.thisDay = 1; WebCalendar.thisYear--; writeCalendar();}//å¾€å‰ç¿» Year
+function nextY(){WebCalendar.thisDay = 1; WebCalendar.thisYear++; writeCalendar();}//å¾€åç¿» Year
 function hiddenSelect(e){for(var i=e.options.length; i>-1; i--)e.options.remove(i); e.style.display="none";}
 function getObjectById(id){ if(document.all) return(eval("document.all."+ id)); return(eval(id)); }
 function hiddenCalendar(){getObjectById("meizzCalendarLayer").style.display = "none";};
-function appendZero(n){return(("00"+ n).substr(("00"+ n).length-2));}//ÈÕÆÚ×Ô¶¯²¹Áã³ÌĞò
+function appendZero(n){return(("00"+ n).substr(("00"+ n).length-2));}//æ—¥æœŸè‡ªåŠ¨è¡¥é›¶ç¨‹åº
 function String.prototype.trim(){return this.replace(/(^\s*)|(\s*$)/g,"");}
 function dayMouseOver()
 {
@@ -296,7 +338,7 @@ function dayMouseOut()
         this.style.color = WebCalendar.wordColor;
     }
 }
-function writeCalendar() //¶ÔÈÕÀúÏÔÊ¾µÄÊı¾İµÄ´¦Àí³ÌĞò
+function writeCalendar() //å¯¹æ—¥å†æ˜¾ç¤ºçš„æ•°æ®çš„å¤„ç†ç¨‹åº
 {
     var y = WebCalendar.thisYear;
     var m = WebCalendar.thisMonth;
@@ -306,7 +348,7 @@ function writeCalendar() //¶ÔÈÕÀúÏÔÊ¾µÄÊı¾İµÄ´¦Àí³ÌĞò
     var s = WebCalendar.thisSecond;
     WebCalendar.daysMonth[1] = (0==y%4 && (y%100!=0 || y%400==0)) ? 29 : 28;
     if (!(y<=9999 && y >= 1000 && parseInt(m, 10)>0 && parseInt(m, 10)<13 && parseInt(d, 10)>0)){
-        alert("¶Ô²»Æğ£¬ÄãÊäÈëÁË´íÎóµÄÈÕÆÚ£¡");
+        alert("å¯¹ä¸èµ·ï¼Œä½ è¾“å…¥äº†é”™è¯¯çš„æ—¥æœŸï¼");
         WebCalendar.thisYear   = new Date().getFullYear();
         WebCalendar.thisMonth  = new Date().getMonth()+ 1;
         WebCalendar.thisDay    = new Date().getDate();
@@ -321,16 +363,16 @@ function writeCalendar() //¶ÔÈÕÀúÏÔÊ¾µÄÊı¾İµÄ´¦Àí³ÌĞò
         mi = WebCalendar.thisMinute;
         s = WebCalendar.thisSecond;
 
-    WebCalendar.iframe.meizzYearHead.innerText  = y +" Äê";
-    WebCalendar.iframe.meizzYearMonth.innerText = parseInt(m, 10) +" ÔÂ";
-    WebCalendar.iframe.meizzHourHead.innerText =appendZero(parseInt(h, 10)) +" Ê±";
-    WebCalendar.iframe.meizzMinuteHead.innerText =appendZero(parseInt(mi, 10)) +" ·Ö";
-    WebCalendar.iframe.meizzSecondHead.innerText =appendZero(parseInt(s, 10))+" Ãë";
+    WebCalendar.iframe.meizzYearHead.innerText  = y +" å¹´";
+    WebCalendar.iframe.meizzYearMonth.innerText = parseInt(m, 10) +" æœˆ";
+    WebCalendar.iframe.meizzHourHead.innerText =appendZero(parseInt(h, 10)) +" æ—¶";
+    WebCalendar.iframe.meizzMinuteHead.innerText =appendZero(parseInt(mi, 10)) +" åˆ†";
+    WebCalendar.iframe.meizzSecondHead.innerText =appendZero(parseInt(s, 10))+" ç§’";
 
-    WebCalendar.daysMonth[1] = (0==y%4 && (y%100!=0 || y%400==0)) ? 29 : 28; //ÈòÄê¶şÔÂÎª29Ìì
+    WebCalendar.daysMonth[1] = (0==y%4 && (y%100!=0 || y%400==0)) ? 29 : 28; //é—°å¹´äºŒæœˆä¸º29å¤©
     var w = new Date(y, m-1, 1).getDay();
     var prevDays = m==1  ? WebCalendar.daysMonth[11] : WebCalendar.daysMonth[m-2];
-    for(var i=(w-1); i>=0; i--) //ÕâÈı¸ö for Ñ­»·ÎªÈÕÀú¸³Êı¾İÔ´£¨Êı×é WebCalendar.day£©¸ñÊ½ÊÇ d/m/yyyy
+    for(var i=(w-1); i>=0; i--) //è¿™ä¸‰ä¸ª for å¾ªç¯ä¸ºæ—¥å†èµ‹æ•°æ®æºï¼ˆæ•°ç»„ WebCalendar.dayï¼‰æ ¼å¼æ˜¯ d/m/yyyy
     {
         WebCalendar.day[i] = prevDays +"/"+ (parseInt(m, 10)-1) +"/"+ y;
         if(m==1) WebCalendar.day[i] = prevDays +"/"+ 12 +"/"+ (parseInt(y, 10)-1);
@@ -342,7 +384,7 @@ function writeCalendar() //¶ÔÈÕÀúÏÔÊ¾µÄÊı¾İµÄ´¦Àí³ÌĞò
         WebCalendar.day[WebCalendar.daysMonth[m-1]+w-1+i] = i +"/"+ (parseInt(m, 10)+1) +"/"+ y;
         if(m==12) WebCalendar.day[WebCalendar.daysMonth[m-1]+w-1+i] = i +"/"+ 1 +"/"+ (parseInt(y, 10)+1);
     }
-    for(var i=0; i<39; i++)    //Õâ¸öÑ­»·ÊÇ¸ù¾İÔ´Êı×éĞ´µ½ÈÕÀúÀïÏÔÊ¾
+    for(var i=0; i<39; i++)    //è¿™ä¸ªå¾ªç¯æ˜¯æ ¹æ®æºæ•°ç»„å†™åˆ°æ—¥å†é‡Œæ˜¾ç¤º
     {
         var a = WebCalendar.day[i].split("/");
         WebCalendar.dayObj[i].innerText    = a[0];
@@ -351,21 +393,21 @@ function writeCalendar() //¶ÔÈÕÀúÏÔÊ¾µÄÊı¾İµÄ´¦Àí³ÌĞò
         WebCalendar.dayObj[i].style.color  = WebCalendar.wordColor;
         if ((i<10 && parseInt(WebCalendar.day[i], 10)>20) || (i>27 && parseInt(WebCalendar.day[i], 10)<12))
             WebCalendar.dayObj[i].style.color = WebCalendar.wordDark;
-        if (WebCalendar.inputDate==WebCalendar.day[i])    //ÉèÖÃÊäÈë¿òÀïµÄÈÕÆÚÔÚÈÕÀúÉÏµÄÑÕÉ«
+        if (WebCalendar.inputDate==WebCalendar.day[i])    //è®¾ç½®è¾“å…¥æ¡†é‡Œçš„æ—¥æœŸåœ¨æ—¥å†ä¸Šçš„é¢œè‰²
         {WebCalendar.dayObj[i].bgColor = WebCalendar.darkColor; WebCalendar.dayObj[i].style.color = WebCalendar.lightColor;}
-        if (WebCalendar.day[i] == WebCalendar.today)      //ÉèÖÃ½ñÌìÔÚÈÕÀúÉÏ·´Ó¦³öÀ´µÄÑÕÉ«
+        if (WebCalendar.day[i] == WebCalendar.today)      //è®¾ç½®ä»Šå¤©åœ¨æ—¥å†ä¸Šååº”å‡ºæ¥çš„é¢œè‰²
         {WebCalendar.dayObj[i].bgColor = WebCalendar.todayColor; WebCalendar.dayObj[i].style.color = WebCalendar.lightColor;}
     }
 }
-function returnDate() //¸ù¾İÈÕÆÚ¸ñÊ½µÈ·µ»ØÓÃ»§Ñ¡¶¨µÄÈÕÆÚ
+function returnDate() //æ ¹æ®æ—¥æœŸæ ¼å¼ç­‰è¿”å›ç”¨æˆ·é€‰å®šçš„æ—¥æœŸ
 {
     if(WebCalendar.objExport)
     {
         var returnValue;
         var a = (arguments.length==0) ? WebCalendar.day[this.id.substr(8)].split("/") : arguments[0].split("/");
         var d = WebCalendar.format.match(/^(\w{4})(-|\/)(\w{1,2})\2(\w{1,2})$/);
-        if(d==null){alert("ÄãÉè¶¨µÄÈÕÆÚÊä³ö¸ñÊ½²»¶Ô£¡\r\n\r\nÇëÖØĞÂ¶¨Òå WebCalendar.format £¡"); return false;}
-        var flag = d[3].length==2 || d[4].length==2; //ÅĞ¶Ï·µ»ØµÄÈÕÆÚ¸ñÊ½ÊÇ·ñÒª²¹Áã
+        if(d==null){alert("ä½ è®¾å®šçš„æ—¥æœŸè¾“å‡ºæ ¼å¼ä¸å¯¹ï¼\r\n\r\nè¯·é‡æ–°å®šä¹‰ WebCalendar.format ï¼"); return false;}
+        var flag = d[3].length==2 || d[4].length==2; //åˆ¤æ–­è¿”å›çš„æ—¥æœŸæ ¼å¼æ˜¯å¦è¦è¡¥é›¶
         returnValue = flag ? a[2] +d[2]+ appendZero(a[1]) +d[2]+ appendZero(a[0]) : a[2] +d[2]+ a[1] +d[2]+ a[0];
         if(WebCalendar.timeShow)
         {

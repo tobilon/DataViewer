@@ -48,11 +48,11 @@ public class CustomerServlet extends HttpServlet {
 		Map cellMap = new HashMap();
 		
 		if(request.getParameter("cnamevalue")!=""){
-			cellMap.put("name", new String(request.getParameter("cnamevalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("name", request.getParameter("cnamevalue"));
 		}
 			
 		if(request.getParameter("csexvalue") != ""){
-			cellMap.put("sex", new String(request.getParameter("csexvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("sex", request.getParameter("csexvalue"));
 		}
 		
 		if(request.getParameter("cage1value") != ""){
@@ -65,17 +65,17 @@ public class CustomerServlet extends HttpServlet {
 		
 		if(request.getParameter("ctitlevalue") != "")
 		{
-			cellMap.put("actor", new String(request.getParameter("ctitlevalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("actor", request.getParameter("ctitlevalue"));
 		}
 		
 		if(request.getParameter("cprovincevalue") != "")
 		{
-			cellMap.put("province", new String(request.getParameter("cprovincevalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("province", request.getParameter("cprovincevalue"));
 		}
 		
 		if(request.getParameter("ccityvalue") != "")
 		{
-			cellMap.put("city", new String(request.getParameter("ccityvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("city", request.getParameter("ccityvalue"));
 		}
 
 		if(request.getParameter("cpostvalue") != "")
@@ -95,12 +95,12 @@ public class CustomerServlet extends HttpServlet {
 		
 		if(request.getParameter("caddrvalue") != "")
 		{
-			cellMap.put("address", new String(request.getParameter("caddrvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("address", request.getParameter("caddrvalue"));
 		}
 
 		if(request.getParameter("ccompanyvalue") != "")
 		{
-			cellMap.put("company", new String(request.getParameter("ccompanyvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("company", request.getParameter("ccompanyvalue"));
 		}
 		
 		if(request.getParameter("ctypevalue")!="0")
@@ -115,7 +115,7 @@ public class CustomerServlet extends HttpServlet {
 		
 		if(request.getParameter("cothervalue") != "")
 		{
-			cellMap.put("extra", new String(request.getParameter("cothervalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("extra", request.getParameter("cothervalue"));
 		}
 		
 		if(request.getParameter("ctypelogic") != "")
@@ -297,7 +297,7 @@ public class CustomerServlet extends HttpServlet {
 		}			
 		
 		String searchtype=new String(request.getParameter("searchtype").getBytes("ISO8859-1"), "UTF-8");
-		String query=new String(request.getParameter("query").getBytes("ISO8859-1"), "UTF-8");
+		String query=request.getParameter("query");
 		String qtype=new String(request.getParameter("qtype").getBytes("ISO8859-1"), "UTF-8");
 				
 		// ��õ�ǰҳ��?

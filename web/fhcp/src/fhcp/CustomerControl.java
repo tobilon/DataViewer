@@ -641,7 +641,6 @@ public class CustomerControl extends Customer{
 					else
 						fieldValue = fieldValue.trim();
 					hdRow.put(colum[i].toLowerCase(), fieldValue);
-					System.out.println(colum[i].toLowerCase());
 				}
 			}
 			
