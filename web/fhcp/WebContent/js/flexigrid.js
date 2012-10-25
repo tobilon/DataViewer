@@ -6,7 +6,7 @@
  * http://jquery.org/license
  *
  */
-var provinces=",åŒ—äº¬,ä¸Šæµ·,å¤©æ´¥,é‡åº†, æ²³åŒ—,å±±è¥¿,å†…è’™å¤,è¾½å®,å‰æ—,é»‘é¾™æ±Ÿ,æ±Ÿè‹,æµ™æ±Ÿ,å®‰å¾½,ç¦å»º,æ±Ÿè¥¿,å±±ä¸œ,æ²³å—,æ¹–åŒ—,æ¹–å—,å¹¿ä¸œ,å¹¿è¥¿,æµ·å—,å››å·,è´µå·,äº‘å—,è¥¿è—,é™•è¥¿,ç”˜è‚ƒ,å®å¤,é’æµ·,æ–°ç–†,é¦™æ¸¯,æ¾³é—¨,å°æ¹¾";
+var provinces=",±±¾©,ÉÏº£,Ìì½ò,ÖØÇì, ºÓ±±,É½Î÷,ÄÚÃÉ¹Å,ÁÉÄş,¼ªÁÖ,ºÚÁú½­,½­ËÕ,Õã½­,°²»Õ,¸£½¨,½­Î÷,É½¶«,ºÓÄÏ,ºş±±,ºşÄÏ,¹ã¶«,¹ãÎ÷,º£ÄÏ,ËÄ´¨,¹óÖİ,ÔÆÄÏ,Î÷²Ø,ÉÂÎ÷,¸ÊËà,ÄşÏÄ,Çàº£,ĞÂ½®,Ïã¸Û,°ÄÃÅ,Ì¨Íå";
 var province=provinces.split(",");
 
 (function ($) {
@@ -47,6 +47,7 @@ var province=provinces.split(",");
 		    cprovincevalue:'',
 		    ccityvalue:'',
 		    cpostvalue:'',
+		    cmobilevalue:'',
 		    cfixvalue:'',
 		    cidvalue:'',
 		    caddrvalue:'',
@@ -543,9 +544,15 @@ var province=provinces.split(",");
 					name: 'cpostvalue',
 					value: p.cpostvalue
 				},{
+					name: 'cmobilevalue',
+					value: p.cmobilevalue
+				},{
 					name: 'cfixvalue',
 					value: p.cfixvalue
-				},{
+				},{			
+					name: 'cmailvalue',
+					value: p.cmailvalue
+				},{	
 					name: 'cidvalue',
 					value: p.cidvalue
 				},{
@@ -565,15 +572,19 @@ var province=provinces.split(",");
 					value: p.csourcevalue
 				},{
 					name: 'cothervalue',
-					value: p.cothervalue
+					value: p.cothervalue					
+				},{
+					name: 'cservicestate',
+					value: p.cservicestate					
 				},{
 					name: 'cservidvalue',
 					value: p.cservidvalue
 				}
+				
 				];
 				for (var pi = 0; pi < param.length; pi++)
 				{
-					filterStr += '&'+param[pi].name+'='+param[pi].value;
+					filterStr += '&'+param[pi].name+'='+encodeURI(encodeURI(param[pi].value));
 				}
 				return filterStr;
 			},
@@ -657,6 +668,12 @@ var province=provinces.split(",");
 					name: 'cfixvalue',
 					value: p.cfixvalue
 				},{
+					name: 'cmailvalue',
+					value: p.cmailvalue
+				},{
+					name: 'cmobilevalue',
+					value: p.cmobilevalue
+				},{
 					name: 'cidvalue',
 					value: p.cidvalue
 				},{
@@ -677,6 +694,9 @@ var province=provinces.split(",");
 				},{
 					name: 'cothervalue',
 					value: p.cothervalue
+				},{
+					name: 'cservicestate',
+					value: p.cservicestate
 				},{
 					name: 'cservidvalue',
 					value: p.cservidvalue
@@ -1173,8 +1193,8 @@ var province=provinces.split(",");
 
 			//add search and advanced search button
 			if (p.searchitems) {
-				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pAdvSearch pButton'></div></div><div class='pGroup'><span class='pcontrol'>é«˜çº§æŸ¥è¯¢</span></div>");
-				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pSearch pButton'></div></div><div class='pGroup'><span class='pcontrol'>ä¸€èˆ¬æŸ¥è¯¢</span></div>");
+				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pAdvSearch pButton'></div></div><div class='pGroup'><span class='pcontrol'>¸ß¼¶²éÑ¯</span></div>");
+				$('.pDiv2', g.pDiv).prepend("<div class='pGroup'> <div class='pSearch pButton'></div></div><div class='pGroup'><span class='pcontrol'>Ò»°ã²éÑ¯</span></div>");
 				$('.pAdvSearch', g.pDiv).click(function () {
 					$(g.s1Div).slideToggle('fast', function() {
 						$('.s1Div:visible input:first', g.gDiv).trigger('focus');
@@ -1188,32 +1208,32 @@ var province=provinces.split(",");
 				g.s1Div.className = 's1Div';
 				$(g.s1Div).append("<div class='s1Div2'>" +
 						"<form method='post'>"+
-						"&nbsp;å§“å&nbsp;"+"<input type='text' value='' size='10' name='cname' class='qsbox' /> "+
-						"&nbsp;æ€§åˆ«&nbsp;"+"<select name='csex'><option value='' selected='selected'>ä¸é™</option><option value='ç”·'>ç”·</option><option value='å¥³'>å¥³</option></select>" +
-						"&nbsp;å¹´é¾„&nbsp;"+"<input type='text' value='' size='11' name='cage1' class='qsbox' onClick='calendar_date()'/>--"+
+						"&nbsp;ĞÕÃû&nbsp;"+"<input type='text' value='' size='10' name='cname' class='qsbox' /> "+
+						"&nbsp;ĞÔ±ğ&nbsp;"+"<select name='csex'><option value='' selected='selected'>²»ÏŞ</option><option value='ÄĞ'>ÄĞ</option><option value='Å®'>Å®</option></select>" +
+						"&nbsp;ÄêÁä&nbsp;"+"<input type='text' value='' size='11' name='cage1' class='qsbox' onClick='calendar_date()'/>--"+
 						"<input type='text' value='' size='11' name='cage2' class='qsbox' onClick='calendar_date()'/>"+
-						"&nbsp;èŒä½&nbsp;"+"<input type='text' value='' size='10' name='ctitle' class='qsbox' /><br><br>"+
-						"&nbsp;çœä»½&nbsp;"+"<select name='cprovince'><option value='0' selected='selected'>ä¸é™</option>"+
-						"<option value='1'>åŒ—äº¬</option><option value='2'>ä¸Šæµ·</option><option value='3'>å¤©æ´¥</option><option value='4'>é‡åº†</option><option value='5'>æ²³åŒ—</option>"+
-					    "<option value='6'>å±±è¥¿</option><option value='7'>å†…è’™å¤</option><option value='8'>è¾½å®</option><option value='9'>å‰æ—</option><option value='10'>é»‘é¾™æ±Ÿ</option>"+
-					    "<option value='11'>æ±Ÿè‹</option><option value='12'>æµ™æ±Ÿ</option><option value='13'>å®‰å¾½</option><option value='14'>ç¦å»º</option><option value='15'>æ±Ÿè¥¿</option>"+
-					    "<option value='16'>å±±ä¸œ</option><option value='17'>æ²³å—</option><option value='18'>æ¹–åŒ—</option><option value='19'>æ¹–å—</option><option value='20'>å¹¿ä¸œ</option>"+
-					    "<option value='21'>å¹¿è¥¿</option><option value='22'>æµ·å—</option><option value='23'>å››å·</option><option value='24'>è´µå·</option><option value='25'>äº‘å—</option>"+
-					    "<option value='26'>è¥¿è—</option><option value='27'>é™•è¥¿</option><option value='28'>ç”˜è‚ƒ</option><option value='29'>å®å¤</option><option value='30'>é’æµ·</option>"+
-					    "<option value='31'>æ–°ç–†</option><option value='32'>é¦™æ¸¯</option><option value='33'>æ¾³é—¨</option><option value='34'>å°æ¹¾</option> </select>"+
-						"&nbsp;åŸå¸‚&nbsp;"+"<select name='ccity'><option selected='selected'></option></select>"+
-						"&nbsp;é‚®ç¼–&nbsp;"+"<input type='text' value='' size='10' name='cpost' class='qsbox' />" +
-						"&nbsp;å›ºè¯&nbsp;"+"<input type='text' value='' size='10' name='cfix' class='qsbox' /><br><br>"+
-						"&nbsp;èº«ä»½è¯&nbsp;"+"<input type='text' value='' size='20' name='cid' class='qsbox' />"+
-						"&nbsp;åœ°å€&nbsp;"+"<input type='text' value='' size='30' name='caddr' class='qsbox' />"+
-						"&nbsp;å…¬å¸&nbsp;"+"<input type='text' value='' size='20' name='ccompany' class='qsbox' /><br><br>"+
-						"<div class='cusertype'>&nbsp;è¿ç®—é€»è¾‘&nbsp;<input type='radio' name='clogic' checked='checked' value='and' class='qsbox'/>&nbsp;äº¤é›†&nbsp;<input type='radio' name='clogic' value='or' class='qsbox'/>&nbsp;åˆé›†&nbsp;</div><br>"+						
-						"&nbsp;æ•°æ®æ¥æº&nbsp;"+"<input type='text' value='' size='10' name='csource' class='qsbox' />"+
-						"&nbsp;å¤‡æ³¨&nbsp;"+"<input type='text' value='' size='30' name='cother' class='qsbox' /><br><br>"+
-						"<input type='button' name='advsearchbtn' value='é«˜çº§æŸ¥è¯¢'> &nbsp;&nbsp;<input type=reset value='æ¸…é™¤'> &nbsp;&nbsp;<input type='button' name='exphonebtn' value='å¯¼å‡ºæ‰‹æœºå·ç '>&nbsp;&nbsp;<input type='button' name='exmailbtn' value='å¯¼å‡ºé‚®ç®±åœ°å€'><br><br>"+
-						"&nbsp;ä¸šåŠ¡å‘ç”Ÿæ—¶é—´&nbsp;"+"<input type='text' value='' size='20' name='cservtime' class='qsbox' onClick='calendar_date()'/>&nbsp;&nbsp;<image name='servid' src='images/find.png' style='cursor: hand' alt='æŸ¥çœ‹ä¸šåŠ¡è¯¦æƒ…' />"+
+						"&nbsp;Ö°Î»&nbsp;"+"<input type='text' value='' size='10' name='ctitle' class='qsbox' /><br><br>"+
+						"&nbsp;Ê¡·İ&nbsp;"+"<select name='cprovince'><option value='0' selected='selected'>²»ÏŞ</option>"+
+						"<option value='1'>±±¾©</option><option value='2'>ÉÏº£</option><option value='3'>Ìì½ò</option><option value='4'>ÖØÇì</option><option value='5'>ºÓ±±</option>"+
+					    "<option value='6'>É½Î÷</option><option value='7'>ÄÚÃÉ¹Å</option><option value='8'>ÁÉÄş</option><option value='9'>¼ªÁÖ</option><option value='10'>ºÚÁú½­</option>"+
+					    "<option value='11'>½­ËÕ</option><option value='12'>Õã½­</option><option value='13'>°²»Õ</option><option value='14'>¸£½¨</option><option value='15'>½­Î÷</option>"+
+					    "<option value='16'>É½¶«</option><option value='17'>ºÓÄÏ</option><option value='18'>ºş±±</option><option value='19'>ºşÄÏ</option><option value='20'>¹ã¶«</option>"+
+					    "<option value='21'>¹ãÎ÷</option><option value='22'>º£ÄÏ</option><option value='23'>ËÄ´¨</option><option value='24'>¹óÖİ</option><option value='25'>ÔÆÄÏ</option>"+
+					    "<option value='26'>Î÷²Ø</option><option value='27'>ÉÂÎ÷</option><option value='28'>¸ÊËà</option><option value='29'>ÄşÏÄ</option><option value='30'>Çàº£</option>"+
+					    "<option value='31'>ĞÂ½®</option><option value='32'>Ïã¸Û</option><option value='33'>°ÄÃÅ</option><option value='34'>Ì¨Íå</option> </select>"+
+						"&nbsp;³ÇÊĞ&nbsp;"+"<select name='ccity'><option selected='selected'></option></select>"+
+						"&nbsp;ÓÊ±à&nbsp;"+"<input type='text' value='' size='10' name='cpost' class='qsbox' />" +
+						"&nbsp;¹Ì»°&nbsp;"+"<input type='text' value='' size='10' name='cfix' class='qsbox' /><br><br>"+
+						"&nbsp;Éí·İÖ¤&nbsp;"+"<input type='text' value='' size='20' name='cid' class='qsbox' />"+
+						"&nbsp;µØÖ·&nbsp;"+"<input type='text' value='' size='30' name='caddr' class='qsbox' />"+
+						"&nbsp;¹«Ë¾&nbsp;"+"<input type='text' value='' size='20' name='ccompany' class='qsbox' /><br><br>"+
+						"<div class='cusertype'>&nbsp;ÔËËãÂß¼­&nbsp;<input type='radio' name='clogic' checked='checked' value='and' class='qsbox'/>&nbsp;½»¼¯&nbsp;<input type='radio' name='clogic' value='or' class='qsbox'/>&nbsp;ºÏ¼¯&nbsp;</div><br>"+						
+						"&nbsp;Êı¾İÀ´Ô´&nbsp;"+"<input type='text' value='' size='10' name='csource' class='qsbox' />"+
+						"&nbsp;±¸×¢&nbsp;"+"<input type='text' value='' size='30' name='cother' class='qsbox' /><br><br>"+
+						"<input type='button' name='advsearchbtn' value='¸ß¼¶²éÑ¯'> &nbsp;&nbsp;<input type=reset value='Çå³ı'> &nbsp;&nbsp;<input type='button' name='exphonebtn' value='µ¼³öÊÖ»úºÅÂë'>&nbsp;&nbsp;<input type='button' name='exmailbtn' value='µ¼³öÓÊÏäµØÖ·'><br><br>"+
+						"&nbsp;ÒµÎñ·¢ÉúÊ±¼ä&nbsp;"+"<input type='text' value='' size='20' name='cservtime' class='qsbox' onClick='calendar_date()'/>&nbsp;&nbsp;<image name='servid' src='images/find.png' style='cursor: hand' alt='²é¿´ÒµÎñÏêÇé' />"+
 						"&nbsp;&nbsp;<select name='cservid' class='cserviceopt'></select><br><br>" +
-		                "<input type='button' name='markbtn' value='æ ‡è®°'>"+
+		                "<input type='button' name='markbtn' value='±ê¼Ç'>"+
 		                "</form>"+
 				        "</div>");
 				
@@ -1224,7 +1244,7 @@ var province=provinces.split(",");
 					dataType:'html',
 					success: function (data) {						
 						$('.cusertype', g.s1Div).prepend(data);
-						$('.cusertype', g.s1Div).prepend("&nbsp;æ•°æ®ç±»åˆ«&nbsp;");
+						$('.cusertype', g.s1Div).prepend("&nbsp;Êı¾İÀà±ğ&nbsp;");
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown) {
 						try {
@@ -1236,40 +1256,40 @@ var province=provinces.split(",");
 				$('select[name=cprovince]', g.s1Div).click(function (){
 					var x = [35];
 					x[0]="";
-					x[1]="åŒ—äº¬,ä¸œåŸ,è¥¿åŸ,å´‡æ–‡,å®£æ­¦,æœé˜³,ä¸°å°,çŸ³æ™¯å±±,æµ·æ·€,é—¨å¤´æ²Ÿ,æˆ¿å±±,é€šå·,é¡ºä¹‰,æ˜Œå¹³,å¤§å…´,å¹³è°·,æ€€æŸ”,å¯†äº‘,å»¶åº†" ;
-					x[2]="ä¸Šæµ·,é»„æµ¦,å¢æ¹¾,å¾æ±‡,é•¿å®,é™å®‰,æ™®é™€,é—¸åŒ—,è™¹å£,æ¨æµ¦,é—µè¡Œ,å®å±±,å˜‰å®š,æµ¦ä¸œ,é‡‘å±±,æ¾æ±Ÿ,é’æµ¦,å—æ±‡,å¥‰è´¤,å´‡æ˜" ;
-					x[3]="å¤©æ´¥,å’Œå¹³,ä¸œä¸½,æ²³ä¸œ,è¥¿é’,æ²³è¥¿,æ´¥å—,å—å¼€,åŒ—è¾°,æ²³åŒ—,æ­¦æ¸…,çº¢æŒ¢,å¡˜æ²½,æ±‰æ²½,å¤§æ¸¯,å®æ²³,é™æµ·,å®å»,è“Ÿå¿,å¤§é‚±åº„";
-					x[4]="é‡åº†,ä¸‡å·,æ¶ªé™µ,æ¸ä¸­,å¤§æ¸¡å£,æ±ŸåŒ—,æ²™åªå,ä¹é¾™å¡,å—å²¸,åŒ—ç¢š,ä¸‡ç››,åŒæŒ¢,æ¸åŒ—,å·´å—,é»”æ±Ÿ,é•¿å¯¿,ç¶¦æ±Ÿ,æ½¼å—,é“œæ¢,å¤§è¶³,è£æ˜Œ,å£å±±,æ¢å¹³,åŸå£,ä¸°éƒ½,å«æ±Ÿ,æ­¦éš†,å¿ å¿,å¼€å¿,äº‘é˜³,å¥‰èŠ‚,å·«å±±,å·«æºª,çŸ³æŸ±,ç§€å±±,é…‰é˜³,å½­æ°´,æ±Ÿæ´¥,åˆå·,æ°¸å·,å—å·";
-					x[5]="çŸ³å®¶åº„,é‚¯éƒ¸,é‚¢å°,ä¿å®š,å¼ å®¶å£,æ‰¿å¾·,å»ŠåŠ,å”å±±,ç§¦çš‡å²›,æ²§å·,è¡¡æ°´"; 
-					x[6]="å¤ªåŸ,å¤§åŒ,é˜³æ³‰,é•¿æ²»,æ™‹åŸ,æœ”å·,å•æ¢,å¿»å·,æ™‹ä¸­,ä¸´æ±¾,è¿åŸ"; 
-					x[7]="å‘¼å’Œæµ©ç‰¹,åŒ…å¤´,ä¹Œæµ·,èµ¤å³°,å‘¼ä¼¦è´å°”ç›Ÿ,é˜¿æ‹‰å–„ç›Ÿ,å“²é‡Œæœ¨ç›Ÿ,å…´å®‰ç›Ÿ,ä¹Œå…°å¯Ÿå¸ƒç›Ÿ,é”¡æ—éƒ­å‹’ç›Ÿ,å·´å½¦æ·–å°”ç›Ÿ,ä¼Šå…‹æ˜­ç›Ÿ" ;
-					x[8]="æ²ˆé˜³,å¤§è¿,éå±±,æŠšé¡º,æœ¬æºª,ä¸¹ä¸œ,é”¦å·,è¥å£,é˜œæ–°,è¾½é˜³,ç›˜é”¦,é“å²­,æœé˜³,è‘«èŠ¦å²›" ;
-					x[9]="é•¿æ˜¥,å‰æ—,å››å¹³,è¾½æº,é€šåŒ–,ç™½å±±,æ¾åŸ,ç™½åŸ,å»¶è¾¹" ;
-					x[10]="å“ˆå°”æ»¨,é½é½å“ˆå°”,ç‰¡ä¸¹æ±Ÿ,ä½³æœ¨æ–¯,å¤§åº†,ç»¥åŒ–,é¹¤å²—,é¸¡è¥¿,é»‘æ²³,åŒé¸­å±±,ä¼Šæ˜¥,ä¸ƒå°æ²³,å¤§å…´å®‰å²­" ;
-					x[11]="å—äº¬,é•‡æ±Ÿ,è‹å·,å—é€š,æ‰¬å·,ç›åŸ,å¾å·,è¿äº‘æ¸¯,å¸¸å·,æ— é”¡,å®¿è¿,æ³°å·,æ·®å®‰" ;
-					x[12]="æ­å·,å®æ³¢,æ¸©å·,å˜‰å…´,æ¹–å·,ç»å…´,é‡‘å,è¡¢å·,èˆŸå±±,å°å·,ä¸½æ°´" ;
-					x[13]="åˆè‚¥,èŠœæ¹–,èšŒåŸ ,é©¬éå±±,æ·®åŒ—,é“œé™µ,å®‰åº†,é»„å±±,æ»å·,å®¿å·,æ± å·,æ·®å—,å·¢æ¹–,é˜œé˜³,å…­å®‰,å®£åŸ,äº³å·" ;
-					x[14]="ç¦å·,å¦é—¨,è†ç”°,ä¸‰æ˜,æ³‰å·,æ¼³å·,å—å¹³,é¾™å²©,å®å¾·" ;
-					x[15]="å—æ˜Œå¸‚,æ™¯å¾·é•‡,ä¹æ±Ÿ,é¹°æ½­,èä¹¡,æ–°é¦€,èµ£å·,å‰å®‰,å®œæ˜¥,æŠšå·,ä¸Šé¥¶" ;
-					x[16]="æµå—,é’å²›,æ·„åš,æ£åº„,ä¸œè¥,çƒŸå°,æ½åŠ,æµå®,æ³°å®‰,å¨æµ·,æ—¥ç…§,è±èŠœ,ä¸´æ²‚,å¾·å·,èŠåŸ,æ»¨å·,èæ³½,åšå…´" ;
-					x[17]="éƒ‘å·,å¼€å°,æ´›é˜³,å¹³é¡¶å±±,å®‰é˜³,é¹¤å£,æ–°ä¹¡,ç„¦ä½œ,æ¿®é˜³,è®¸æ˜Œ,æ¼¯æ²³,ä¸‰é—¨å³¡,å—é˜³,å•†ä¸˜,ä¿¡é˜³,å‘¨å£,é©»é©¬åº—,æµæº" ;
-					x[18]="æ­¦æ±‰,å®œæ˜Œ,è†å·,è¥„æ¨Š,é»„çŸ³,è†é—¨,é»„å†ˆ,åå °,æ©æ–½,æ½œæ±Ÿ,å¤©é—¨,ä»™æ¡ƒ,éšå·,å’¸å®,å­æ„Ÿ,é„‚å·" ;
-					x[19]="é•¿æ²™,å¸¸å¾·,æ ªæ´²,æ¹˜æ½­,è¡¡é˜³,å²³é˜³,é‚µé˜³,ç›Šé˜³,å¨„åº•,æ€€åŒ–,éƒ´å·,æ°¸å·,æ¹˜è¥¿,å¼ å®¶ç•Œ" ;
-					x[20]="å¹¿å·,æ·±åœ³,ç æµ·,æ±•å¤´,ä¸œè,ä¸­å±±,ä½›å±±,éŸ¶å…³,æ±Ÿé—¨,æ¹›æ±Ÿ,èŒ‚å,è‚‡åº†,æƒ å·,æ¢…å·,æ±•å°¾,æ²³æº,é˜³æ±Ÿ,æ¸…è¿œ,æ½®å·,æ­é˜³,äº‘æµ®" ;
-					x[21]="å—å®,æŸ³å·,æ¡‚æ—,æ¢§å·,åŒ—æµ·,é˜²åŸæ¸¯,é’¦å·,è´µæ¸¯,ç‰æ—,å—å®åœ°åŒº,æŸ³å·åœ°åŒº,è´ºå·,ç™¾è‰²,æ²³æ± " ;
-					x[22]="æµ·å£,ä¸‰äºš" ;
-					x[23]="æˆéƒ½,ç»µé˜³,å¾·é˜³,è‡ªè´¡,æ”€æèŠ±,å¹¿å…ƒ,å†…æ±Ÿ,ä¹å±±,å—å……,å®œå®¾,å¹¿å®‰,è¾¾å·,é›…å®‰,çœ‰å±±,ç”˜å­œ,å‡‰å±±,æ³¸å·" ;
-					x[24]="è´µé˜³,å…­ç›˜æ°´,éµä¹‰,å®‰é¡º,é“œä»,é»”è¥¿å—,æ¯•èŠ‚,é»”ä¸œå—,é»”å—" ;
-					x[25]="æ˜†æ˜,å¤§ç†,æ›²é–,ç‰æºª,æ˜­é€š,æ¥šé›„,çº¢æ²³,æ–‡å±±,æ€èŒ…,è¥¿åŒç‰ˆçº³,ä¿å±±,å¾·å®,ä¸½æ±Ÿ,æ€’æ±Ÿ,è¿ªåº†,ä¸´æ²§" ;
-					x[26]="æ‹‰è¨,æ—¥å–€åˆ™,å±±å—,æ—èŠ,æ˜Œéƒ½,é˜¿é‡Œ,é‚£æ›²" ;
-					x[27]="è¥¿å®‰,å®é¸¡,å’¸é˜³,é“œå·,æ¸­å—,å»¶å®‰,æ¦†æ—,æ±‰ä¸­,å®‰åº·,å•†æ´›" ;
-					x[28]="å…°å·,å˜‰å³ªå…³,é‡‘æ˜Œ,ç™½é“¶,å¤©æ°´,é…’æ³‰,å¼ æ–,æ­¦å¨,å®šè¥¿,é™‡å—,å¹³å‡‰,åº†é˜³,ä¸´å¤,ç”˜å—" ;
-					x[29]="é“¶å·,çŸ³å˜´å±±,å´å¿ ,å›ºåŸ" ;
-					x[30]="è¥¿å®,æµ·ä¸œ,æµ·å—,æµ·åŒ—,é»„å—,ç‰æ ‘,æœæ´›,æµ·è¥¿" ;
-					x[31]="ä¹Œé²æœ¨é½,çŸ³æ²³å­,å…‹æ‹‰ç›ä¾,ä¼ŠçŠ,å·´éŸ³éƒ­å‹’,æ˜Œå‰,å…‹å­œå‹’è‹æŸ¯å°”å…‹å­œ,åš å°”å¡”æ‹‰,åé²ç•ª,å“ˆå¯†,å–€ä»€,å’Œç”°,é˜¿å…‹è‹" ;
-					x[32]="é¦™æ¸¯," ;
-					x[33]="æ¾³é—¨," ;
-					x[34]="å°åŒ—,é«˜é›„,å°ä¸­,å°å—,å±ä¸œ,å—æŠ•,äº‘æ—,æ–°ç«¹,å½°åŒ–,è‹—æ —,å˜‰ä¹‰,èŠ±è²,æ¡ƒå›­,å®œå…°,åŸºéš†,å°ä¸œ,é‡‘é—¨,é©¬ç¥–,æ¾æ¹–" ;
+					x[1]="±±¾©,¶«³Ç,Î÷³Ç,³çÎÄ,ĞûÎä,³¯Ñô,·áÌ¨,Ê¯¾°É½,º£µí,ÃÅÍ·¹µ,·¿É½,Í¨Öİ,Ë³Òå,²ıÆ½,´óĞË,Æ½¹È,»³Èá,ÃÜÔÆ,ÑÓÇì" ;
+					x[2]="ÉÏº£,»ÆÆÖ,Â¬Íå,Ğì»ã,³¤Äş,¾²°²,ÆÕÍÓ,Õ¢±±,ºç¿Ú,ÑîÆÖ,ãÉĞĞ,±¦É½,¼Î¶¨,ÆÖ¶«,½ğÉ½,ËÉ½­,ÇàÆÖ,ÄÏ»ã,·îÏÍ,³çÃ÷" ;
+					x[3]="Ìì½ò,ºÍÆ½,¶«Àö,ºÓ¶«,Î÷Çà,ºÓÎ÷,½òÄÏ,ÄÏ¿ª,±±³½,ºÓ±±,ÎäÇå,ºìŞØ,ÌÁ¹Á,ºº¹Á,´ó¸Û,ÄşºÓ,¾²º£,±¦Ûæ,¼»ÏØ,´óÇñ×¯";
+					x[4]="ÖØÇì,ÍòÖİ,¸¢Áê,ÓåÖĞ,´ó¶É¿Ú,½­±±,É³Æº°Ó,¾ÅÁúÆÂ,ÄÏ°¶,±±íÕ,ÍòÊ¢,Ë«ŞØ,Óå±±,°ÍÄÏ,Ç­½­,³¤ÊÙ,ôë½­,äüÄÏ,Í­Áº,´ó×ã,ÈÙ²ı,±ÚÉ½,ÁºÆ½,³Ç¿Ú,·á¶¼,µæ½­,ÎäÂ¡,ÖÒÏØ,¿ªÏØ,ÔÆÑô,·î½Ú,Î×É½,Î×Ïª,Ê¯Öù,ĞãÉ½,ÓÏÑô,ÅíË®,½­½ò,ºÏ´¨,ÓÀ´¨,ÄÏ´¨";
+					x[5]="Ê¯¼Ò×¯,ºªµ¦,ĞÏÌ¨,±£¶¨,ÕÅ¼Ò¿Ú,³ĞµÂ,ÀÈ·»,ÌÆÉ½,ÇØ»Êµº,²×Öİ,ºâË®"; 
+					x[6]="Ì«Ô­,´óÍ¬,ÑôÈª,³¤ÖÎ,½ú³Ç,Ë·Öİ,ÂÀÁº,ĞÃÖİ,½úÖĞ,ÁÙ·Ú,ÔË³Ç"; 
+					x[7]="ºôºÍºÆÌØ,°üÍ·,ÎÚº£,³à·å,ºôÂ×±´¶ûÃË,°¢À­ÉÆÃË,ÕÜÀïÄ¾ÃË,ĞË°²ÃË,ÎÚÀ¼²ì²¼ÃË,ÎıÁÖ¹ùÀÕÃË,°ÍÑåÄ×¶ûÃË,ÒÁ¿ËÕÑÃË" ;
+					x[8]="ÉòÑô,´óÁ¬,°°É½,¸§Ë³,±¾Ïª,µ¤¶«,½õÖİ,Óª¿Ú,¸·ĞÂ,ÁÉÑô,ÅÌ½õ,ÌúÁë,³¯Ñô,ºùÂ«µº" ;
+					x[9]="³¤´º,¼ªÁÖ,ËÄÆ½,ÁÉÔ´,Í¨»¯,°×É½,ËÉÔ­,°×³Ç,ÑÓ±ß" ;
+					x[10]="¹ş¶û±õ,ÆëÆë¹ş¶û,Äµµ¤½­,¼ÑÄ¾Ë¹,´óÇì,Ëç»¯,º×¸Ú,¼¦Î÷,ºÚºÓ,Ë«Ñ¼É½,ÒÁ´º,ÆßÌ¨ºÓ,´óĞË°²Áë" ;
+					x[11]="ÄÏ¾©,Õò½­,ËÕÖİ,ÄÏÍ¨,ÑïÖİ,ÑÎ³Ç,ĞìÖİ,Á¬ÔÆ¸Û,³£Öİ,ÎŞÎı,ËŞÇ¨,Ì©Öİ,»´°²" ;
+					x[12]="º¼Öİ,Äş²¨,ÎÂÖİ,¼ÎĞË,ºşÖİ,ÉÜĞË,½ğ»ª,áéÖİ,ÖÛÉ½,Ì¨Öİ,ÀöË®" ;
+					x[13]="ºÏ·Ê,Îßºş,°ö²º,Âí°°É½,»´±±,Í­Áê,°²Çì,»ÆÉ½,³üÖİ,ËŞÖİ,³ØÖİ,»´ÄÏ,³²ºş,¸·Ñô,Áù°²,Ğû³Ç,ÙñÖİ" ;
+					x[14]="¸£Öİ,ÏÃÃÅ,ÆÎÌï,ÈıÃ÷,ÈªÖİ,ÕÄÖİ,ÄÏÆ½,ÁúÑÒ,ÄşµÂ" ;
+					x[15]="ÄÏ²ıÊĞ,¾°µÂÕò,¾Å½­,Ó¥Ì¶,Æ¼Ïç,ĞÂâÅ,¸ÓÖİ,¼ª°²,ÒË´º,¸§Öİ,ÉÏÈÄ" ;
+					x[16]="¼ÃÄÏ,Çàµº,×Í²©,Ôæ×¯,¶«Óª,ÑÌÌ¨,Î«·»,¼ÃÄş,Ì©°²,Íşº£,ÈÕÕÕ,À³Îß,ÁÙÒÊ,µÂÖİ,ÁÄ³Ç,±õÖİ,ºÊÔó,²©ĞË" ;
+					x[17]="Ö£Öİ,¿ª·â,ÂåÑô,Æ½¶¥É½,°²Ñô,º×±Ú,ĞÂÏç,½¹×÷,å§Ñô,Ğí²ı,äğºÓ,ÈıÃÅÏ¿,ÄÏÑô,ÉÌÇğ,ĞÅÑô,ÖÜ¿Ú,×¤Âíµê,¼ÃÔ´" ;
+					x[18]="Îäºº,ÒË²ı,¾£Öİ,Ïå·®,»ÆÊ¯,¾£ÃÅ,»Æ¸Ô,Ê®Ñß,¶÷Ê©,Ç±½­,ÌìÃÅ,ÏÉÌÒ,ËæÖİ,ÏÌÄş,Ğ¢¸Ğ,¶õÖİ" ;
+					x[19]="³¤É³,³£µÂ,ÖêÖŞ,ÏæÌ¶,ºâÑô,ÔÀÑô,ÉÛÑô,ÒæÑô,Â¦µ×,»³»¯,³»Öİ,ÓÀÖİ,ÏæÎ÷,ÕÅ¼Ò½ç" ;
+					x[20]="¹ãÖİ,ÉîÛÚ,Öéº£,ÉÇÍ·,¶«İ¸,ÖĞÉ½,·ğÉ½,ÉØ¹Ø,½­ÃÅ,Õ¿½­,Ã¯Ãû,ÕØÇì,»İÖİ,Ã·Öİ,ÉÇÎ²,ºÓÔ´,Ñô½­,ÇåÔ¶,³±Öİ,½ÒÑô,ÔÆ¸¡" ;
+					x[21]="ÄÏÄş,ÁøÖİ,¹ğÁÖ,ÎàÖİ,±±º£,·À³Ç¸Û,ÇÕÖİ,¹ó¸Û,ÓñÁÖ,ÄÏÄşµØÇø,ÁøÖİµØÇø,ºØÖİ,°ÙÉ«,ºÓ³Ø" ;
+					x[22]="º£¿Ú,ÈıÑÇ" ;
+					x[23]="³É¶¼,ÃàÑô,µÂÑô,×Ô¹±,ÅÊÖ¦»¨,¹ãÔª,ÄÚ½­,ÀÖÉ½,ÄÏ³ä,ÒË±ö,¹ã°²,´ï´¨,ÑÅ°²,Ã¼É½,¸Ê×Î,Á¹É½,ãòÖİ" ;
+					x[24]="¹óÑô,ÁùÅÌË®,×ñÒå,°²Ë³,Í­ÈÊ,Ç­Î÷ÄÏ,±Ï½Ú,Ç­¶«ÄÏ,Ç­ÄÏ" ;
+					x[25]="À¥Ã÷,´óÀí,Çú¾¸,ÓñÏª,ÕÑÍ¨,³şĞÛ,ºìºÓ,ÎÄÉ½,Ë¼Ã©,Î÷Ë«°æÄÉ,±£É½,µÂºê,Àö½­,Å­½­,µÏÇì,ÁÙ²×" ;
+					x[26]="À­Èø,ÈÕ¿¦Ôò,É½ÄÏ,ÁÖÖ¥,²ı¶¼,°¢Àï,ÄÇÇú" ;
+					x[27]="Î÷°²,±¦¼¦,ÏÌÑô,Í­´¨,Î¼ÄÏ,ÑÓ°²,ÓÜÁÖ,ººÖĞ,°²¿µ,ÉÌÂå" ;
+					x[28]="À¼Öİ,¼ÎÓø¹Ø,½ğ²ı,°×Òø,ÌìË®,¾ÆÈª,ÕÅÒ´,ÎäÍş,¶¨Î÷,Â¤ÄÏ,Æ½Á¹,ÇìÑô,ÁÙÏÄ,¸ÊÄÏ" ;
+					x[29]="Òø´¨,Ê¯×ìÉ½,ÎâÖÒ,¹ÌÔ­" ;
+					x[30]="Î÷Äş,º£¶«,º£ÄÏ,º£±±,»ÆÄÏ,ÓñÊ÷,¹ûÂå,º£Î÷" ;
+					x[31]="ÎÚÂ³Ä¾Æë,Ê¯ºÓ×Ó,¿ËÀ­ÂêÒÀ,ÒÁÀç,°ÍÒô¹ùÀÕ,²ı¼ª,¿Ë×ÎÀÕËÕ¿Â¶û¿Ë×Î,²© ¶ûËşÀ­,ÍÂÂ³·¬,¹şÃÜ,¿¦Ê²,ºÍÌï,°¢¿ËËÕ" ;
+					x[32]="Ïã¸Û," ;
+					x[33]="°ÄÃÅ," ;
+					x[34]="Ì¨±±,¸ßĞÛ,Ì¨ÖĞ,Ì¨ÄÏ,ÆÁ¶«,ÄÏÍ¶,ÔÆÁÖ,ĞÂÖñ,ÕÃ»¯,ÃçÀõ,¼ÎÒå,»¨Á«,ÌÒÔ°,ÒËÀ¼,»ùÂ¡,Ì¨¶«,½ğÃÅ,Âí×æ,Åìºş" ;
 					var citys=x[$('select[name=cprovince]', g.s1Div).val()].split(",");
 					$('select[name=ccity] option', g.s1Div).each(function(){
 						$(this).remove();
@@ -1336,11 +1356,11 @@ var province=provinces.split(",");
 				$('input[name=markbtn]', g.s1Div).click(function (){
 					if($('select[name=cservid]', g.s1Div).val() == null)
 					{
-						alert("æ“ä½œå¤±è´¥:ä¸šåŠ¡è¯¦æƒ…ä¸ºç©ºï¼");
+						alert("²Ù×÷Ê§°Ü:ÒµÎñÏêÇéÎª¿Õ£¡");
 						return;
 					}
 					
-					if(confirm("æ˜¯å¦ç¡®è®¤å¯¹å½“å‰ç›®æ ‡æŸ¥è¯¢ç”¨æˆ·æ‰“ä¸Šä¸šåŠ¡æ ‡è®°ï¼š"+$('select[name=cservid]', g.s1Div).val()+"?"))
+					if(confirm("ÊÇ·ñÈ·ÈÏ¶Ôµ±Ç°Ä¿±ê²éÑ¯ÓÃ»§´òÉÏÒµÎñ±ê¼Ç£º"+$('select[name=cservid]', g.s1Div).val()+"?"))
 					{
 					$('input[name=markbtn]', g.s1Div).attr('disabled', true);
 					p.cnamevalue = $('input[name=cname]', g.s1Div).val();
@@ -1377,7 +1397,7 @@ var province=provinces.split(",");
 						dataType:'html',
 						success: function (data) {
 							$('input[name=markbtn]', g.s1Div).attr('disabled', false);
-							alert("æ“ä½œæˆåŠŸ");
+							alert("²Ù×÷³É¹¦");
 						},
 						error: function (XMLHttpRequest, textStatus, errorThrown) {
 							try {
@@ -1490,10 +1510,284 @@ var province=provinces.split(",");
 			}
 		}
 		$(g.pDiv, g.sDiv).append("<div style='clear:both'></div>");
+		
 		// add title
 		if (p.title) {
 			g.mDiv.className = 'mDiv';
-			g.mDiv.innerHTML = '<div class="ftitle">' + p.title + '</div>';
+			g.mDiv.innerHTML =  "<table border='0' cellpadding='0' align='left' bgcolor='gray' width=100%>"+
+			                    "<tr align='center'><td width=5%><input padding=10 name='advsearch' type='button' value='È·ÈÏ²éÑ¯'></input>"+
+                                "<td width=5%><input name='reset' type='reset' value='Çå³ıÌõ¼ş'></input></td>"+
+                                "<td width=5%><input name='exphone' type='button' value='µ¼³öÊÖ»úºÅ'></input></td>"+
+                                "<td width=5%><input name='exmail' type='button' value='µ¼³öÓÊÏä'></input></td>"+
+                                "<td width=5%><input name='servquery' type='button' value='ÒµÎñ²éÑ¯'></input></td>"+
+                                "<td width=5%><input name='batchedit' type='button' value='ÅúÁ¿ĞŞ¸Ä'></input></td>"+
+                                "<td width=5%><input name='batchdel' type='button' value='ÅúÁ¿É¾³ı'></input></td>" +
+                                "<td width=65% align='left'><input type='checkbox' name='qall' value='1' />È«²¿Ñ¡ÖĞ</td></tr>"+
+			                    "</table>"+
+				                "<table border='0' cellpadding='4' align='center'>"+			                    
+                                "<tr><td>¿Í»§ID</td><td><input type='text' value='' size='10' name='qid' class='qsbox' /></td>"+
+                                "<td>ĞÕÃû</td><td><input type='text' value='' size='5' name='qname' class='qsbox' /></td>"+
+                                "<td>ĞÔ±ğ</td><td><select name='qsex'><option value='' selected='selected'>²»ÏŞ</option><option value='ÄĞ'>ÄĞ</option><option value='Å®'>Å®</option></select></td>"+
+                                "<td>ÄêÁä</td><td><input type='text' value='' size='10' name='qage1' class='qsbox' onClick='calendar_date()'/>--<input type='text' value='' size='10' name='qage2' class='qsbox' onClick='calendar_date()'/></td>"+
+                                "<td>¹«Ë¾</td><td><input type='text' value='' size='10' name='qcompany' class='qsbox' /></td>"+
+                                "<td>Ö°Î»</td><td><input type='text' value='' size='10' name='qtitle' class='qsbox' /></td>"+
+                                "<td>Ê¡·İ</td><td><select name='qprovince'><option value='0' selected='selected'>²»ÏŞ</option>"+
+						        "<option value='1'>±±¾©</option><option value='2'>ÉÏº£</option><option value='3'>Ìì½ò</option><option value='4'>ÖØÇì</option><option value='5'>ºÓ±±</option>"+
+					            "<option value='6'>É½Î÷</option><option value='7'>ÄÚÃÉ¹Å</option><option value='8'>ÁÉÄş</option><option value='9'>¼ªÁÖ</option><option value='10'>ºÚÁú½­</option>"+
+					            "<option value='11'>½­ËÕ</option><option value='12'>Õã½­</option><option value='13'>°²»Õ</option><option value='14'>¸£½¨</option><option value='15'>½­Î÷</option>"+
+					            "<option value='16'>É½¶«</option><option value='17'>ºÓÄÏ</option><option value='18'>ºş±±</option><option value='19'>ºşÄÏ</option><option value='20'>¹ã¶«</option>"+
+					            "<option value='21'>¹ãÎ÷</option><option value='22'>º£ÄÏ</option><option value='23'>ËÄ´¨</option><option value='24'>¹óÖİ</option><option value='25'>ÔÆÄÏ</option>"+
+					            "<option value='26'>Î÷²Ø</option><option value='27'>ÉÂÎ÷</option><option value='28'>¸ÊËà</option><option value='29'>ÄşÏÄ</option><option value='30'>Çàº£</option>"+
+					            "<option value='31'>ĞÂ½®</option><option value='32'>Ïã¸Û</option><option value='33'>°ÄÃÅ</option><option value='34'>Ì¨Íå</option> </select></td>"+
+					            "<td>³ÇÊĞ</td><td><select name='qcity' style= 'width:100px;'><option value='' selected='selected'>²»ÏŞ</option></select></td>"+
+					            "<td>ÓÊ±à</td><td><input type='text' value='' size='10' name='qpost' class='qsbox' /></td></tr>"+
+                                "<tr><td>µØÖ·</td><td colspan='3'><input type='text' value='' size='30' name='qaddr' class='qsbox' /></td>" +
+                                "<td>ÊÖ»ú</td><td><input type='text' value='' size='11' name='qmobile' class='qsbox' /></td>"+
+                                "<td>¹Ì»°</td><td><input type='text' value='' size='12' name='qfix' class='qsbox' /></td>"+
+                                "<td>ÓÊÏä</td><td><input type='text' value='' size='10' name='qmail' class='qsbox' /></td>"+
+                                "<td>Êı¾İÔ´</td><td><input type='text' value='' size='10' name='qsource' class='qsbox' /></td>"+
+                                "<td>¿Í»§±¸×¢</td><td><input type='text' value='' size='10' name='qother' class='qsbox' /></td>"+
+                                "<td>ÒµÎñ×´Ì¬</td><td><select name='qservstate'><option value='' selected='selected'>²»ÏŞ</option><option value='0'>Î´´¦Àí</option><option value='1'>´ı¶¨</option><option value='2'>ÒÑÊ§°Ü</option><option value='3'>ÒÑÏìÓ¦</option><option value='4'>ÒÑ¶©¹º</option></select></td></tr>"+
+                                "<tr><td colspan=18><div class='qusertype' height='5px'>ÔËËãÂß¼­<input type='radio' name='qlogicvalue' checked='checked' value='and' class='qsbox'/>½»¼¯<input type='radio' name='qlogicvalue' value='or' class='qsbox'/>ºÏ¼¯</div></td></tr>"+
+                                "</table>";
+			
+			$('select[name=qprovince]', g.mDiv).click(function (){
+				var x = [35];
+				x[0]="";
+				x[1]="±±¾©,¶«³Ç,Î÷³Ç,³çÎÄ,ĞûÎä,³¯Ñô,·áÌ¨,Ê¯¾°É½,º£µí,ÃÅÍ·¹µ,·¿É½,Í¨Öİ,Ë³Òå,²ıÆ½,´óĞË,Æ½¹È,»³Èá,ÃÜÔÆ,ÑÓÇì" ;
+				x[2]="ÉÏº£,»ÆÆÖ,Â¬Íå,Ğì»ã,³¤Äş,¾²°²,ÆÕÍÓ,Õ¢±±,ºç¿Ú,ÑîÆÖ,ãÉĞĞ,±¦É½,¼Î¶¨,ÆÖ¶«,½ğÉ½,ËÉ½­,ÇàÆÖ,ÄÏ»ã,·îÏÍ,³çÃ÷" ;
+				x[3]="Ìì½ò,ºÍÆ½,¶«Àö,ºÓ¶«,Î÷Çà,ºÓÎ÷,½òÄÏ,ÄÏ¿ª,±±³½,ºÓ±±,ÎäÇå,ºìŞØ,ÌÁ¹Á,ºº¹Á,´ó¸Û,ÄşºÓ,¾²º£,±¦Ûæ,¼»ÏØ,´óÇñ×¯";
+				x[4]="ÖØÇì,ÍòÖİ,¸¢Áê,ÓåÖĞ,´ó¶É¿Ú,½­±±,É³Æº°Ó,¾ÅÁúÆÂ,ÄÏ°¶,±±íÕ,ÍòÊ¢,Ë«ŞØ,Óå±±,°ÍÄÏ,Ç­½­,³¤ÊÙ,ôë½­,äüÄÏ,Í­Áº,´ó×ã,ÈÙ²ı,±ÚÉ½,ÁºÆ½,³Ç¿Ú,·á¶¼,µæ½­,ÎäÂ¡,ÖÒÏØ,¿ªÏØ,ÔÆÑô,·î½Ú,Î×É½,Î×Ïª,Ê¯Öù,ĞãÉ½,ÓÏÑô,ÅíË®,½­½ò,ºÏ´¨,ÓÀ´¨,ÄÏ´¨";
+				x[5]="Ê¯¼Ò×¯,ºªµ¦,ĞÏÌ¨,±£¶¨,ÕÅ¼Ò¿Ú,³ĞµÂ,ÀÈ·»,ÌÆÉ½,ÇØ»Êµº,²×Öİ,ºâË®"; 
+				x[6]="Ì«Ô­,´óÍ¬,ÑôÈª,³¤ÖÎ,½ú³Ç,Ë·Öİ,ÂÀÁº,ĞÃÖİ,½úÖĞ,ÁÙ·Ú,ÔË³Ç"; 
+				x[7]="ºôºÍºÆÌØ,°üÍ·,ÎÚº£,³à·å,ºôÂ×±´¶ûÃË,°¢À­ÉÆÃË,ÕÜÀïÄ¾ÃË,ĞË°²ÃË,ÎÚÀ¼²ì²¼ÃË,ÎıÁÖ¹ùÀÕÃË,°ÍÑåÄ×¶ûÃË,ÒÁ¿ËÕÑÃË" ;
+				x[8]="ÉòÑô,´óÁ¬,°°É½,¸§Ë³,±¾Ïª,µ¤¶«,½õÖİ,Óª¿Ú,¸·ĞÂ,ÁÉÑô,ÅÌ½õ,ÌúÁë,³¯Ñô,ºùÂ«µº" ;
+				x[9]="³¤´º,¼ªÁÖ,ËÄÆ½,ÁÉÔ´,Í¨»¯,°×É½,ËÉÔ­,°×³Ç,ÑÓ±ß" ;
+				x[10]="¹ş¶û±õ,ÆëÆë¹ş¶û,Äµµ¤½­,¼ÑÄ¾Ë¹,´óÇì,Ëç»¯,º×¸Ú,¼¦Î÷,ºÚºÓ,Ë«Ñ¼É½,ÒÁ´º,ÆßÌ¨ºÓ,´óĞË°²Áë" ;
+				x[11]="ÄÏ¾©,Õò½­,ËÕÖİ,ÄÏÍ¨,ÑïÖİ,ÑÎ³Ç,ĞìÖİ,Á¬ÔÆ¸Û,³£Öİ,ÎŞÎı,ËŞÇ¨,Ì©Öİ,»´°²" ;
+				x[12]="º¼Öİ,Äş²¨,ÎÂÖİ,¼ÎĞË,ºşÖİ,ÉÜĞË,½ğ»ª,áéÖİ,ÖÛÉ½,Ì¨Öİ,ÀöË®" ;
+				x[13]="ºÏ·Ê,Îßºş,°ö²º,Âí°°É½,»´±±,Í­Áê,°²Çì,»ÆÉ½,³üÖİ,ËŞÖİ,³ØÖİ,»´ÄÏ,³²ºş,¸·Ñô,Áù°²,Ğû³Ç,ÙñÖİ" ;
+				x[14]="¸£Öİ,ÏÃÃÅ,ÆÎÌï,ÈıÃ÷,ÈªÖİ,ÕÄÖİ,ÄÏÆ½,ÁúÑÒ,ÄşµÂ" ;
+				x[15]="ÄÏ²ıÊĞ,¾°µÂÕò,¾Å½­,Ó¥Ì¶,Æ¼Ïç,ĞÂâÅ,¸ÓÖİ,¼ª°²,ÒË´º,¸§Öİ,ÉÏÈÄ" ;
+				x[16]="¼ÃÄÏ,Çàµº,×Í²©,Ôæ×¯,¶«Óª,ÑÌÌ¨,Î«·»,¼ÃÄş,Ì©°²,Íşº£,ÈÕÕÕ,À³Îß,ÁÙÒÊ,µÂÖİ,ÁÄ³Ç,±õÖİ,ºÊÔó,²©ĞË" ;
+				x[17]="Ö£Öİ,¿ª·â,ÂåÑô,Æ½¶¥É½,°²Ñô,º×±Ú,ĞÂÏç,½¹×÷,å§Ñô,Ğí²ı,äğºÓ,ÈıÃÅÏ¿,ÄÏÑô,ÉÌÇğ,ĞÅÑô,ÖÜ¿Ú,×¤Âíµê,¼ÃÔ´" ;
+				x[18]="Îäºº,ÒË²ı,¾£Öİ,Ïå·®,»ÆÊ¯,¾£ÃÅ,»Æ¸Ô,Ê®Ñß,¶÷Ê©,Ç±½­,ÌìÃÅ,ÏÉÌÒ,ËæÖİ,ÏÌÄş,Ğ¢¸Ğ,¶õÖİ" ;
+				x[19]="³¤É³,³£µÂ,ÖêÖŞ,ÏæÌ¶,ºâÑô,ÔÀÑô,ÉÛÑô,ÒæÑô,Â¦µ×,»³»¯,³»Öİ,ÓÀÖİ,ÏæÎ÷,ÕÅ¼Ò½ç" ;
+				x[20]="¹ãÖİ,ÉîÛÚ,Öéº£,ÉÇÍ·,¶«İ¸,ÖĞÉ½,·ğÉ½,ÉØ¹Ø,½­ÃÅ,Õ¿½­,Ã¯Ãû,ÕØÇì,»İÖİ,Ã·Öİ,ÉÇÎ²,ºÓÔ´,Ñô½­,ÇåÔ¶,³±Öİ,½ÒÑô,ÔÆ¸¡" ;
+				x[21]="ÄÏÄş,ÁøÖİ,¹ğÁÖ,ÎàÖİ,±±º£,·À³Ç¸Û,ÇÕÖİ,¹ó¸Û,ÓñÁÖ,ÄÏÄşµØÇø,ÁøÖİµØÇø,ºØÖİ,°ÙÉ«,ºÓ³Ø" ;
+				x[22]="º£¿Ú,ÈıÑÇ" ;
+				x[23]="³É¶¼,ÃàÑô,µÂÑô,×Ô¹±,ÅÊÖ¦»¨,¹ãÔª,ÄÚ½­,ÀÖÉ½,ÄÏ³ä,ÒË±ö,¹ã°²,´ï´¨,ÑÅ°²,Ã¼É½,¸Ê×Î,Á¹É½,ãòÖİ" ;
+				x[24]="¹óÑô,ÁùÅÌË®,×ñÒå,°²Ë³,Í­ÈÊ,Ç­Î÷ÄÏ,±Ï½Ú,Ç­¶«ÄÏ,Ç­ÄÏ" ;
+				x[25]="À¥Ã÷,´óÀí,Çú¾¸,ÓñÏª,ÕÑÍ¨,³şĞÛ,ºìºÓ,ÎÄÉ½,Ë¼Ã©,Î÷Ë«°æÄÉ,±£É½,µÂºê,Àö½­,Å­½­,µÏÇì,ÁÙ²×" ;
+				x[26]="À­Èø,ÈÕ¿¦Ôò,É½ÄÏ,ÁÖÖ¥,²ı¶¼,°¢Àï,ÄÇÇú" ;
+				x[27]="Î÷°²,±¦¼¦,ÏÌÑô,Í­´¨,Î¼ÄÏ,ÑÓ°²,ÓÜÁÖ,ººÖĞ,°²¿µ,ÉÌÂå" ;
+				x[28]="À¼Öİ,¼ÎÓø¹Ø,½ğ²ı,°×Òø,ÌìË®,¾ÆÈª,ÕÅÒ´,ÎäÍş,¶¨Î÷,Â¤ÄÏ,Æ½Á¹,ÇìÑô,ÁÙÏÄ,¸ÊÄÏ" ;
+				x[29]="Òø´¨,Ê¯×ìÉ½,ÎâÖÒ,¹ÌÔ­" ;
+				x[30]="Î÷Äş,º£¶«,º£ÄÏ,º£±±,»ÆÄÏ,ÓñÊ÷,¹ûÂå,º£Î÷" ;
+				x[31]="ÎÚÂ³Ä¾Æë,Ê¯ºÓ×Ó,¿ËÀ­ÂêÒÀ,ÒÁÀç,°ÍÒô¹ùÀÕ,²ı¼ª,¿Ë×ÎÀÕËÕ¿Â¶û¿Ë×Î,²© ¶ûËşÀ­,ÍÂÂ³·¬,¹şÃÜ,¿¦Ê²,ºÍÌï,°¢¿ËËÕ" ;
+				x[32]="Ïã¸Û," ;
+				x[33]="°ÄÃÅ," ;
+				x[34]="Ì¨±±,¸ßĞÛ,Ì¨ÖĞ,Ì¨ÄÏ,ÆÁ¶«,ÄÏÍ¶,ÔÆÁÖ,ĞÂÖñ,ÕÃ»¯,ÃçÀõ,¼ÎÒå,»¨Á«,ÌÒÔ°,ÒËÀ¼,»ùÂ¡,Ì¨¶«,½ğÃÅ,Âí×æ,Åìºş" ;
+				var citys=x[$('select[name=qprovince]', g.mDiv).val()].split(",");
+				$('select[name=qcity] option', g.mDiv).each(function(){
+					$(this).remove();
+				});
+				$('select[name=qcity]', g.mDiv).append("<option value='"+""+"'>" +"²»ÏŞ"+ "</option>");
+				for(var i=0;i<citys.length;i++)
+				{						
+					$('select[name=qcity]', g.mDiv).append("<option value='"+citys[i]+"'>" +citys[i]+ "</option>");
+				}
+				
+			});
+			
+			$.ajax({
+				type: p.method,
+				url: p.url,
+				data: 'action=getusertype',
+				dataType:'html',
+				success: function (data) {						
+					$('.qusertype', g.mDiv).prepend(data);
+					$('.qusertype', g.mDiv).prepend("Êı¾İÀà±ğ");
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					try {
+						if (p.onError) p.onError(XMLHttpRequest, textStatus, errorThrown);
+					} catch (e) {}
+				}
+			});
+			
+			$('input[name=servquery]', g.mDiv).click(function (){
+				if($(".trSelected").length==1)
+			  	{
+					var id = $('.trSelected').find("td").eq(0).text();
+					window.open('customer_service.jsp?id='+id);
+			  	}
+			});
+			
+			$('input[name=batchedit]', g.mDiv).click(function (){
+				if($(".trSelected").length>0)
+			  	{
+					var id='';
+					$(".trSelected", g.bDiv).each(function () {
+						if(id != '')
+							id += '_';
+					    id += $(this).find("td").eq(0).text();
+					});
+					window.open('customer_edit.jsp?id='+id);
+			  	}
+			  	else
+			  	{
+			  	  alert("ÇëÑ¡ÔñÒªĞŞ¸ÄµÄ¼ÇÂ¼");
+			  	}
+			});
+			
+			$('input[name=batchdel]', g.mDiv).click(function (){
+				if($(".trSelected").length>0)
+			  	{
+					if(confirm('ÊÇ·ñÉ¾³ıÕâ ' + $('.trSelected',g.bDiv).length + ' Ìõ¼ÇÂ¼Âğ?'))
+				  	{
+					var id='';
+					$(".trSelected", g.bDiv).each(function () {
+						if(id != '')
+							id += '_';
+					    id += $(this).find("td").eq(0).text();
+					});
+					
+					$.ajax({
+			        	type: "POST",
+			        	url: "CustomerServlet?action=batchdel",
+			            data: "id="+id,
+			            dataType:"text",
+			            success: function(msg){
+			            	$("#flex1").flexReload();
+			              },
+			  	        error: function(msg){
+			  	          alert(msg);
+			  	        }
+			        });
+				  	}
+			  	}
+			  	else
+			  	{
+			  	  alert("ÇëÑ¡ÔñÒªÉ¾³ıµÄ¼ÇÂ¼");
+			  	}
+			});
+			
+			$('input[name=qall]', g.mDiv).click(function(){
+				if ($(this).attr("checked") == "checked") {
+					$('tbody tr', g.bDiv).each(function () {
+						$(this).addClass('trSelected');
+					});
+				}
+				else
+				{
+					$('tbody tr', g.bDiv).each(function () {
+						$(this).removeClass('trSelected');
+					});
+				}
+			});
+			
+			$('input[name=advsearch]', g.mDiv).click(function (){
+				p.cnamevalue = $('input[name=qname]',g.mDiv).val();
+				p.csexvalue = $('select[name=qsex]', g.mDiv).val();
+				p.cage1value = $('input[name=qage1]',g.mDiv).val();
+				p.cage2value = $('input[name=qage2]', g.mDiv).val();
+				p.ctitlevalue = $('input[name=qtitle]', g.mDiv).val();
+				p.cprovincevalue = province[$('select[name=qprovince]',g.mDiv).val()];
+			    p.ccityvalue = $('select[name=qcity]',g.mDiv).val();
+			    p.cpostvalue  = $('input[name=qpost]',g.mDiv).val();
+			    p.cmobilevalue = $('input[name=qmobile]',g.mDiv).val();
+			    p.cfixvalue = $('input[name=qfix]',g.mDiv).val();
+			    p.cmailvalue = $('input[name=qmail]',g.mDiv).val();
+			    p.cidvalue = $('input[name=qid]', g.mDiv).val();
+			    p.caddrvalue= $('input[name=qaddr]',g.mDiv).val();
+			    p.ccompanyvalue= $('input[name=qcompany]', g.mDiv).val();
+			    p.ctypevalue=0;
+			    $('input[name=qtypevalue]',g.mDiv).each(function(){
+			    	if ($(this).attr("checked") == "checked") {
+			    	    p.ctypevalue+=parseInt($(this).val());
+			    	}
+			    });
+			    $('input[name=qlogicvalue]', g.mDiv).each(function(){
+			    	if ($(this).attr("checked") == "checked") {
+			    		p.ctypelogic=$(this).val();
+			    	}
+			    });
+			    
+			    p.csourcevalue = $('input[name=qsource]', g.mDiv).val();
+			    p.cothervalue= $('input[name=qother]',g.mDiv).val();
+			    p.cservicestate = $('select[name=qservstate]', g.mDiv).val();
+				p.newp = 1;
+				p.searchtype="advance";
+				g.populate();
+			});
+			
+			$('input[name=exphone]', g.mDiv).click(function (){
+				p.cnamevalue = $('input[name=qname]',g.mDiv).val();
+				p.csexvalue = $('select[name=qsex]', g.mDiv).val();
+				p.cage1value = $('input[name=qage1]',g.mDiv).val();
+				p.cage2value = $('input[name=qage2]', g.mDiv).val();
+				p.ctitlevalue = $('input[name=qtitle]', g.mDiv).val();
+				p.cprovincevalue = province[$('select[name=qprovince]',g.mDiv).val()];
+			    p.ccityvalue = $('select[name=qcity]',g.mDiv).val();
+			    p.cpostvalue  = $('input[name=qpost]',g.mDiv).val();
+			    p.cmobilevalue = $('input[name=qmobile]',g.mDiv).val();
+			    p.cfixvalue = $('input[name=qfix]',g.mDiv).val();
+			    p.cmailvalue = $('input[name=qmail]',g.mDiv).val();
+			    p.cidvalue = $('input[name=qid]', g.mDiv).val();
+			    p.caddrvalue= $('input[name=qaddr]',g.mDiv).val();
+			    p.ccompanyvalue= $('input[name=qcompany]', g.mDiv).val();
+			    p.ctypevalue=0;
+			    $('input[name=qtypevalue]',g.mDiv).each(function(){
+			    	if ($(this).attr("checked") == "checked") {
+			    	    p.ctypevalue+=parseInt($(this).val());
+			    	}
+			    });
+			    $('input[name=qlogicvalue]', g.mDiv).each(function(){
+			    	if ($(this).attr("checked") == "checked") {
+			    		p.ctypelogic=$(this).val();
+			    	}
+			    });
+			    
+			    p.csourcevalue = $('input[name=qsource]', g.mDiv).val();
+			    p.cothervalue= $('input[name=qother]',g.mDiv).val();
+			    p.cservicestate = $('select[name=qservstate]', g.mDiv).val();
+				window.location.href="CustomerServlet?action=exmobile"+g.constructfilter();
+			});
+			
+			$('input[name=exmail]', g.mDiv).click(function (){
+				p.cnamevalue = $('input[name=qname]',g.mDiv).val();
+				p.csexvalue = $('select[name=qsex]', g.mDiv).val();
+				p.cage1value = $('input[name=qage1]',g.mDiv).val();
+				p.cage2value = $('input[name=qage2]', g.mDiv).val();
+				p.ctitlevalue = $('input[name=qtitle]', g.mDiv).val();
+				p.cprovincevalue = province[$('select[name=qprovince]',g.mDiv).val()];
+			    p.ccityvalue = $('select[name=qcity]',g.mDiv).val();
+			    p.cpostvalue  = $('input[name=qpost]',g.mDiv).val();
+			    p.cmobilevalue = $('input[name=qmobile]',g.mDiv).val();
+			    p.cfixvalue = $('input[name=qfix]',g.mDiv).val();
+			    p.cmailvalue = $('input[name=qmail]',g.mDiv).val();
+			    p.cidvalue = $('input[name=qid]', g.mDiv).val();
+			    p.caddrvalue= $('input[name=qaddr]',g.mDiv).val();
+			    p.ccompanyvalue= $('input[name=qcompany]', g.mDiv).val();
+			    p.ctypevalue=0;
+			    $('input[name=qtypevalue]',g.mDiv).each(function(){
+			    	if ($(this).attr("checked") == "checked") {
+			    	    p.ctypevalue+=parseInt($(this).val());
+			    	}
+			    });
+			    $('input[name=qlogicvalue]', g.mDiv).each(function(){
+			    	if ($(this).attr("checked") == "checked") {
+			    		p.ctypelogic=$(this).val();
+			    	}
+			    });
+			    
+			    p.csourcevalue = $('input[name=qsource]', g.mDiv).val();
+			    p.cothervalue= $('input[name=qother]',g.mDiv).val();
+			    p.cservicestate = $('select[name=qservstate]', g.mDiv).val();
+				window.location.href="CustomerServlet?action=exmail"+g.constructfilter();
+			});
+			
 			$(g.gDiv).prepend(g.mDiv);
 			if (p.showTableToggleBtn) {
 				$(g.mDiv).append('<div class="ptogtitle" title="Minimize/Maximize Table"><span></span></div>');

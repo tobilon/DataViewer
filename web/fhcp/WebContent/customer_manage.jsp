@@ -1,20 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=gb2312" %>
 <%@ include file="incdb.jsp"%>
 <%@ include file="sessionadmin.jsp"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>è´¢åŠ¡ç®¡ç†ç³»ç»Ÿ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>ÄÏ¾©·ï»Ë²ØÆ·Êı¾İÆ½Ì¨</title>
 
 <link rel="stylesheet" type="text/css" href="images/css.css">
 <link rel="stylesheet" type="text/css" href="css/flexigrid.pack.css">
 <link rel="stylesheet" type="text/css" href="css/contact.css">
+<link rel="stylesheet" type="text/css" href="css/header.css">
 
 <script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
 <script type="text/javascript" src="js/jquery.simplemodal.js"></script>
 <script type="text/javascript" src="js/flexigrid.js"></script>
 <script type="text/javascript" src="js/calendar.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
 
 
 <script type="text/javascript">
@@ -27,38 +29,33 @@ $("document").ready(function() {
     dataType:'json',   			
     colModel:[
     { display: 'ID', name: 'id', width: 80, sortable: true, align: 'left' },
-    { display: 'å§“å', name: 'name', width: 60, sortable: true, align: 'left' },
-    { display: 'æ€§åˆ«', name: 'sex', width: 30, sortable: true, align: 'left' },
-    { display: 'å¹´é¾„', name: 'age', width: 30, sortable: true, align: 'left' },
-    { display: 'å…¬å¸', name: 'actor', width: 60, sortable: true, align: 'left' },
-    { display: 'èŒä½', name: 'title', width: 60, sortable: true, align: 'left' },
-    { display: 'çœä»½', name: 'province', width: 60, sortable: true, align: 'left' },
-    { display: 'åŸå¸‚', name: 'city', width: 60, sortable: true, align: 'left' },
-    { display: 'é‚®ç¼–', name: 'zipcode', width: 80, sortable: true, align: 'left' },
-    { display: 'æ‰‹æœº1', name: 'mobile1', width: 100, sortable: true, align: 'left' },
-    { display: 'æ‰‹æœº2', name: 'mobile2', width: 100, sortable: true, align: 'left' },
-    { display: 'æ‰‹æœº3', name: 'mobile3', width: 100, sortable: true, align: 'left' },
-    { display: 'æ‰‹æœº4', name: 'mobile4', width: 100, sortable: true, align: 'left' },
-    { display: 'å›ºè¯1', name: 'fix1', width: 100, sortable: true, align: 'left' },
-    { display: 'å›ºè¯2', name: 'fix2', width: 100, sortable: true, align: 'left' },
+    { display: 'ĞÕÃû', name: 'name', width: 60, sortable: true, align: 'left' },
+    { display: 'ĞÔ±ğ', name: 'sex', width: 30, sortable: true, align: 'left' },
+    { display: 'ÄêÁä', name: 'age', width: 30, sortable: true, align: 'left' },
+    { display: '¹«Ë¾', name: 'company', width: 60, sortable: true, align: 'left' },
+    { display: 'Ö°Î»', name: 'title', width: 60, sortable: true, align: 'left' },
+    { display: 'Ê¡·İ', name: 'province', width: 60, sortable: true, align: 'left' },
+    { display: '³ÇÊĞ', name: 'city', width: 60, sortable: true, align: 'left' },
+    { display: 'ÓÊ±à', name: 'zipcode', width: 80, sortable: true, align: 'left' },
+    { display: 'µØÖ·', name: 'address', width: 80, sortable: true, align: 'left' },
+    { display: 'ÊÖ»ú1', name: 'mobile1', width: 100, sortable: true, align: 'left' },
+    { display: 'ÊÖ»ú2', name: 'mobile2', width: 100, sortable: true, align: 'left' },
+    { display: 'ÊÖ»ú3', name: 'mobile3', width: 100, sortable: true, align: 'left' },
+    { display: 'ÊÖ»ú4', name: 'mobile4', width: 100, sortable: true, align: 'left' },
+    { display: '¹Ì»°1', name: 'fix1', width: 100, sortable: true, align: 'left' },
+    { display: '¹Ì»°2', name: 'fix2', width: 100, sortable: true, align: 'left' },
     { display: 'email', name: 'email', width: 100,sortable: false, align: 'left' },
-    { display: 'ç±»åˆ«', name: 'category', width: 60, sortable: true, align: 'left' },
-    { display: 'æ•°æ®æ¥æº', name: 'source', width: 80, sortable: true, align: 'left' },
-    { display: 'å®¢æˆ·å¤‡æ³¨', name: 'other', width: 80, sortable: true, align: 'left' },
-    { display: 'ä¸šåŠ¡ç¼–å·', name: 'service', width: 60, sortable: true, align: 'left' }
+    { display: 'Àà±ğ', name: 'category', width: 60, sortable: true, align: 'left' },
+    { display: 'Êı¾İÀ´Ô´', name: 'source', width: 80, sortable: true, align: 'left' },
+    { display: '±¸×¢', name: 'other', width: 80, sortable: true, align: 'left' },
+    { display: 'ÒµÎñ×´Ì¬', name: 'service', width: 60, sortable: true, align: 'left' }
     ],     
-    searchitems : [
-                {display: 'ID', name : 'id', isdefault: true},
-                {display: 'å§“å', name : 'name'},
-                {display: 'æ‰‹æœº', name : 'mobilephone1'},
-                {display: 'é‚®ç®±', name : 'mail'}
-                ],
-   
+       
     width: 'auto', 
     height: 400, 
 	usepager: true,
-	title: 'æŸ¥è¯¢ç»“æœ',
-	findtext: 'æŸ¥è¯¢',
+	title: '²éÑ¯½á¹û',
+	findtext: '²éÑ¯',
 	rp: 15,
 	rpOptions: [10, 15, 20, 30, 40, 100],
 	autoload: true,
@@ -81,16 +78,16 @@ $("document").ready(function() {
 	$("#action").value="delete";
   	if($('.trSelected',grid).length==0)
   	{
-  	  alert("è¯·é€‰æ‹©è¦åˆ é™¤çš„æ•°æ®");
+  	  alert("ÇëÑ¡ÔñÒªÉ¾³ıµÄÊı¾İ");
   	}
   	else
   	{
-  	  if(confirm('æ˜¯å¦åˆ é™¤è¿™ ' + $('.trSelected',grid).length + ' æ¡è®°å½•å—?'))
+  	  if(confirm('ÊÇ·ñÉ¾³ıÕâ ' + $('.trSelected',grid).length + ' Ìõ¼ÇÂ¼Âğ?'))
   	  {
         var  ids ="";
         for(var i=0;i<$('.trSelected',grid).length;i++)
         {
-          ids+=","+$('.trSelected',grid).find("td:first").eq(i).text();//è·å–id
+          ids+=","+$('.trSelected',grid).find("td:first").eq(i).text();//»ñÈ¡id
         }
         ids=ids.substring(1);
         $.ajax({
@@ -105,7 +102,7 @@ $("document").ready(function() {
               }
               else
               {
-                alert("æœ‰é”™è¯¯å‘ç”Ÿ,msg="+msg);
+                alert("ÓĞ´íÎó·¢Éú,msg="+msg);
               }
             },
   	        error: function(msg){
@@ -152,129 +149,44 @@ $("document").ready(function() {
   	}
   	else if($(".trSelected").length>1)
   	{
-  	  alert("è¯·é€‰æ‹©ä¸€ä¸ªä¿®æ”¹,ä¸èƒ½åŒæ—¶ä¿®æ”¹å¤šä¸ª");
+  	  alert("ÇëÑ¡ÔñÒ»¸öĞŞ¸Ä,²»ÄÜÍ¬Ê±ĞŞ¸Ä¶à¸ö");
   	}
   	else if($(".trSelected").length==0)
   	{
-  	  alert("è¯·é€‰æ‹©ä¸€ä¸ªæ‚¨è¦ä¿®æ”¹çš„è®°å½•");
+  	  alert("ÇëÑ¡ÔñÒ»¸öÄúÒªĞŞ¸ÄµÄ¼ÇÂ¼");
   	}
   }  
   
 }); 
 
-function validate()
-{
-	return true;
-}
-
-function show(dialog)
-{
-  $('#contact-container .contact-send').click(function(e){	  
-	  
-  e.preventDefault();
-  // æäº¤ç”¨æˆ·æ•°æ®å˜æ›´
-  if(validate())
-  {
-    var msg = $('#contact-container .contact-message');
-    msg.fadeOut(function () {
-      msg.removeClass('contact-error').empty();
-    });
-    
-    $('#contact-container .contact-title').html('Sending...');
-    $('#contact-container form').fadeOut(200);   
-    $('#contact-container .contact-content').animate({
-      height: '80px'
-      },function (){
-        $('#contact-container .contact-loading').fadeIn(200, function () {
-        	$.ajax({
-        	  	  url: 'CustomerServlet',
-        	  	  data: $('#contact-container form').serialize() + '&action=modify',        	  	  
-        	  	  type: 'post',
-        	  	  cache: false,
-        	  	  dataType: 'html',
-        	  	  success: function (data) {
-        	          $('#contact-container .contact-loading').fadeOut(200, function () {
-        	            $('#contact-container .contact-title').html('æäº¤æˆåŠŸ!');
-        	            msg.html(data).fadeIn(200);
-        	            $("#flex1").flexReload();
-        	            });
-        	          },
-        	        error: error});
-          });
-        });
-  }
-  else
-  {
-	if ($('#contact-container .contact-message:visible').length > 0)
-	{
-      var msg = $('#contact-container .contact-message div');
-      msg.fadeOut(200, function () {
-    	  msg.empty();
-    	  contact.showError();
-    	  msg.fadeIn(200);
-    	  });
-    }
-	else
-	{
-		$('#contact-container .contact-message').animate({
-					height: '30px'
-				}, contact.showError);
-			}
-			
-		}
-	});	
-}
-
-function open(dialog)
-{
-	// dynamically determine height
-	var h = 500;	
-	var title = $('#contact-container .contact-title').html();
-	$('#contact-container .contact-title').html('Loading...');
-	dialog.overlay.fadeIn(200, function () {
-      dialog.container.fadeIn(200, function () {
-        dialog.data.fadeIn(200, function () {
-          $('#contact-container .contact-content').animate({
-            height: h}, function () {
-              $('#contact-container .contact-title').html(title);
-              $('#contact-container form').fadeIn(200, function () {
-                });
-              });
-          });
-        });
-     });
-}
-	
-function close(dialog) {
-	$('#contact-container .contact-message').fadeOut();
-	$('#contact-container form').fadeOut(200);
-	$('#contact-container .contact-content').animate({
-      height: 40}, function () {
-        dialog.data.fadeOut(200, function () {
-          dialog.container.fadeOut(200, function () {
-            dialog.overlay.fadeOut(200, function () {
-              $.modal.close();
-              });
-            });
-          });
-        });
-	}
-	
-function error (xhr) {
-	alert(xhr.statusText);
-}
-
-function showerror() {
-	$('#contact-container .contact-message')
-		.html($('<div class="contact-error"></div>').append(contact.message))
-		.fadeIn(200);
-}
 
   
 </script>
 </head>
 
 <body>
+<ul class="topnav">
+    <li><a href="main.jsp">Ê×Ò³</a></li>
+	<li>¿Í»§×ÊÔ´¹ÜÀí
+		<ul class="subnav">
+			<li><a href="customer_manage.jsp">¿Í»§¹ÜÀí</a></li>
+		</ul>
+	</li>
+	<li>ÒµÎñÓªÏú¹ÜÀí
+		<ul class="subnav">
+			<li><a href="service_manage.jsp">ÒµÎñ¹ÜÀí</a></li>
+			<li><a href="service_add.jsp">ĞÂÔöÒµÎñ</a></li>
+		</ul>
+	</li>
+	<li>ÏµÍ³¹ÜÀí
+		<ul class="subnav">
+			<li><a href="class_manage.jsp">²¿ÃÅ¹ÜÀí</a></li>
+			<li><a href="class_add.jsp">Ôö¼Ó²¿ÃÅ</a></li>
+			<li><a href="user_manage.jsp">ÓÃ»§¹ÜÀí</a></li>
+			<li><a href="user_add.jsp">Ôö¼ÓÓÃ»§</a></li>
+		</ul>
+	</li>
+</ul>
 <table id="flex1" style="display:none"></table>
 <input id="action" type="hidden" name="action" value="null" />
 </body>

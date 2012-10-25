@@ -26,6 +26,14 @@ public class Service {
 	public String getSvrContent() {
 		return svrContent;
 	}
+	
+	public String getBriefSvrContent() {
+		if(svrContent.length()>15)
+		{
+			return svrContent.substring(0,15)+"...";
+		}
+		return svrContent;
+	}
 
 	// 获取短信发送日期
 	public String getSvrDate() {
@@ -57,3 +65,4 @@ public class Service {
 		this.svrTime = s;
 	}	
 }
+

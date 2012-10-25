@@ -61,10 +61,10 @@ if("".equals(passWord)) {
 	
 	logcontrol.addlogin();
 	if (userName.equals("admin")){ 
-	    response.sendRedirect("index.jsp");
+	    response.sendRedirect("main.jsp");
     }
 	else{
-	    response.sendRedirect("index_user.jsp");
+	    response.sendRedirect("main_user.jsp");
 	}
 	
 	}

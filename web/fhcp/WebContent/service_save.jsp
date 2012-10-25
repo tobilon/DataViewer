@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=gb2312" %>
+<%@ page contentType="text/html;charset=gb2312"%>
 <%@ include file="incdb.jsp"%>
 <%@ include file="sessionadmin.jsp"%>
 <%try{
 	String svrContent = request.getParameter("service_content");
 	String svrDate = request.getParameter("service_date");
-	
+
 	ServiceControl svrcontrol = new ServiceControl();
 	svrcontrol.setSvrContent(svrContent);
 	svrcontrol.setSvrDate(svrDate);

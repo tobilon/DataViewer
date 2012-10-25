@@ -16,7 +16,7 @@ listlog = displog.allLog();
 
 
 //分页程序开始
-int data_num=listlog.size();
+int data_num=displog.lognum();
 DisPage dispage=new DisPage();
 int Current_Page = 0;
 String currentpage=(String)request.getParameter("currentpage");
@@ -47,7 +47,7 @@ int l_end = dispage.getEnd();
 	  
 	<TR >
 	  <TD height="27" bgcolor="#FFFFFF"><div align="center">记录总条数：<%=data_num%> 
-	  当前页<%=Current_Page+1%>/<%=dispage.getTotalpage()%>总页数 <a href="user_log.jsp?currentpage=0" class="red">首页</a> <a href="user_log.jsp?currentpage=<%=dispage.getPrepage()%>" class="red">上一页</a> <a href="user_log.jsp?currentpage=<%=dispage.getNextpage()%>" class="red">下一页</a> <a href="user_log.jsp?currentpage=<%=dispage.getTotalpage()%>" class="red">末页</a> </div></TD>
+	  当前页<%=Current_Page+1%>/<%=dispage.getTotalpage()+1%>总页数 <a href="user_log.jsp?currentpage=0" class="red">首页</a> <a href="user_log.jsp?currentpage=<%=dispage.getPrepage()%>" class="red">上一页</a> <a href="user_log.jsp?currentpage=<%=dispage.getNextpage()%>" class="red">下一页</a> <a href="user_log.jsp?currentpage=<%=dispage.getTotalpage()%>" class="red">末页</a> </div></TD>
 	  </TR>
 	</TBODY>
 </TABLE>

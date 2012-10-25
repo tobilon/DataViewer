@@ -102,7 +102,7 @@ eval("submenu" + sid + ".style.display=\"none\";");
                   src="images/bullet.gif" width=15 border=0><a 
                   href="customer_manage.jsp" 
                   target=main>客户管理</a></TD>
-                      </TR>                                  
+                      </TR>
                     <TBODY>
                     </TBODY>
                   </TABLE>

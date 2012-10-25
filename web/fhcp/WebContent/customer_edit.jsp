@@ -1,34 +1,56 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<div style='display:none'>
-	<div class='contact-top'></div>
-	<div class='contact-content'>
-		<h1 class='contact-title'>ä¿®æ”¹å®¢æˆ·ä¿¡æ¯:</h1>
-		<div class='contact-loading' style='display:none'></div>
-		<div class='contact-message' style='display:none'></div>
-		<form action='#' style='display:none'>
-		<input TYPE="text" id="customer_id" style='display:none' name="customer_id" size=10 maxlength=20><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;å§“å&nbsp;<input TYPE="text" id="customer_name" name="customer_name" size=10 maxlength=20><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;æ€§åˆ«&nbsp;<select id="customer_sex" name="customer_sex" onChange="">
-  		<option value="-">--</option>
-        <option value="ç”·">ç”·</option>
-        <option value="å¥³">å¥³</option>
-        </select>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;å¹´é¾„&nbsp;<input TYPE="text" id="customer_age" name="customer_age" size=10 maxlength=10>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;èŒä½&nbsp;<input TYPE="text" id="customer_job" name="customer_job" size=10 maxlength=10><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;çœä»½&nbsp;<input TYPE="text" id="customer_province" name="customer_province" size=10 maxlength=10>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;åŸå¸‚&nbsp;<input TYPE="text" id="customer_city" name="customer_city" size=10 maxlength=10>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;é‚®ç¼–&nbsp;<input TYPE="text" id="customer_post" name="customer_post" size=10 maxlength=10><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;æ‰‹æœº&nbsp;<input TYPE="text" id="customer_mobile" name="customer_mobile" size=12 maxlength=12>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;å›ºè¯&nbsp;<input TYPE="text" id="customer_fix" name="customer_fix" size=14 maxlength=14>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;email&nbsp;<input TYPE="text" id="customer_mail" name="customer_mail" size=15 maxlength=10><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;ç±»åˆ«&nbsp;<input TYPE="text" id="customer_class" name="customer_class" size=10 maxlength=10>&nbsp;&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;&nbsp;æ•°æ®æ¥æº&nbsp;<input TYPE="text" id="customer_source" name="customer_source" size=10 maxlength=10><br><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;å¤‡æ³¨&nbsp;<textarea id="customer_other" name="customer_other" cols="50" rows="3"></textarea><br><br>
-		<label>&nbsp;</label>
-		<button type='submit' class='contact-send contact-button' tabindex='1006'>æäº¤</button>
-		<button type='submit' class='contact-cancel contact-button simplemodal-close' tabindex='1007'>å–æ¶ˆ</button>
-		<br/>
-		</form>		
-	</div>
-</div>
+<%@ page contentType="text/html;charset=gb2312" pageEncoding="gb2312"%>
+<%@ include file="incdb.jsp"%>
+<%@ include file="sessionadmin.jsp"%>
+<%String id = request.getParameter("id");%>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="0">
+<title>ÅúÁ¿ĞŞ¸ÄÓÃ»§ĞÅÏ¢</title>
+<link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
+<link rel="stylesheet" href="css/header.css" type="text/css" media="screen">
+<script type="text/javascript" src="js/jquery-1.5.2.min.js"></script>
+<script type="text/javascript" src="js/calendar.js"></script>
+<script type="text/javascript" src="js/header.js"></script>
+<script Language="JavaScript">
+$.ajax({
+	type: "POST",
+	url: 'CustomerServlet',
+	data: 'action=getusertype2',
+	dataType:'html',
+	success: function (data) {						
+		$('.usertype').prepend(data);
+	}
+});
+</script>
+</head>
+<body topmargin=0>
+<TABLE width=600 border="0" align=center cellpadding=4 cellspacing=1 class="tableBorder">
+<form method="POST" action="customer_save.jsp">
+	<TR bgcolor="#6699CC">
+		<Th colspan=2><div align="center" class="whitetitle"><B>ÅúÁ¿ĞŞ¸Ä¿Í»§ĞÅÏ¢</B></div></Th>
+	</TR>	
+	<TR>
+	 <input name="id" id="id" value=<%=id%> size="10" type="hidden">
+	  <TD width="20%" class="forumrow"><strong>¿Í»§±¸×¢</strong></TD>
+		<TD width="80%" class="forumrow">
+		<input name="extra" id="extra" size="60">
+		</TD>
+	</TR>
+	<TR>
+	  <TD width="20%" class="forumrow">&nbsp;<strong>ÓÃ»§Àà±ğ</strong></TD>
+		<TD width="80%" class="forumrow">
+		<div class="usertype"></div>
+		</TD>
+	</TR>	
+	<TR>
+	  <TD height="45" colspan=2 align=center class="forumrow">	  <FONT color=#000000>
+		<INPUT name=Submit type=submit value="È· ¶¨"> &nbsp;&nbsp;     
+		<INPUT name=Submit2 type=reset value="Çå ³ı"></FONT></TD>
+	</TR>
+  </form>
+</TABLE>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>一款国外的Query实用下拉菜单代码 -破洛洛预览</title>
+<script type="text/javascript" src="jquery-latest.js"></script> 
+<script type="text/javascript"> 
+$(document).ready(function(){
+
+	$("ul.subnav").parent().append("<span></span>"); //Only shows drop down trigger when js is enabled - Adds empty span tag after ul.subnav
+	
+	$("ul.topnav li span").click(function() { //When trigger is clicked...
+		
+		//Following events are applied to the subnav itself (moving subnav up and down)
+		$(this).parent().find("ul.subnav").slideDown('fast').show(); //Drop down the subnav on click
+
+		$(this).parent().hover(function() {
+		}, function(){	
+			$(this).parent().find("ul.subnav").slideUp('slow'); //When the mouse hovers out of the subnav, move it back up
+		});
+
+		//Following events are applied to the trigger (Hover events for the trigger)
+		}).hover(function() { 
+			$(this).addClass("subhover"); //On hover over, add class "subhover"
+		}, function(){	//On Hover Out
+			$(this).removeClass("subhover"); //On hover out, remove class "subhover"
+	});
+
+});
+</script>
+<style type="text/css">
+.container {
+	width: 960px;
+	margin: 0 auto;
+	position: relative;
+}
+ul.topnav {
+	list-style: none;
+	padding: 0 20px;	
+	margin: 0;
+	float: left;
+	width: 920px;
+	background: #222;
+	font-size: 1.2em;
+	background: url(topnav_bg.gif) repeat-x;
+}
+ul.topnav li {
+	float: left;
+	margin: 0;	
+	padding: 0 15px 0 0;
+	position: relative; /*--Declare X and Y axis base--*/
+}
+ul.topnav li a{
+	padding: 10px 5px;
+	color: #fff;
+	display: block;
+	text-decoration: none;
+	float: left;
+}
+ul.topnav li a:hover{
+	background: url(topnav_hover.gif) no-repeat center top;
+}
+ul.topnav li span { /*--Drop down trigger styles--*/
+	width: 17px;
+	height: 35px;
+	float: left;
+	background: url(subnav_btn.gif) no-repeat center top;
+}
+ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
+ul.topnav li ul.subnav {
+	list-style: none;
+	position: absolute; /*--Important - Keeps subnav from affecting main navigation flow--*/
+	left: 0; top: 35px;
+	background: #333;
+	margin: 0; padding: 0;
+	display: none;
+	float: left;
+	width: 170px;
+	-moz-border-radius-bottomleft: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	border: 1px solid #111;
+}
+ul.topnav li ul.subnav li{
+	margin: 0; padding: 0;
+	border-top: 1px solid #252525; /*--Create bevel effect--*/
+	border-bottom: 1px solid #444; /*--Create bevel effect--*/
+	clear: both;
+	width: 170px;
+}
+html ul.topnav li ul.subnav li a {
+	float: left;
+	width: 145px;
+	background: #333 url(dropdown_linkbg.gif) no-repeat 10px center;
+	padding-left: 20px;
+}
+html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
+	background: #222 url(dropdown_linkbg.gif) no-repeat 10px center; 
+}
+#header img {
+	margin: 20px 0 10px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="container">
+    <div id="header">
+    	 <div class="disclaimer">Sexy Drop Down Menu Tutorial by <a href="http://www.SohTanaka.com">Soh Tanaka</a>.</div>
+        <ul class="topnav">
+            <li><a href="http://www.poluoluo.com/">破洛洛首页</a></li>
+            <li>
+                <a href="http://www.poluoluo.com/jzxy/wytx/code/Index.html">常用代码</a>
+                <ul class="subnav">
+                    <li><a href="#">破洛洛</a></li>
+                    <li><a href="#">破洛洛</a></li>
+                    <li><a href="#">破洛洛</a></li>
+                    <li><a href="#">破洛洛</a></li>
+                    <li><a href="#">破洛洛</a></li>
+					<li><a href="#">破洛洛术</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">设计素材</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+			<li>
+                <a href="http://www.poluoluo.com/jzxy/wytx/menu/Index.html">导航菜单</a>
+                <ul class="subnav">
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                    <li><a href="#">Sub Nav Link</a></li>
+                </ul>
+            </li>
+            <li><a href="#">论坛</a></li>
+            <li><a href="http://www.poluoluo.com/jzxy/wytx/jscode/index.html">JS广告代码</a></li>
+        </ul>
+    </div>
+</div>
+
+
+</body>
+</html>

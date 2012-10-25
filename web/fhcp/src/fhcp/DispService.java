@@ -37,4 +37,31 @@ public class DispService extends Service{
 		}
 		return allServiceVector;
 	}
+	
+	public Service serviceByID(long id) {
+		DBConnect dbc = null;
+		Service svr = new Service();
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT * FROM service_content where id=?");
+			dbc.setLong(1, id);
+			rs = dbc.executeQuery();
+			while (rs.next()) {
+				
+				svr.setID(rs.getInt("id"));
+				svr.setSvrContent(rs.getString("msginfo"));
+				svr.setSvrDate(rs.getString("timestamp"));
+				
+			}
+		} catch (Exception e) {
+			System.err.println(e);
+		} finally {
+			try {
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return svr;
+	}
 }

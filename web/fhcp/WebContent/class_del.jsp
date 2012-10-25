@@ -13,7 +13,7 @@
 <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
 <META HTTP-EQUIV="Expires" CONTENT="0">
 <meta HTTP-EQUIV=REFRESH CONTENT='0; URL=class_manage.jsp'>
-<title>财务管理系统</title>
+<title>南京凤凰藏品数据平台</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">
 </head>
 <body>

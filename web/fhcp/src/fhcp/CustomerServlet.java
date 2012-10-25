@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -48,79 +49,94 @@ public class CustomerServlet extends HttpServlet {
 		Map cellMap = new HashMap();
 		
 		if(request.getParameter("cnamevalue")!=""){
-			cellMap.put("name", request.getParameter("cnamevalue"));
+			
+			cellMap.put("name", URLDecoder.decode(request.getParameter("cnamevalue"),"utf-8"));
 		}
 			
 		if(request.getParameter("csexvalue") != ""){
-			cellMap.put("sex", request.getParameter("csexvalue"));
+			cellMap.put("sex", URLDecoder.decode(request.getParameter("csexvalue"),"utf-8"));
 		}
 		
 		if(request.getParameter("cage1value") != ""){
-			cellMap.put("born1", new String(request.getParameter("cage1value").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("born1",request.getParameter("cage1value"));
 		}
 		
 		if(request.getParameter("cage2value") != ""){
-			cellMap.put("born2", new String(request.getParameter("cage2value").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("born2", request.getParameter("cage2value"));
 		}
 		
 		if(request.getParameter("ctitlevalue") != "")
 		{
-			cellMap.put("actor", request.getParameter("ctitlevalue"));
+			cellMap.put("actor", URLDecoder.decode(request.getParameter("ctitlevalue"),"utf-8"));
 		}
 		
 		if(request.getParameter("cprovincevalue") != "")
 		{
-			cellMap.put("province", request.getParameter("cprovincevalue"));
+			cellMap.put("province", URLDecoder.decode(request.getParameter("cprovincevalue"),"utf-8"));
 		}
 		
 		if(request.getParameter("ccityvalue") != "")
 		{
-			cellMap.put("city", request.getParameter("ccityvalue"));
+			cellMap.put("city", URLDecoder.decode(request.getParameter("ccityvalue"),"utf-8"));
 		}
 
 		if(request.getParameter("cpostvalue") != "")
 		{
-			cellMap.put("post", new String(request.getParameter("cpostvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("post", request.getParameter("cpostvalue"));
+		}
+		
+		if(request.getParameter("cmobilevalue") != "")
+		{
+			cellMap.put("mobilephone1", request.getParameter("cmobilevalue"));
 		}
 		
 		if(request.getParameter("cfixvalue") != "")
 		{
-			cellMap.put("homephone1", new String(request.getParameter("cfixvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("homephone1", request.getParameter("cfixvalue"));
+		}
+		
+		if(request.getParameter("cmailvalue") != "")
+		{
+			cellMap.put("mail", request.getParameter("cmailvalue"));
 		}
 		
 		if(request.getParameter("cidvalue") != "")
 		{
-			cellMap.put("idcard", new String(request.getParameter("cidvalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("id", request.getParameter("cidvalue"));
 		}
 		
 		if(request.getParameter("caddrvalue") != "")
 		{
-			cellMap.put("address", request.getParameter("caddrvalue"));
+			cellMap.put("address", URLDecoder.decode(request.getParameter("caddrvalue"),"utf-8"));
 		}
 
 		if(request.getParameter("ccompanyvalue") != "")
 		{
-			cellMap.put("company", request.getParameter("ccompanyvalue"));
+			cellMap.put("company", URLDecoder.decode(request.getParameter("ccompanyvalue"),"utf-8"));
 		}
 		
 		if(request.getParameter("ctypevalue")!="0")
 		{
-			cellMap.put("usertype", new String(request.getParameter("ctypevalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("usertype", request.getParameter("ctypevalue"));
 		}
 		
 		if(request.getParameter("csourcevalue") != "")
 		{
-			cellMap.put("source", new String(request.getParameter("csourcevalue").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("source", request.getParameter("csourcevalue"));
 		}
 		
 		if(request.getParameter("cothervalue") != "")
 		{
-			cellMap.put("extra", request.getParameter("cothervalue"));
+			cellMap.put("extra", URLDecoder.decode(request.getParameter("cothervalue"),"utf-8"));
 		}
 		
 		if(request.getParameter("ctypelogic") != "")
 		{
-			cellMap.put("logic", new String(request.getParameter("ctypelogic").getBytes("ISO8859-1"), "UTF-8"));
+			cellMap.put("logic", request.getParameter("ctypelogic"));
+		}
+		if(request.getParameter("cservicestate") != "")
+		{
+			cellMap.put("servstate", request.getParameter("cservicestate"));
 		}
 		
 		return cellMap;
@@ -132,6 +148,7 @@ public class CustomerServlet extends HttpServlet {
 		String strSrc;
 		String strClass;
 		String id;
+		String strServState;
 		for(int i = 0; i < list.size(); i++) {   
 		Map cellMap = new HashMap();   
 		cellMap.put("id", ((Map)list.get(i)).get("id")); 
@@ -139,6 +156,26 @@ public class CustomerServlet extends HttpServlet {
 		strSrc = customerCtrl.getDataSource(Integer.parseInt(id));
 		id = (String)(((Map)list.get(i)).get("usertype"));
 		strClass = customerCtrl.getUserType(Integer.parseInt(id));
+		if(((String)((Map)list.get(i)).get("servstate")).equals("0"))
+		{
+			strServState="未处理";
+		}
+		else if(((String)((Map)list.get(i)).get("servstate")).equals("1"))
+		{
+			strServState="待定";
+		}
+		else if(((String)((Map)list.get(i)).get("servstate")).equals("2"))
+		{
+			strServState="已失败";
+		}
+		else if(((String)((Map)list.get(i)).get("servstate")).equals("3"))
+		{
+			strServState="已回应";
+		}
+		else
+		{
+			strServState="已订购";
+		}
 		cellMap.put("cell", new Object[] {
 				((Map)list.get(i)).get("id"),
 				((Map)list.get(i)).get("name"), 
@@ -149,16 +186,18 @@ public class CustomerServlet extends HttpServlet {
 				((Map)list.get(i)).get("province"),
 				((Map)list.get(i)).get("city"),
 				((Map)list.get(i)).get("post"),
+				((Map)list.get(i)).get("address"),
 				((Map)list.get(i)).get("mobilephone1"),
 				((Map)list.get(i)).get("mobilephone2"),
 				((Map)list.get(i)).get("mobilephone3"),
 				((Map)list.get(i)).get("mobilephone4"),
 				((Map)list.get(i)).get("homephone1"),
 				((Map)list.get(i)).get("homephone2"),
-				((Map)list.get(i)).get("mail"),
+				((Map)list.get(i)).get("mail"),				
 				strClass,
 				strSrc,
-				((Map)list.get(i)).get("extra")}); 
+				((Map)list.get(i)).get("extra"),
+				strServState}); 
 		mapList.add(cellMap);
 		}	
 		pageInfo.put("rows", mapList);   
@@ -206,6 +245,15 @@ public class CustomerServlet extends HttpServlet {
 			CustomerControl customerCtrl = new CustomerControl();			
 			PrintWriter out = response.getWriter();			
 			out.println(customerCtrl.getUserTypeString());			
+			out.flush();
+			out.close();
+			return;
+		}
+		else if("getusertype2".equals(action))
+		{
+			CustomerControl customerCtrl = new CustomerControl();			
+			PrintWriter out = response.getWriter();			
+			out.println(customerCtrl.getUserTypeString2());			
 			out.flush();
 			out.close();
 			return;
@@ -294,8 +342,21 @@ public class CustomerServlet extends HttpServlet {
 				e.printStackTrace();
 			} 
 			return;
-		}			
-		
+		}		
+		else if("servicequery".equals(action))
+		{
+			return;
+		}
+		else if("batchdel".equals(action))
+		{
+			if(request.getParameter("id") != "")
+			{
+				CustomerControl customerCtrl = new CustomerControl();
+				customerCtrl.delUser(request.getParameter("id"));
+			}
+			return;
+		}
+				
 		String searchtype=new String(request.getParameter("searchtype").getBytes("ISO8859-1"), "UTF-8");
 		String query=request.getParameter("query");
 		String qtype=new String(request.getParameter("qtype").getBytes("ISO8859-1"), "UTF-8");

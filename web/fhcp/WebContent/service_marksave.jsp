@@ -20,6 +20,10 @@
 		{
 			svrCtrl.updateLogAck(s[i], Long.parseLong(id));
 		}
+		else if(marktype.equals("user_fail"))
+		{
+			svrCtrl.updateLogFail(s[i], Long.parseLong(id));
+		}
 		else
 		{
 			svrCtrl.updateLogDeal(s[i], Long.parseLong(id));

@@ -22,12 +22,6 @@ SPAN {
 A:link {
 	COLOR: #000000; TEXT-DECORATION: none
 }
-A:visited {
-	COLOR: #000000; TEXT-DECORATION: none
-}
-A:hover {
-	COLOR: #428eff; TEXT-DECORATION: underline
-}
 A.highlight:link {
 	COLOR: red; TEXT-DECORATION: none
 }

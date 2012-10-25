@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -185,6 +184,17 @@ public class CustomerControl extends Customer{
 		    			strSQL += entry.getValue();
 		    			strSQL += "'";
 		    		}
+		    		else if(entry.getKey() == "id")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where "; 
+		    			else		    				
+			    			strSQL += " and ";
+		    			strSQL += "id";
+		    			strSQL += "='";
+		    			strSQL += entry.getValue();
+		    			strSQL += "'";
+		    		}
 		    		else if(entry.getKey() == "usertype")
 		    		{
 		    			System.out.println("usertype"+entry.getValue()+".");
@@ -295,6 +305,17 @@ public class CustomerControl extends Customer{
 		    			strSQL += entry.getValue();
 		    			strSQL += "'";
 		    		}
+		    		else if(entry.getKey() == "id")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where "; 
+		    			else		    				
+			    			strSQL += " and ";
+		    			strSQL += "id";
+		    			strSQL += "='";
+		    			strSQL += entry.getValue();
+		    			strSQL += "'";
+		    		}
 		    		else if(entry.getKey() == "usertype")
 		    		{
 		    			System.out.println("usertype"+entry.getValue()+".");
@@ -400,6 +421,17 @@ public class CustomerControl extends Customer{
 		    			strSQL += entry.getValue();
 		    			strSQL += "'";
 		    		}
+		    		else if(entry.getKey() == "id")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where "; 
+		    			else		    				
+			    			strSQL += " and ";
+		    			strSQL += "id";
+		    			strSQL += "='";
+		    			strSQL += entry.getValue();
+		    			strSQL += "'";
+		    		}
 		    		else if(entry.getKey() == "usertype")
 		    		{
 		    			System.out.println("usertype"+entry.getValue()+".");
@@ -485,13 +517,120 @@ public class CustomerControl extends Customer{
 		return str;
 	}
 	
+	public String getUserName(long id)
+	{
+		String str="";
+		
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT name FROM customer_profile where id=?");
+			dbc.setLong(1, id);
+			rs = dbc.executeQuery();
+			while (rs.next()) {		
+				str=rs.getString("name");				
+			}
+
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				rs.close();
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return str;
+	}
+	
+	public void getUserInfo(long id)
+	{
+			
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT * FROM customer_profile where id=?");
+			dbc.setLong(1, id);
+			rs = dbc.executeQuery();
+			while (rs.next()) {		
+				setName(rs.getString("name"));
+				setMobile1(rs.getString("mobilephone1"));
+				setMobile2(rs.getString("mobilephone2"));
+				setMobile3(rs.getString("mobilephone3"));
+				setMobile4(rs.getString("mobilephone4"));
+				setServState(rs.getInt("servstate"));
+			}
+
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				rs.close();
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void delUser(String id)
+	{
+		String idList[] = id.split("_");
+		
+		for(int i = 0; i < idList.length; i ++)
+		{
+		
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("delete FROM customer_profile where id=?");
+			dbc.setLong(1, Integer.parseInt(idList[i]));
+			dbc.execute();
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		}
+		
+	}
+	
+	public void updateUser(String id, String extra, int usertype)
+	{
+		String idList[] = id.split("_");
+		
+		for(int i = 0; i < idList.length; i ++)
+		{
+		
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("update customer_profile set extra=?,usertype=? where id=?");
+			dbc.setString(1, new String(extra.getBytes("iso-8859-1"),"gb2312"));
+			dbc.setLong(2, usertype);
+			dbc.setLong(3, Integer.parseInt(idList[i]));
+			dbc.execute();
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		}
+		
+	}
+	
 	public String getUserType(long id)
 	{
 		String str="";
 		
 		try {
 			dbc = new DBConnect();
-			dbc.prepareStatement("SELECT disc FROM customer_type where bitand(id,?)!=0");
+			dbc.prepareStatement("SELECT disc FROM customer_type where bitand(tag,?)!=0");
 			dbc.setLong(1, id);
 			rs = dbc.executeQuery();
 			while (rs.next()) {		
@@ -521,7 +660,7 @@ public class CustomerControl extends Customer{
 			dbc.prepareStatement("SELECT * FROM customer_type");
 			rs = dbc.executeQuery();
 			while (rs.next()) {		
-				str+="<input type='checkbox' name='ctype' value="+rs.getLong("tag")+">"+rs.getString("disc");				
+				str+="<input type='checkbox' name='qtypevalue' value="+rs.getLong("tag")+">"+rs.getString("disc");				
 			}
 
 		} catch (Exception e) {
@@ -535,6 +674,32 @@ public class CustomerControl extends Customer{
 			}
 		}
 		
+		return str;
+	}
+	
+	public String getUserTypeString2()
+	{
+		String str="";
+		
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT * FROM customer_type");
+			rs = dbc.executeQuery();
+			while (rs.next()) {		
+				str+="<input type='checkbox' name='qtypevalue"+rs.getLong("tag")+"' value='1'>"+rs.getString("disc");				
+			}
+
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				rs.close();
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 		return str;
 	}
 	

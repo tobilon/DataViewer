@@ -1,5 +1,7 @@
 package fhcp;
 
+import java.util.Map;
+
 public class Customer {
 	
 	public Long id = 0L;
@@ -29,6 +31,34 @@ public class Customer {
 
 	public Long dataSource;
 	public String remarks = "";
+	public String servstate="";
+	
+	public String getServState() {
+		return servstate;
+	}
+	public void setServState(int servstate) {
+		if(servstate == 0)
+		{
+			this.servstate="未处理";
+		}
+		else if(servstate == 1)
+		{
+			this.servstate="待定";
+		}
+		else if(servstate == 2)
+		{
+			this.servstate="已失败";
+		}
+		else if(servstate == 3)
+		{
+			this.servstate="已回应";
+		}
+		else
+		{
+			this.servstate="已订购";
+		}
+	}
+	
 	public Long getId() {
 		return id;
 	}

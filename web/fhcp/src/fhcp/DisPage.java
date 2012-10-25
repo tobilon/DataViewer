@@ -4,19 +4,24 @@
  *  Company: marvel2
  *  Copyright: Copyright (c) 2012
  *  @version 1.0
- *  ·ÖÒ³ÏÔÊ¾¼ÆËã
+ *  ï¿½ï¿½Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½
  */
 
 package fhcp;
 
 public class DisPage {
 
-	private int l_start; // ¿ªÊ¼¼ÍÂ¼
-	private int l_end; // ½áÊø¼ÍÂ¼
-	private int l_curpage; // µ±Ç°Ò³Êý
-	private int l_totalnum;// ×Ü¼ÇÂ¼Êý
-	private int int_num = 20; // Ã¿Ò³20Ìõ
-	private int l_totalpage; // ×ÜµÄÒ³Êý
+	private int l_start; // ï¿½ï¿½Ê¼ï¿½ï¿½Â¼
+	private int l_end; // ï¿½ï¿½ï¿½ï¿½ï¿½Â¼
+	private int l_curpage; // ï¿½ï¿½Ç°Ò³ï¿½ï¿½
+	private int l_totalnum;// ï¿½Ü¼ï¿½Â¼ï¿½ï¿½
+	private int int_num = 20; // Ã¿Ò³20ï¿½ï¿½
+	private int l_totalpage; // ï¿½Üµï¿½Ò³ï¿½ï¿½
+	
+	public void setIntNum(int num)
+	{
+		int_num=num;
+	}
 
 	public void Init(int currentpage, int totalnum) {
 		l_curpage = currentpage;
@@ -77,7 +82,7 @@ public class DisPage {
 		return l_end;
 	}
 
-	// ½áÊø
+	// ï¿½ï¿½ï¿½ï¿½
 	public DisPage() {
 	}
 }
