@@ -2,9 +2,9 @@
 <%@ include file="incdb.jsp"%>
 <%@ include file="sessionadmin.jsp"%>
 <%try{
-	String name = new String(request.getParameter("name").getBytes("ISO8859_1"),"GBK");
-	String pass = new String(request.getParameter("pass").getBytes("ISO8859_1"),"GBK");
-	String join = new String(request.getParameter("join").getBytes("ISO8859_1"),"GBK");
+	String name = request.getParameter("name");
+	String pass = request.getParameter("pass");
+	String join = request.getParameter("join");
 	int classid = Integer.parseInt(request.getParameter("classid"));
 	int login = Integer.parseInt(request.getParameter("login"));
 	int id = Integer.parseInt(request.getParameter("id"));

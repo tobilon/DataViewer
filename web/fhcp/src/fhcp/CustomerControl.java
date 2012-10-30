@@ -206,6 +206,16 @@ public class CustomerControl extends Customer{
 		    			userlogic = (String)entry.getValue();
 		    			continue;
 		    		}
+		    		else if(entry.getKey() == "mobilephone1")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where ";
+		    			else
+		    				strSQL += " and ";
+		    			strSQL += "id=(select userid from customer_phone where mobilephone='";
+		    			strSQL += entry.getValue();
+		    			strSQL += "')";
+		    		}
 		    		else
 		    		{
 		    			if(i == 0)
@@ -327,6 +337,16 @@ public class CustomerControl extends Customer{
 		    			userlogic = (String)entry.getValue();
 		    			continue;
 		    		}
+		    		else if(entry.getKey() == "mobilephone1")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where ";
+		    			else
+		    				strSQL += " and ";
+		    			strSQL += "id=(select userid from customer_phone where mobilephone='";
+		    			strSQL += entry.getValue();
+		    			strSQL += "')";
+		    		}
 		    		else
 		    		{
 		    			if(i == 0)
@@ -442,6 +462,16 @@ public class CustomerControl extends Customer{
 		    		{
 		    			userlogic = (String)entry.getValue();
 		    			continue;
+		    		}
+		    		else if(entry.getKey() == "mobilephone1")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where ";
+		    			else
+		    				strSQL += " and ";
+		    			strSQL += "id=(select userid from customer_phone where mobilephone='";
+		    			strSQL += entry.getValue();
+		    			strSQL += "')";
 		    		}
 		    		else
 		    		{
