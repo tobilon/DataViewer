@@ -23,10 +23,6 @@ function userfilter(id)
 		<br>
         <TABLE width=90% border=0 align=center cellPadding=5 cellSpacing=1>
 			<TBODY>
-			    <TR><TD height="27" colspan=7 align="right">
-			    <select name='userstate' id='userstate'><option value='' selected='selected'>不限</option><option value='0'>未处理</option><option value='1'>待定</option><option value='2'>已失败</option><option value='3'>已响应</option><option value='4'>已订购</option></select>
-			    <input name='userquery' type='button' value='按状态过滤' onclick='userfilter()'></input>
-			    </TD></TR>
 				<TR align=center bgcolor="#f1f3f5">
 				<TD width=15%>用户ID</TD>
 				<TD width=15%>用户名</TD>
@@ -35,7 +31,7 @@ function userfilter(id)
 				<TD width=10%>手机3</TD>
 				<TD width=10%>手机4</TD>
 				<TD width=10%>状态</TD>
-				</TH>
+				</TR>
 				<%				
 				ServiceControl svrCtrl = new ServiceControl();
 				Vector listuser = new Vector();

@@ -23,7 +23,7 @@ String name = customerCtrl.getUserName(id);
 				<TD width=30%>短信时间</TD>
 				<TD width=45%>短信内容</TD>
 				<TD width=10%>状态</TD>
-				</TH>
+				</TR>
 				<%				
 				DispService dispsvr = new DispService();
 				ServiceControl svrCtrl = new ServiceControl();
@@ -57,7 +57,7 @@ String name = customerCtrl.getUserName(id);
 				<TD><div align="center" class=forumRow><%=serviceLog.getServiceState()%></div></TD>
 				</TR>				
 				<%}%>
-				<TD height="27" colspan=4 ><div align="center">记录总条数：<%=data_num%> 
+				<TR><TD height="27" colspan=4 ><div align="center">记录总条数：<%=data_num%> 
 	  当前页<%=Current_Page+1%>/<%=dispage.getTotalpage()%>总页数 <a href="customer_service.jsp?currentpage=0&id=<%=id%>" class="red">首页</a> <a href="customer_service.jsp?currentpage=<%=dispage.getPrepage()%>&id=<%=id%>" class="red">上一页</a> <a href="customer_service.jsp?currentpage=<%=dispage.getNextpage()%>&id=<%=id%>" class="red">下一页</a> <a href="customer_service.jsp?currentpage=<%=dispage.getTotalpage()-1%>&id=<%=id%>" class="red">末页</a> </div></TD>
 	  </TR>
 			</TBODY>

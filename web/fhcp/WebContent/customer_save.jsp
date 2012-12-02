@@ -8,6 +8,8 @@
 <%
     String id = request.getParameter("id");
 	String extra = request.getParameter("extra");
+	int extra_op = Integer.parseInt(request.getParameter("extra_op"));
+	int type_op = Integer.parseInt(request.getParameter("type_op"));
 	int usertype = 0;
 	int i = 0;
 	while(i < 32)
@@ -21,7 +23,7 @@
 	}
 	
 	CustomerControl customerCtrl = new CustomerControl();
-	customerCtrl.updateUser(id, extra, usertype);
+	customerCtrl.updateUser(id, extra, extra_op, usertype, type_op);
 %>
 <title>批量修改用户信息</title>
 <link rel="stylesheet" href="images/css.css" type="text/css" media="screen">

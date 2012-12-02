@@ -216,6 +216,16 @@ public class CustomerControl extends Customer{
 		    			strSQL += entry.getValue();
 		    			strSQL += "')";
 		    		}
+		    		else if(entry.getKey() == "source")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where ";
+		    			else
+		    				strSQL += " and ";
+		    			strSQL += "source in (select id from customer_report where filename like '%";
+		    			strSQL += entry.getValue();
+		    			strSQL += "%')";
+		    		}
 		    		else
 		    		{
 		    			if(i == 0)
@@ -347,6 +357,16 @@ public class CustomerControl extends Customer{
 		    			strSQL += entry.getValue();
 		    			strSQL += "')";
 		    		}
+		    		else if(entry.getKey() == "source")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where ";
+		    			else
+		    				strSQL += " and ";
+		    			strSQL += "source in (select id from customer_report where filename like '%";
+		    			strSQL += entry.getValue();
+		    			strSQL += "%')";
+		    		}
 		    		else
 		    		{
 		    			if(i == 0)
@@ -472,6 +492,16 @@ public class CustomerControl extends Customer{
 		    			strSQL += "id=(select userid from customer_phone where mobilephone='";
 		    			strSQL += entry.getValue();
 		    			strSQL += "')";
+		    		}
+		    		else if(entry.getKey() == "source")
+		    		{
+		    			if(i == 0)
+		    				strSQL += " where ";
+		    			else
+		    				strSQL += " and ";
+		    			strSQL += "source in (select id from customer_report where filename like '%";
+		    			strSQL += entry.getValue();
+		    			strSQL += "%')";
 		    		}
 		    		else
 		    		{
@@ -627,20 +657,69 @@ public class CustomerControl extends Customer{
 		
 	}
 	
-	public void updateUser(String id, String extra, int usertype)
+	public int getOldUserType(int id)
+	{
+		int usertype = 0;
+		try {
+			dbc = new DBConnect();
+			dbc.prepareStatement("SELECT usertype FROM customer_profile where id=?");
+			dbc.setLong(1, id);
+			rs = dbc.executeQuery();
+			while (rs.next()) {		
+				usertype = rs.getInt("usertype");				
+			}
+		} catch (Exception e) {
+			System.err.println("error:" + e);
+		} finally {
+			try {				
+				rs.close();
+				dbc.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return usertype;
+	}
+	
+	public void updateUser(String id, String extra, int extra_op, int usertype, int type_op)
 	{
 		String idList[] = id.split("_");
+		int old_type;
 		
 		for(int i = 0; i < idList.length; i ++)
 		{
 		
 		try {
 			dbc = new DBConnect();
-			dbc.prepareStatement("update customer_profile set extra=?,usertype=? where id=?");
-			dbc.setString(1, new String(extra.getBytes("iso-8859-1"),"gb2312"));
-			dbc.setLong(2, usertype);
-			dbc.setLong(3, Integer.parseInt(idList[i]));
+			if(extra_op == 0)
+			{
+				dbc.prepareStatement("update customer_profile set extra=? where id=?");
+				dbc.setString(1, new String(extra.getBytes("iso-8859-1"),"gb2312"));
+				dbc.setLong(2, Integer.parseInt(idList[i]));
+				dbc.execute();
+			}
+			else if(extra != "")
+			{
+				dbc.prepareStatement("update customer_profile set extra=extra||' '||? where id=?");
+				dbc.setString(1, new String(extra.getBytes("iso-8859-1"),"gb2312"));
+				dbc.setLong(2, Integer.parseInt(idList[i]));
+				dbc.execute();
+			}			
+			
+			old_type = getOldUserType(Integer.parseInt(idList[i]));			
+            if(type_op == 1)
+			{
+				usertype=usertype|old_type;
+			}
+			else if(type_op == 2)
+			{
+				usertype=(~usertype)&old_type;
+			}
+            dbc.prepareStatement("update customer_profile set usertype=? where id=?");
+			dbc.setLong(1, usertype);
+			dbc.setLong(2, Integer.parseInt(idList[i]));
 			dbc.execute();
+			
 		} catch (Exception e) {
 			System.err.println("error:" + e);
 		} finally {

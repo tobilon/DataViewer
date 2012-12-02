@@ -43,6 +43,7 @@ var province=provinces.split(",");
 			csexvalue:'',
 			cage1value:'',
 		    cage2value:'',
+		    cidcardvalue:'',
 		    ctitlevalue:'',
 		    cprovincevalue:'',
 		    ccityvalue:'',
@@ -532,6 +533,9 @@ var province=provinces.split(",");
 					name: 'cage2value',
 					value: p.cage2value
 				},{
+					name: 'cidcardvalue',
+					value: p.cidcardvalue
+				},{
 					name: 'ctitlevalue',
 					value: p.ctitlevalue
 				},{
@@ -652,6 +656,9 @@ var province=provinces.split(",");
 				},{
 					name: 'cage2value',
 					value: p.cage2value
+				},{
+					name: 'cidcardvalue',
+					value: p.cidcardvalue
 				},{
 					name: 'ctitlevalue',
 					value: p.ctitlevalue
@@ -1541,9 +1548,10 @@ var province=provinces.split(",");
 					            "<option value='31'>新疆</option><option value='32'>香港</option><option value='33'>澳门</option><option value='34'>台湾</option> </select></td>"+
 					            "<td>城市</td><td><select name='qcity' style= 'width:100px;'><option value='' selected='selected'>不限</option></select></td>"+
 					            "<td>邮编</td><td><input type='text' value='' size='10' name='qpost' class='qsbox' /></td></tr>"+
-                                "<tr><td>地址</td><td colspan='3'><input type='text' value='' size='30' name='qaddr' class='qsbox' /></td>" +
+					            "<tr><td>身份证号</td><td><input type='text' value='' size='10' name='qidcard' class='qsbox' /></td>" +
                                 "<td>手机</td><td><input type='text' value='' size='11' name='qmobile' class='qsbox' /></td>"+
                                 "<td>固话</td><td><input type='text' value='' size='12' name='qfix' class='qsbox' /></td>"+
+                                "<td>地址</td><td><input type='text' value='' size='20' name='qaddr' class='qsbox' /></td>" +
                                 "<td>邮箱</td><td><input type='text' value='' size='10' name='qmail' class='qsbox' /></td>"+
                                 "<td>数据源</td><td><input type='text' value='' size='10' name='qsource' class='qsbox' /></td>"+
                                 "<td>客户备注</td><td><input type='text' value='' size='10' name='qother' class='qsbox' /></td>"+
@@ -1692,6 +1700,7 @@ var province=provinces.split(",");
 				p.csexvalue = $('select[name=qsex]', g.mDiv).val();
 				p.cage1value = $('input[name=qage1]',g.mDiv).val();
 				p.cage2value = $('input[name=qage2]', g.mDiv).val();
+				p.cidcardvalue = $('input[name=qidcard]', g.mDiv).val();
 				p.ctitlevalue = $('input[name=qtitle]', g.mDiv).val();
 				p.cprovincevalue = province[$('select[name=qprovince]',g.mDiv).val()];
 			    p.ccityvalue = $('select[name=qcity]',g.mDiv).val();
@@ -1727,6 +1736,7 @@ var province=provinces.split(",");
 				p.csexvalue = $('select[name=qsex]', g.mDiv).val();
 				p.cage1value = $('input[name=qage1]',g.mDiv).val();
 				p.cage2value = $('input[name=qage2]', g.mDiv).val();
+				p.cidcardvalue = $('input[name=qidcard]', g.mDiv).val();
 				p.ctitlevalue = $('input[name=qtitle]', g.mDiv).val();
 				p.cprovincevalue = province[$('select[name=qprovince]',g.mDiv).val()];
 			    p.ccityvalue = $('select[name=qcity]',g.mDiv).val();
@@ -1760,6 +1770,7 @@ var province=provinces.split(",");
 				p.csexvalue = $('select[name=qsex]', g.mDiv).val();
 				p.cage1value = $('input[name=qage1]',g.mDiv).val();
 				p.cage2value = $('input[name=qage2]', g.mDiv).val();
+				p.cidcardvalue = $('input[name=qidcard]', g.mDiv).val();
 				p.ctitlevalue = $('input[name=qtitle]', g.mDiv).val();
 				p.cprovincevalue = province[$('select[name=qprovince]',g.mDiv).val()];
 			    p.ccityvalue = $('select[name=qcity]',g.mDiv).val();

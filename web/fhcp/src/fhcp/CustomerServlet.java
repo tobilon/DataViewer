@@ -65,6 +65,10 @@ public class CustomerServlet extends HttpServlet {
 			cellMap.put("born2", request.getParameter("cage2value"));
 		}
 		
+		if(request.getParameter("cidcardvalue") != ""){
+			cellMap.put("idcard", request.getParameter("cidcardvalue"));
+		}
+		
 		if(request.getParameter("ctitlevalue") != "")
 		{
 			cellMap.put("actor", URLDecoder.decode(request.getParameter("ctitlevalue"),"utf-8"));
@@ -122,7 +126,7 @@ public class CustomerServlet extends HttpServlet {
 		
 		if(request.getParameter("csourcevalue") != "")
 		{
-			cellMap.put("source", request.getParameter("csourcevalue"));
+			cellMap.put("source", URLDecoder.decode(request.getParameter("csourcevalue"),"utf-8"));
 		}
 		
 		if(request.getParameter("cothervalue") != "")
@@ -181,6 +185,7 @@ public class CustomerServlet extends HttpServlet {
 				((Map)list.get(i)).get("name"), 
 				((Map)list.get(i)).get("sex"),
 				((Map)list.get(i)).get("born"),
+				((Map)list.get(i)).get("idcard"),
 				((Map)list.get(i)).get("company"),
 				((Map)list.get(i)).get("actor"),
 				((Map)list.get(i)).get("province"),

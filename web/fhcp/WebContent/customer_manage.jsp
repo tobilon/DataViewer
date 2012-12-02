@@ -32,6 +32,7 @@ $("document").ready(function() {
     { display: '姓名', name: 'name', width: 60, sortable: true, align: 'left' },
     { display: '性别', name: 'sex', width: 30, sortable: true, align: 'left' },
     { display: '年龄', name: 'age', width: 30, sortable: true, align: 'left' },
+    { display: '身份证号', name: 'idcard', width: 80, sortable: true, align: 'left' },
     { display: '公司', name: 'company', width: 60, sortable: true, align: 'left' },
     { display: '职位', name: 'title', width: 60, sortable: true, align: 'left' },
     { display: '省份', name: 'province', width: 60, sortable: true, align: 'left' },
@@ -45,7 +46,7 @@ $("document").ready(function() {
     { display: '固话1', name: 'fix1', width: 100, sortable: true, align: 'left' },
     { display: '固话2', name: 'fix2', width: 100, sortable: true, align: 'left' },
     { display: 'email', name: 'email', width: 100,sortable: false, align: 'left' },
-    { display: '类别', name: 'category', width: 60, sortable: true, align: 'left' },
+    { display: '数据类别', name: 'category', width: 60, sortable: true, align: 'left' },
     { display: '数据来源', name: 'source', width: 80, sortable: true, align: 'left' },
     { display: '备注', name: 'other', width: 80, sortable: true, align: 'left' },
     { display: '业务状态', name: 'service', width: 60, sortable: true, align: 'left' }
