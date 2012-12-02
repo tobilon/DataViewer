@@ -1624,6 +1624,29 @@ var province=provinces.split(",");
 				}
 			});
 			
+			$('input[name=reset]', g.mDiv).click(function (){
+				$('input[name=qid]', g.mDiv).val("");
+				$('input[name=qname]', g.mDiv).val("");
+				$('select[name=qsex] option').eq(0).attr('selected', 'true');
+				$('input[name=qage1]', g.mDiv).val("");
+				$('input[name=qage2]', g.mDiv).val("");
+				$('input[name=qcompany]', g.mDiv).val("");
+				$('input[name=qtitle]', g.mDiv).val("");
+				$('select[name=qprovince] option').eq(0).attr('selected', 'true');
+				$('select[name=qcity] option').eq(0).attr('selected', 'true');
+				$('input[name=qpost]', g.mDiv).val("");
+				$('input[name=qidcard]', g.mDiv).val("");
+				$('input[name=qmobile]', g.mDiv).val("");
+				$('input[name=qfix]', g.mDiv).val("");
+				$('input[name=qaddr]', g.mDiv).val("");
+				$('input[name=qmail]', g.mDiv).val("");
+				$('input[name=qsource]', g.mDiv).val("");
+				$('input[name=qother]', g.mDiv).val("");
+				$('select[name=qservstat] option').eq(0).attr('selected', 'true');
+				$('input[name=qlogicvalue][value=and]').attr("checked",true);
+				$('input[name=qtypevalue]').attr('checked', false);
+			});
+			
 			$('input[name=servquery]', g.mDiv).click(function (){
 				if($(".trSelected").length==1)
 			  	{
